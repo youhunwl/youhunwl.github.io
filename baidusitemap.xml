@@ -4,6 +4,34 @@
 
     
   <url>
+    <loc>//www.shen.ee/article/40441.html</loc>
+    <lastmod>2019-06-21T08:57:53.849Z</lastmod>
+    <data>
+        <display>
+        <title>Flutter开发环境搭建</title>
+        <pubTime>2018-12-24T09:39:15.000Z</pubTime>
+        
+        <tag>Flutter</tag>
+         
+        <tag>FLutter SDK</tag>
+         
+        <tag>Android Studio</tag>
+         
+        <tag>Android SDK</tag>
+         
+        <tag>虚拟机</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>//www.shen.ee/article/24455.html</loc>
     <lastmod>2019-06-15T12:39:13.678Z</lastmod>
     <data>
@@ -154,24 +182,6 @@
          
         <tag>小程序云开发</tag>
          
-         
-           
-             
-              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>//www.shen.ee/article/39946.html</loc>
-    <lastmod>2019-06-15T05:49:18.360Z</lastmod>
-    <data>
-        <display>
-        <title>使用jQuery Jcrop 图像裁剪无法更换图片的坑</title>
-        <pubTime>2018-03-21T09:46:44.000Z</pubTime>
-        
          
            
              
@@ -357,6 +367,24 @@
 
     
   <url>
+    <loc>//www.shen.ee/article/39946.html</loc>
+    <lastmod>2019-06-15T05:49:18.360Z</lastmod>
+    <data>
+        <display>
+        <title>使用jQuery Jcrop 图像裁剪无法更换图片的坑</title>
+        <pubTime>2018-03-21T09:46:44.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>//www.shen.ee/article/63505.html</loc>
     <lastmod>2019-06-15T05:49:18.359Z</lastmod>
     <data>
@@ -442,34 +470,6 @@
         <title>PWA介绍及快速上手搭建一个PWA应用</title>
         <pubTime>2018-04-27T09:09:00.000Z</pubTime>
         
-         
-           
-             
-              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>//www.shen.ee/article/40441.html</loc>
-    <lastmod>2019-06-15T05:49:18.359Z</lastmod>
-    <data>
-        <display>
-        <title>Flutter开发环境搭建</title>
-        <pubTime>2018-12-24T09:39:15.000Z</pubTime>
-        
-        <tag>Flutter</tag>
-         
-        <tag>FLutter SDK</tag>
-         
-        <tag>Android Studio</tag>
-         
-        <tag>Android SDK</tag>
-         
-        <tag>虚拟机</tag>
-         
          
            
              
