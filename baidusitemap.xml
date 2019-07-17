@@ -3,6 +3,34 @@
 
 
     
+  <url>
+    <loc>//www.shen.ee/article/55210.html</loc>
+    <lastmod>2019-07-17T06:33:33.367Z</lastmod>
+    <data>
+        <display>
+        <title>js运算精准问题</title>
+        <pubTime>2019-07-17T06:30:37.000Z</pubTime>
+        
+        <tag>js运算</tag>
+         
+        <tag>js计算</tag>
+         
+        <tag>js浮点数计算</tag>
+         
+        <tag>js超长数字计算</tag>
+         
+        <tag>js计算精度问题</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>//www.shen.ee/article/40441.html</loc>
@@ -51,17 +79,13 @@
 
     
   <url>
-    <loc>//www.shen.ee/article/62209.html</loc>
+    <loc>//www.shen.ee/article/38692.html</loc>
     <lastmod>2019-06-15T05:49:18.362Z</lastmod>
     <data>
         <display>
-        <title>最全前端资源汇集</title>
-        <pubTime>2018-02-11T07:02:10.000Z</pubTime>
+        <title>超详细动手搭建一个Vuepress站点及开启PWA与自动部署</title>
+        <pubTime>2018-05-07T01:41:39.000Z</pubTime>
         
-        <tag>前端资源</tag>
-         
-        <tag>技术学习</tag>
-         
          
            
              
@@ -73,13 +97,17 @@
 
     
   <url>
-    <loc>//www.shen.ee/article/38692.html</loc>
+    <loc>//www.shen.ee/article/62209.html</loc>
     <lastmod>2019-06-15T05:49:18.362Z</lastmod>
     <data>
         <display>
-        <title>超详细动手搭建一个Vuepress站点及开启PWA与自动部署</title>
-        <pubTime>2018-05-07T01:41:39.000Z</pubTime>
+        <title>最全前端资源汇集</title>
+        <pubTime>2018-02-11T07:02:10.000Z</pubTime>
         
+        <tag>前端资源</tag>
+         
+        <tag>技术学习</tag>
+         
          
            
              
@@ -113,24 +141,6 @@
 
     
   <url>
-    <loc>//www.shen.ee/article/39645.html</loc>
-    <lastmod>2019-06-15T05:49:18.361Z</lastmod>
-    <data>
-        <display>
-        <title>前端开发规范</title>
-        <pubTime>2017-05-21T09:01:34.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>//www.shen.ee/article/52925.html</loc>
     <lastmod>2019-06-15T05:49:18.361Z</lastmod>
     <data>
@@ -144,6 +154,24 @@
            
              
               <breadCrumb title="资源" url="//www.shen.ee/categories/%E8%B5%84%E6%BA%90/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>//www.shen.ee/article/39645.html</loc>
+    <lastmod>2019-06-15T05:49:18.361Z</lastmod>
+    <data>
+        <display>
+        <title>前端开发规范</title>
+        <pubTime>2017-05-21T09:01:34.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>
@@ -181,30 +209,6 @@
         <tag>云开发</tag>
          
         <tag>小程序云开发</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>//www.shen.ee/article/58291.html</loc>
-    <lastmod>2019-06-15T05:49:18.360Z</lastmod>
-    <data>
-        <display>
-        <title>基于gulp的前端自动化方案</title>
-        <pubTime>2018-10-24T10:44:30.000Z</pubTime>
-        
-        <tag>前端自动化</tag>
-         
-        <tag>Gulp</tag>
-         
-        <tag>Node</tag>
          
          
            
@@ -259,6 +263,24 @@
         <display>
         <title>so easy 前端实现多语言</title>
         <pubTime>2018-05-17T08:37:05.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>//www.shen.ee/article/39946.html</loc>
+    <lastmod>2019-06-15T05:49:18.360Z</lastmod>
+    <data>
+        <display>
+        <title>使用jQuery Jcrop 图像裁剪无法更换图片的坑</title>
+        <pubTime>2018-03-21T09:46:44.000Z</pubTime>
         
          
            
@@ -367,13 +389,19 @@
 
     
   <url>
-    <loc>//www.shen.ee/article/39946.html</loc>
+    <loc>//www.shen.ee/article/58291.html</loc>
     <lastmod>2019-06-15T05:49:18.360Z</lastmod>
     <data>
         <display>
-        <title>使用jQuery Jcrop 图像裁剪无法更换图片的坑</title>
-        <pubTime>2018-03-21T09:46:44.000Z</pubTime>
+        <title>基于gulp的前端自动化方案</title>
+        <pubTime>2018-10-24T10:44:30.000Z</pubTime>
         
+        <tag>前端自动化</tag>
+         
+        <tag>Gulp</tag>
+         
+        <tag>Node</tag>
+         
          
            
              
