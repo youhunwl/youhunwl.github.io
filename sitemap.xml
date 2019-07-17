@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>//www.shen.ee/math.html</loc>
+    
+    <lastmod>2019-07-17T06:05:22.907Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>//www.shen.ee/about/index.html</loc>
     
     <lastmod>2019-07-02T09:41:20.893Z</lastmod>
@@ -23,6 +30,13 @@
   </url>
   
   <url>
+    <loc>//www.shen.ee/article/54364.html</loc>
+    
+    <lastmod>2019-06-15T05:49:18.362Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>//www.shen.ee/article/62209.html</loc>
     
     <lastmod>2019-06-15T05:49:18.362Z</lastmod>
@@ -37,9 +51,9 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/54364.html</loc>
+    <loc>//www.shen.ee/article/9789.html</loc>
     
-    <lastmod>2019-06-15T05:49:18.362Z</lastmod>
+    <lastmod>2019-06-15T05:49:18.361Z</lastmod>
     
   </url>
   
@@ -65,21 +79,14 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/9789.html</loc>
-    
-    <lastmod>2019-06-15T05:49:18.361Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//www.shen.ee/article/25439.html</loc>
+    <loc>//www.shen.ee/article/30720.html</loc>
     
     <lastmod>2019-06-15T05:49:18.360Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/30720.html</loc>
+    <loc>//www.shen.ee/article/25439.html</loc>
     
     <lastmod>2019-06-15T05:49:18.360Z</lastmod>
     
@@ -93,7 +100,7 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/58291.html</loc>
+    <loc>//www.shen.ee/article/39946.html</loc>
     
     <lastmod>2019-06-15T05:49:18.360Z</lastmod>
     
@@ -135,21 +142,14 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/39946.html</loc>
+    <loc>//www.shen.ee/article/58291.html</loc>
     
     <lastmod>2019-06-15T05:49:18.360Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/63505.html</loc>
-    
-    <lastmod>2019-06-15T05:49:18.359Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//www.shen.ee/article/45273.html</loc>
+    <loc>//www.shen.ee/article/27258.html</loc>
     
     <lastmod>2019-06-15T05:49:18.359Z</lastmod>
     
@@ -157,6 +157,13 @@
   
   <url>
     <loc>//www.shen.ee/article/20899.html</loc>
+    
+    <lastmod>2019-06-15T05:49:18.359Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//www.shen.ee/article/45273.html</loc>
     
     <lastmod>2019-06-15T05:49:18.359Z</lastmod>
     
@@ -177,7 +184,7 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/27258.html</loc>
+    <loc>//www.shen.ee/article/63505.html</loc>
     
     <lastmod>2019-06-15T05:49:18.359Z</lastmod>
     
