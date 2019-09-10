@@ -5,7 +5,7 @@
     
   <url>
     <loc>//www.shen.ee/article/55210.html</loc>
-    <lastmod>2019-09-10T03:01:35.799Z</lastmod>
+    <lastmod>2019-09-10T03:05:22.627Z</lastmod>
     <data>
         <display>
         <title>js运算精准问题</title>
@@ -32,15 +32,24 @@
 
     
   <url>
-    <loc>//www.shen.ee/article/0.html</loc>
-    <lastmod>2019-09-10T03:01:35.799Z</lastmod>
+    <loc>//www.shen.ee/article/21666.html</loc>
+    <lastmod>2019-09-10T03:05:22.624Z</lastmod>
     <data>
         <display>
-        <title></title>
-        <pubTime>2019-09-10T03:01:35.799Z</pubTime>
+        <title>Mime-Type对照表</title>
+        <pubTime>2019-09-10T03:00:32.000Z</pubTime>
         
+        <tag>Mime-Type</tag>
+         
+        <tag>Content-Type</tag>
+         
+        <tag>http:Content-Type</tag>
+         
          
            
+             
+              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
+          
         </display>
     </data>
     </url>
