@@ -4,8 +4,42 @@
 
     
   <url>
+    <loc>//www.shen.ee/article/16336.html</loc>
+    <lastmod>2019-11-02T05:51:07.072Z</lastmod>
+    <data>
+        <display>
+        <title>斐讯N1折腾记，刷入电视盒子固件</title>
+        <pubTime>2019-11-02T05:50:05.000Z</pubTime>
+        
+        <tag>斐讯N1</tag>
+         
+        <tag>斐讯T1</tag>
+         
+        <tag>电视盒子</tag>
+         
+        <tag>N1电视盒子</tag>
+         
+        <tag>斐讯盒子</tag>
+         
+        <tag>斐讯电视盒子</tag>
+         
+        <tag>N1</tag>
+         
+        <tag>T1</tag>
+         
+         
+           
+             
+              <breadCrumb title="资源" url="//www.shen.ee/categories/%E8%B5%84%E6%BA%90/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>//www.shen.ee/article/55210.html</loc>
-    <lastmod>2019-09-10T03:15:09.205Z</lastmod>
+    <lastmod>2019-11-02T05:51:07.072Z</lastmod>
     <data>
         <display>
         <title>js运算精准问题</title>
@@ -33,7 +67,7 @@
     
   <url>
     <loc>//www.shen.ee/article/21666.html</loc>
-    <lastmod>2019-09-10T03:15:09.205Z</lastmod>
+    <lastmod>2019-11-02T05:51:07.068Z</lastmod>
     <data>
         <display>
         <title>Mime-Type对照表</title>
@@ -97,6 +131,28 @@
 
     
   <url>
+    <loc>//www.shen.ee/article/62209.html</loc>
+    <lastmod>2019-08-15T09:50:52.287Z</lastmod>
+    <data>
+        <display>
+        <title>最全前端资源汇集</title>
+        <pubTime>2018-02-11T07:02:10.000Z</pubTime>
+        
+        <tag>前端资源</tag>
+         
+        <tag>技术学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>//www.shen.ee/article/52925.html</loc>
     <lastmod>2019-08-15T09:50:52.287Z</lastmod>
     <data>
@@ -128,28 +184,6 @@
            
              
               <breadCrumb title="工具" url="//www.shen.ee/categories/%E5%B7%A5%E5%85%B7/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>//www.shen.ee/article/62209.html</loc>
-    <lastmod>2019-08-15T09:50:52.287Z</lastmod>
-    <data>
-        <display>
-        <title>最全前端资源汇集</title>
-        <pubTime>2018-02-11T07:02:10.000Z</pubTime>
-        
-        <tag>前端资源</tag>
-         
-        <tag>技术学习</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>
@@ -221,12 +255,12 @@
 
     
   <url>
-    <loc>//www.shen.ee/article/30338.html</loc>
+    <loc>//www.shen.ee/article/30720.html</loc>
     <lastmod>2019-08-15T09:50:52.285Z</lastmod>
     <data>
         <display>
-        <title>json-server进阶</title>
-        <pubTime>2018-07-20T02:20:37.000Z</pubTime>
+        <title>使用 json-server 简单完成CRUD模拟后台数据</title>
+        <pubTime>2018-07-09T03:50:40.000Z</pubTime>
         
          
            
@@ -239,12 +273,12 @@
 
     
   <url>
-    <loc>//www.shen.ee/article/1806.html</loc>
+    <loc>//www.shen.ee/article/30338.html</loc>
     <lastmod>2019-08-15T09:50:52.285Z</lastmod>
     <data>
         <display>
-        <title>sublime注册码失效解决办法</title>
-        <pubTime>2018-05-07T02:25:28.000Z</pubTime>
+        <title>json-server进阶</title>
+        <pubTime>2018-07-20T02:20:37.000Z</pubTime>
         
          
            
@@ -288,6 +322,24 @@
          
         <tag>Node</tag>
          
+         
+           
+             
+              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>//www.shen.ee/article/1806.html</loc>
+    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
+    <data>
+        <display>
+        <title>sublime注册码失效解决办法</title>
+        <pubTime>2018-05-07T02:25:28.000Z</pubTime>
+        
          
            
              
@@ -343,42 +395,6 @@
         <display>
         <title>你不知道的console.log</title>
         <pubTime>2018-08-24T15:54:10.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>//www.shen.ee/article/30720.html</loc>
-    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
-    <data>
-        <display>
-        <title>使用 json-server 简单完成CRUD模拟后台数据</title>
-        <pubTime>2018-07-09T03:50:40.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>//www.shen.ee/article/27276.html</loc>
-    <lastmod>2019-08-15T09:50:52.284Z</lastmod>
-    <data>
-        <display>
-        <title>PWA介绍及快速上手搭建一个PWA应用</title>
-        <pubTime>2018-04-27T09:09:00.000Z</pubTime>
         
          
            
@@ -469,12 +485,12 @@
 
     
   <url>
-    <loc>//www.shen.ee/article/24455.html</loc>
+    <loc>//www.shen.ee/article/27276.html</loc>
     <lastmod>2019-08-15T09:50:52.284Z</lastmod>
     <data>
         <display>
-        <title>Jenkins配合github实现前端项目自动化构建部署</title>
-        <pubTime>2018-09-14T08:46:16.000Z</pubTime>
+        <title>PWA介绍及快速上手搭建一个PWA应用</title>
+        <pubTime>2018-04-27T09:09:00.000Z</pubTime>
         
          
            
@@ -487,17 +503,17 @@
 
     
   <url>
-    <loc>//www.shen.ee/article/27258.html</loc>
-    <lastmod>2019-08-15T09:50:52.283Z</lastmod>
+    <loc>//www.shen.ee/article/24455.html</loc>
+    <lastmod>2019-08-15T09:50:52.284Z</lastmod>
     <data>
         <display>
-        <title>Linux硬盘分区，卸载，挂载，格式化，加到开机启动项</title>
-        <pubTime>2018-04-24T10:22:40.000Z</pubTime>
+        <title>Jenkins配合github实现前端项目自动化构建部署</title>
+        <pubTime>2018-09-14T08:46:16.000Z</pubTime>
         
          
            
              
-              <breadCrumb title="后端" url="//www.shen.ee/categories/%E5%90%8E%E7%AB%AF/"/>
+              <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>
@@ -526,6 +542,24 @@
            
              
               <breadCrumb title="前端" url="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>//www.shen.ee/article/27258.html</loc>
+    <lastmod>2019-08-15T09:50:52.283Z</lastmod>
+    <data>
+        <display>
+        <title>Linux硬盘分区，卸载，挂载，格式化，加到开机启动项</title>
+        <pubTime>2018-04-24T10:22:40.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="后端" url="//www.shen.ee/categories/%E5%90%8E%E7%AB%AF/"/>
           
         </display>
     </data>
