@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="//www.shen.ee/"/>
-  <updated>2020-04-17T07:14:55.494Z</updated>
+  <updated>2020-05-29T09:48:38.143Z</updated>
   <id>//www.shen.ee/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微信更改微信号方法，亲测可用！</title>
+    <link href="//www.shen.ee/article/11740.html"/>
+    <id>//www.shen.ee/article/11740.html</id>
+    <published>2020-05-29T09:46:14.000Z</published>
+    <updated>2020-05-29T09:48:38.143Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>今天（2020年5月29日），<strong>微信7.0.15正式版上线</strong></p><p>部分更新功能有：</p><ul><li>- 深色模式可以不跟随系统，单独设置（深色模式需手机系统支持）</li><li>- 可以在群聊附件栏中直接发起“接龙”</li><li>- 在微信内点击新消息通知，当前浏览的网页、小程序等将自动收为浮窗</li><li>- 可以收藏小程序指定页面</li><li>- 微信扫一扫可以扫描多个二维码可选择</li><li>…</li></ul><p>但这都不是重头戏，重点是有一个<del>友好</del>变更</p><p>在之前的版本中修改微信号页面输入框下方提示是：“微信号是账号的唯一凭证，只能设置一次”</p><p>而现在这版已经变更为：“微信号是账号的唯一凭证，一年只能修改一次”</p><p>终于能改掉之前的<strong>非主流</strong>微信号了，喜极而泣</p><p><img src="https://oss.iyouhun.com/img/2020-5-29-16-58-25.jpg" style="zoom:25%;"></p><h2 id="如何修改"><a href="#如何修改" class="headerlink" title="如何修改"></a>如何修改</h2><blockquote><p>​    修改有风险 操作需谨慎</p></blockquote><p><strong>前提</strong></p><ul><li>一年内没修改过微信号</li><li>一台root的安卓手机</li><li>在这部安卓手机上登陆时间超过一周</li><li>使用微信7.0.15</li></ul><p>按照目前的状态，官方已经做完了更改微信号的接口和UI，但是没有公开，有可能在未来某个时间开启。</p><p>当然xiaolong决定不开放也是有可能的。我本人已经修改成功。微信号可能存在<strong>冻结风险</strong>，自己衡量。</p><p>如果手机没有root，可以使用虚拟大师或者安卓模拟器，但是要<strong>登陆七天</strong>。</p><p><img src="https://oss.iyouhun.com/img/wxhaogenggai.jpg" alt=""></p><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>安装“创建快捷方式”app（酷安有）</p><p>搜索微信并进入活动列表。点击右上角菜单，勾选“<strong>也显示未导出活动</strong>”</p><p>然后搜索 <code>com.tencent.mm.plugin.setting.ui.setting.SettingsAliasUI</code> 授予root权限，打开就可以</p><p><img src="https://oss.iyouhun.com/img/kuan-search-wx.jpg" style="zoom:50%;"></p><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>与方法一本质一样</p><p>终端su获取root，执行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">am start -n com.tencent.mm/com.tencent.mm.plugin.setting.ui.setting.SettingsAliasUI</span><br></pre></td></tr></table></figure><h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><p>等待未来微信官方开启</p><p><img src="https://oss.iyouhun.com/img/yiwaijingxi.jpg" style="zoom:50%;"></p><p>本方法写于2020.05.29，未来微信官方可能云控封堵这种方法。<br>再次说明 <strong>修改有风险 操作需谨慎</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h2&gt;&lt;p&gt;今天（2020年5月29日），&lt;strong&gt;微信7.0.15正式版上线&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;部分更新功能有：&lt;
+      
+    
+    </summary>
+    
+      <category term="资源" scheme="//www.shen.ee/categories/%E8%B5%84%E6%BA%90/"/>
+    
+    
+      <category term="微信" scheme="//www.shen.ee/tags/%E5%BE%AE%E4%BF%A1/"/>
+    
+      <category term="微信修改微信号" scheme="//www.shen.ee/tags/%E5%BE%AE%E4%BF%A1%E4%BF%AE%E6%94%B9%E5%BE%AE%E4%BF%A1%E5%8F%B7/"/>
+    
+      <category term="微信可以修改微信号了" scheme="//www.shen.ee/tags/%E5%BE%AE%E4%BF%A1%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E5%BE%AE%E4%BF%A1%E5%8F%B7%E4%BA%86/"/>
+    
+      <category term="微信号" scheme="//www.shen.ee/tags/%E5%BE%AE%E4%BF%A1%E5%8F%B7/"/>
+    
+      <category term="更改微信号" scheme="//www.shen.ee/tags/%E6%9B%B4%E6%94%B9%E5%BE%AE%E4%BF%A1%E5%8F%B7/"/>
+    
+      <category term="一年一次更改微信号" scheme="//www.shen.ee/tags/%E4%B8%80%E5%B9%B4%E4%B8%80%E6%AC%A1%E6%9B%B4%E6%94%B9%E5%BE%AE%E4%BF%A1%E5%8F%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>使用CloudFlare Worker 免费部署 JSProxy 服务</title>
@@ -564,30 +600,6 @@
     </summary>
     
       <category term="前端" scheme="//www.shen.ee/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux硬盘分区，卸载，挂载，格式化，加到开机启动项</title>
-    <link href="//www.shen.ee/article/27258.html"/>
-    <id>//www.shen.ee/article/27258.html</id>
-    <published>2018-04-24T10:22:40.000Z</published>
-    <updated>2019-08-15T09:50:52.283Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>卸载磁盘</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">umount 挂载目录 分区名</span><br><span class="line"><span class="comment">#例如 umount /data/ /dev/vdb</span></span><br></pre></td></tr></table></figure><p>0、创建<strong>挂载</strong>目录</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /www</span><br></pre></td></tr></table></figure><p>1、确认是否有没有分区的磁盘,如下图，没有分区的磁盘是 /dev/xvdb ,在您的服务器中可能是 /dev/vdb 请注意按实际名称修改</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcphwawyj20gh0hwt9p.jpg" alt=""></p><p>2、为磁盘分区，若已分区的，请跳过！</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/xvdb</span><br></pre></td></tr></table></figure><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcpk7vu2j20hi00iq2p.jpg" alt=""></p><p>3、输入n开始创建分区</p><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcpek1ssj20he039t8n.jpg" alt="1476467888753.png"></p><p>4、输入p创建主分区</p><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcpoc1nmj20ht02ht8j.jpg" alt="14764678911902.png"></p><p>5、选择分区号，这里输入1</p><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcpr6puyj20hs00g741.jpg" alt="14764678974383.png"></p><p>6、输入分区开始位置，直接回车</p><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcq2agptj20hs00ijr5.jpg" alt="14764679066906.png"></p><p>7、输入分区结束位置，直接回车</p><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcq4sz1sj20hu00z3yb.jpg" alt="14764679101188.png"></p><p>8、输入wq 保存退出</p><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcqaauwwj20hp00pdfl.jpg" alt="14764679123835.png"></p><p>9、检查是否分区成功</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcqfjbfkj20gb0hfgmm.jpg" alt="14764679159426.png"></p><p>10、格式化分区，这里请输入你看到的磁盘加分区号，如下图，已格式化过的，请跳过</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/xvdb1</span><br><span class="line"><span class="meta">#</span><span class="bash"> (linux老的磁盘分区用的是 ext2 和 ext3  ，现在最新的是 ext4)</span></span><br></pre></td></tr></table></figure><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcqjvszxj20hg00k0si.jpg" alt="14764679185233.png"></p><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcqv0jsqj20hk0apaak.jpg" alt="14764679237879.png"></p><p>11、将新建的分区挂载到<code>/www</code>目录下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/xvdb1 /www</span><br></pre></td></tr></table></figure><p>12、查询磁盘分区UUID</p><blockquote><p>说明：磁盘的UUID（universally unique identifier）是Linux系统为存储设备提供的唯一的标识字符串。 </p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">blkid /dev/xvdb1</span><br><span class="line"><span class="comment"># 这里查询一下是为了下一步加到开机启动项</span></span><br></pre></td></tr></table></figure><p>13、将分区挂载信息添加到开机启动挂载</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">echo "/dev/xvdb1 /www ext4 defaults 0 0" &gt;&gt; /etc/fstab</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 也可以直接修改/etc/fstab文件，在最后加一段</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> /dev/xvdb1 /www ext4 defaults 0 0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 推荐使用UUID来配置自动挂载数据盘，防止存储设备在服务器中发生改变</span></span><br><span class="line">echo "UUID=f5c5c392-4704-4475-9abc-f6a2e049f2ea /www ext4 defaults 0 0" &gt;&gt; /etc/fstab</span><br></pre></td></tr></table></figure><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcqy2sq4j20kq016a9x.jpg" alt="14764679262526.png"></p><blockquote><p>格式说明：</p><p>第1列是需要挂载的文件系统或存储设备，/dev/xvdb1代表哪个分区 </p><p>第2列是挂载点</p><p>第3列指定文件系统或分区的类型，ext4是该分区的格式</p><p>第4列为挂载选项，详细参考manmount. ，defaults是挂载时所要设定的参数(只读，读写，启用quota等)，输入defaults包括的参数有(rw、dev、exec、auto、nouser、async) ，</p><p>第5列为dump选项，设置是否让备份程序dump备份文件系统，0为忽略，1为备份。</p><p>第6列为fsck选项，告诉fsck程序以什么顺序检查文件系统，（2是开机时检查的顺序），是boot系统文件就为1，其他文件系统都为2，如不要检查就为0</p></blockquote><p>13、重新挂载所有分区</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -a</span><br></pre></td></tr></table></figure><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcr2pjf9j20mg00nmwx.jpg" alt="14764679301321.png"></p><p>14、检查是否挂载成功</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></table></figure><p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcr6q5ruj20oh03nglo.jpg" alt="14764679337124.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;卸载磁盘&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;l
-      
-    
-    </summary>
-    
-      <category term="后端" scheme="//www.shen.ee/categories/%E5%90%8E%E7%AB%AF/"/>
     
     
   </entry>
