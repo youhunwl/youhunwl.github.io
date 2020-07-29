@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>//www.shen.ee/article/23761.html</loc>
+    <loc>//www.shen.ee/article/11740.html</loc>
     
-    <lastmod>2020-07-28T10:53:11.290Z</lastmod>
+    <lastmod>2020-07-29T09:45:38.453Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/11740.html</loc>
+    <loc>//www.shen.ee/article/23761.html</loc>
     
-    <lastmod>2020-07-28T10:53:11.290Z</lastmod>
+    <lastmod>2020-07-29T09:45:38.453Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//www.shen.ee/pwa/manifest.json</loc>
+    
+    <lastmod>2020-07-29T09:45:38.453Z</lastmod>
     
   </url>
   
@@ -65,13 +72,6 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/62209.html</loc>
-    
-    <lastmod>2019-08-15T09:50:52.287Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>//www.shen.ee/article/7482.html</loc>
     
     <lastmod>2019-08-15T09:50:52.287Z</lastmod>
@@ -80,6 +80,13 @@
   
   <url>
     <loc>//www.shen.ee/article/9789.html</loc>
+    
+    <lastmod>2019-08-15T09:50:52.287Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//www.shen.ee/article/62209.html</loc>
     
     <lastmod>2019-08-15T09:50:52.287Z</lastmod>
     
@@ -107,6 +114,48 @@
   </url>
   
   <url>
+    <loc>//www.shen.ee/article/39917.html</loc>
+    
+    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//www.shen.ee/article/1806.html</loc>
+    
+    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//www.shen.ee/article/6592.html</loc>
+    
+    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//www.shen.ee/article/30720.html</loc>
+    
+    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//www.shen.ee/article/28709.html</loc>
+    
+    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//www.shen.ee/article/30338.html</loc>
+    
+    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>//www.shen.ee/article/25439.html</loc>
     
     <lastmod>2019-08-15T09:50:52.285Z</lastmod>
@@ -121,49 +170,7 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/39917.html</loc>
-    
-    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//www.shen.ee/article/6592.html</loc>
-    
-    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//www.shen.ee/article/28709.html</loc>
-    
-    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//www.shen.ee/article/30720.html</loc>
-    
-    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//www.shen.ee/article/30338.html</loc>
-    
-    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//www.shen.ee/article/1806.html</loc>
-    
-    <lastmod>2019-08-15T09:50:52.285Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//www.shen.ee/article/39946.html</loc>
+    <loc>//www.shen.ee/article/20899.html</loc>
     
     <lastmod>2019-08-15T09:50:52.284Z</lastmod>
     
@@ -177,7 +184,7 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/20899.html</loc>
+    <loc>//www.shen.ee/article/39946.html</loc>
     
     <lastmod>2019-08-15T09:50:52.284Z</lastmod>
     
@@ -205,13 +212,6 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/40441.html</loc>
-    
-    <lastmod>2019-08-15T09:50:52.283Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>//www.shen.ee/article/27258.html</loc>
     
     <lastmod>2019-08-15T09:50:52.283Z</lastmod>
@@ -219,14 +219,21 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/63505.html</loc>
+    <loc>//www.shen.ee/article/40441.html</loc>
+    
+    <lastmod>2019-08-15T09:50:52.283Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//www.shen.ee/article/17343.html</loc>
     
     <lastmod>2019-08-15T09:50:52.282Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/17343.html</loc>
+    <loc>//www.shen.ee/article/63505.html</loc>
     
     <lastmod>2019-08-15T09:50:52.282Z</lastmod>
     
