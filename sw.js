@@ -45,7 +45,6 @@ const getFixedUrl = (req) => {
 const isNavigationReq = (req) => (req.mode === 'navigate' || (req.method === 'GET' && req.headers.get('accept').includes('text/html')))
 
 // The Util Function to detect if a req is end with extension
-// Accordin to Fetch API spec <https: fetch.spec.whatwg.org="" #concept-request-destination="">
 // Any HTML's navigation has consistently mode="navigate" type="" and destination="document" 
 // including requesting an img (or any static resources) from URL Bar directly.
 // So It ends up with that regExp is still the king of URL routing ;)
@@ -148,4 +147,4 @@ self.addEventListener('fetch', event => {
     );
   }
 });
-</response></https:>
+</response>
