@@ -1,0 +1,396 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="Jenkins,Publish over SSH,ssh服务器互信,服务器互信,jenkins上传远程服务器,jenkins远程服务器配置" />
+
+
+    <meta name="description" content="服务器互信
+A服务器：Jenkins 所在服务器
+B 服务器：项目部署所在服务器
+
+A 服务器生成秘钥
+12ssh-keygen# 一路回车
+A 服务器 将本地的ssh公钥文件安装到远程主机对应..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>Jenkins Publish over SSH 插件配置及服务器互信 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Jenkins Publish over SSH 插件配置及服务器互信">
+            
+	            Jenkins Publish over SSH 插件配置及服务器互信
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/工具/">工具</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Jenkins/">Jenkins</a> <a class="tag-link" href="/tags/Publish-over-SSH/">Publish over SSH</a> <a class="tag-link" href="/tags/jenkins上传远程服务器/">jenkins上传远程服务器</a> <a class="tag-link" href="/tags/jenkins远程服务器配置/">jenkins远程服务器配置</a> <a class="tag-link" href="/tags/ssh服务器互信/">ssh服务器互信</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2022/06/22</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="服务器互信"><a href="#服务器互信" class="headerlink" title="服务器互信"></a>服务器互信</h3><blockquote>
+<p>A服务器：Jenkins 所在服务器</p>
+<p>B 服务器：项目部署所在服务器</p>
+</blockquote>
+<p>A 服务器生成秘钥</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br><span class="line"><span class="meta">#</span><span class="bash"> 一路回车</span></span><br></pre></td></tr></table></figure>
+<p>A 服务器 将本地的ssh公钥文件安装到远程主机对应的账户下 （也可以手动复制，推荐命令）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 执行命令后输入密码完成复制</span></span><br><span class="line">ssh-copy-id root@B服务器IP</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">端口不一致复制方法</span></span><br><span class="line">ssh-copy-id -i /root/.ssh/id_rsa.pub "-p 1008 root@B服务器IP"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用该命令测试</span></span><br><span class="line">ssh root@B服务器IP</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 登录后注意此时主机名已经是 B 服务器的了 查看命令</span></span><br><span class="line">hostname</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改主机名 centos6</span></span><br><span class="line">vim /etc/sysconfig/network  #编辑network文件修改hostname行（重启生效）</span><br><span class="line"><span class="meta">#</span><span class="bash"> 检查修改</span></span><br><span class="line">cat /etc/sysconfig/network</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改主机名 centos7</span></span><br><span class="line">hostnamectl set-hostname www.iyouhun.com # 使用这个命令会立即生效且重启也生效</span><br></pre></td></tr></table></figure>
+<p>复制后的文件在 <code>home/用户名/.ssh/</code>文件下名为 <code>authorized_keys</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 比如 新建了一个 Jenkins账户</span></span><br><span class="line">cat /home/jenkins/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> root 账户在</span></span><br><span class="line">cat /root/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<h3 id="Publish-over-SSH-插件配置"><a href="#Publish-over-SSH-插件配置" class="headerlink" title="Publish over SSH 插件配置"></a>Publish over SSH 插件配置</h3><p><strong>Passphrase</strong>：  如果生成秘钥的时候输入了密码，就在这里输入，否则留空</p>
+<p><strong>Path to Key</strong>： Jenkins 所在服务器秘钥(<code>id_rsa</code>)的路径，和下面的<strong>Key</strong>二选一</p>
+<p><strong>Key</strong>：  Jenkins 所在服务器秘钥(<code>id_rsa</code>)的路内容，和上面的<strong>Path to Key</strong>二选一</p>
+<p><strong>Disable exec</strong>： 禁用命令执行，删除从此插件执行命令的能力</p>
+<p><img src="https://oss.iyouhun.com/img/QQ20211108-152627@2x.png" alt=""></p>
+<h4 id="SSH-Servers"><a href="#SSH-Servers" class="headerlink" title="SSH Servers"></a>SSH Servers</h4><p><strong>Name</strong>：  名称，标识，自定义即可，仅用作识别</p>
+<p><strong>Host name</strong>： 主机名，服务器的主机名或 IP 地址，这里填写B服务器的 IP地址</p>
+<p><strong>Username</strong>：  将用于连接到主机的用户，比如 <code>root</code></p>
+<p><strong>Remote directory</strong>： 远程服务器上的一个目录，将用作此配置的有效根目录，比如<code>/www/wwwroot</code></p>
+<p><strong>高级选项</strong></p>
+<p>Use password authentication, or use a different key 可以勾选使用密码连接或者秘钥连接</p>
+<p><strong>Passphrase / Password</strong>：秘钥密码或者用户名密码</p>
+<p><strong>Path to Key</strong>： Jenkins 所在服务器秘钥(<code>id_rsa</code>)的路径，和下面的<strong>Key</strong>二选一 </p>
+<p><strong>Key</strong>：  Jenkins 所在服务器秘钥(<code>id_rsa</code>)的路内容，和上面的<strong>Path to Key</strong>二选一</p>
+<p><strong>如果用秘钥链接记住这里是Jenkins(A 服务器)的私钥(<code>id_rsa</code>)</strong></p>
+<p><strong>Port</strong>：远程服务器端口，如果修改了端口，这里记得也改一下</p>
+<p><img src="https://oss.iyouhun.com/img/QQ20211108-160114@2x.png" alt=""></p>
+<p>更多参考：<a href="https://wiki.jenkins.io/display/JENKINS/Publish+Over#PublishOver-host" target="_blank" rel="noopener">https://wiki.jenkins.io/display/JENKINS/Publish+Over#PublishOver-host</a></p>
+<h4 id="项目发布设置"><a href="#项目发布设置" class="headerlink" title="项目发布设置"></a>项目发布设置</h4><p>1.点击 Jenkins项目的构建环境</p>
+<p>2.根据项目情况选择以下两项</p>
+<p><img src="https://oss.iyouhun.com/img/QQ20211108-162258@2x.png" alt=""></p>
+<p>3.选择刚刚添加的发布服务器</p>
+<p>4.传输设置</p>
+<p><strong>Source files</strong>：源文件，支持全部匹配，如果要传输文件夹内所有文件和文件夹则需要在文件夹路径后加两个*符号 <a href="http://ant.apache.org/manual/dirtasks.html#patterns" target="_blank" rel="noopener">模式文档</a></p>
+<p><strong>Remove prefix</strong>：移除前缀，是指源文件的前缀，比如现在我们只是传输html文件夹里的所有文件，但是html文件夹本身不需要在远程服务器出现，那么就需要将其移除.</p>
+<p><strong>Remote directory</strong>： 远程服务器目录，注意该目录是相对于刚刚系统设置里<code>ssh servers</code>里设置的路径，没有会创建</p>
+<p>那么我的此次的目录就是<code>/www/wwwroot/www.iyouhun.com</code></p>
+<p><strong>exec command</strong>：在传输完成后执行的命令，一般为清理文件、复制文件、重启一些服务等等</p>
+<p><img src="https://oss.iyouhun.com/img/QQ20211108-160529@2x.png" alt=""></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/27057.html" class="pre-post btn btn-default" title='Jenkins Generic Webhook Trigger 插件使用'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Jenkins Generic Webhook Trigger 插件使用</span>
+        </a>
+    
+    
+        <a href="/article/58122.html" class="next-post btn btn-default" title='XSS跨站脚本攻击原理分析与防御'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">XSS跨站脚本攻击原理分析与防御</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器互信"><span class="toc-text">服务器互信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Publish-over-SSH-插件配置"><span class="toc-text">Publish over SSH 插件配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SSH-Servers"><span class="toc-text">SSH Servers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目发布设置"><span class="toc-text">项目发布设置</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2021
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

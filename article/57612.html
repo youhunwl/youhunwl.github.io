@@ -1,0 +1,523 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="Redux,Redux状态管理工具,状态管理工具,action,reducer,store" />
+
+
+    <meta name="description" content="Redux-概念
+Redux 是 React 中最常用的状态管理工具（状态容器）
+
+文档：
+
+redux 中文文档
+redux 英文文档
+
+React的问题：
+
+React 只是 DOM 的一个..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>Redux状态管理工具学习 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Redux状态管理工具学习">
+            
+	            Redux状态管理工具学习
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Redux/">Redux</a> <a class="tag-link" href="/tags/Redux状态管理工具/">Redux状态管理工具</a> <a class="tag-link" href="/tags/action/">action</a> <a class="tag-link" href="/tags/reducer/">reducer</a> <a class="tag-link" href="/tags/store/">store</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2022/06/15</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Redux-概念"><a href="#Redux-概念" class="headerlink" title="Redux-概念"></a>Redux-概念</h2><blockquote>
+<p>Redux 是 React 中最常用的状态管理工具（状态容器）</p>
+</blockquote>
+<p>文档：</p>
+<ul>
+<li><a href="http://cn.redux.js.org/" target="_blank" rel="noopener">redux 中文文档</a></li>
+<li><a href="https://redux.js.org/" target="_blank" rel="noopener">redux 英文文档</a></li>
+</ul>
+<p>React的问题：</p>
+<ul>
+<li>React 只是 DOM 的一个抽象层（UI 库），并不是 Web 应用的完整解决方案。</li>
+<li>因此 React 在涉及到数据的处理以及组件之间的通信时会比较复杂 。</li>
+<li>对于大型的复杂应用来说，这两方面恰恰是最关键的，需要一个专门的状态工具。</li>
+</ul>
+<p>背景介绍：</p>
+<ul>
+<li>2014 年 Facebook 提出了 Flux 架构的概念（前端状态管理的概念），引发了很多的实现</li>
+<li>2015 年，Redux 出现，将 Flux 与<em>函数式编程</em>结合一起，很短时间内就成为了最热门的前端架构</li>
+<li>Flux 是最早的前端的状态管理工具，它提供了状态管理的思想，也提供对应的实现</li>
+<li>除了 Flux、Redux 之外，还有：Mobx 等状态管理工具</li>
+</ul>
+<p>为什么需要Redux?</p>
+<p><img src="https://oss.iyouhun.com/img/md/with-redux.e1b68afc.png" alt="with-redux.e1b68afc"></p>
+<ul>
+<li>不使用 Redux (图左边) ：<ul>
+<li>只能使用父子组件通讯、状态提升等 React 自带机制</li>
+<li>处理远房亲戚(非父子)关系的组件通讯时乏力</li>
+<li>组件之间的数据流混乱，出现 Bug 时难定位</li>
+</ul>
+</li>
+<li>使用 Redux (图右边)：<ul>
+<li><strong>集中式存储和管理应用的状态</strong></li>
+<li>处理组件通讯问题时，<strong>无视组件之间的层级关系</strong></li>
+<li>简化大型复杂应用中组件之间的通讯问题</li>
+<li>数据流清晰，易于定位 Bug</li>
+</ul>
+</li>
+</ul>
+<h2 id="Redux-核心要素"><a href="#Redux-核心要素" class="headerlink" title="Redux-核心要素"></a>Redux-核心要素</h2><p>为了让<strong>代码各部分职责清晰、明确</strong>，Redux 代码被分为三个核心概念：action/reducer/store</p>
+<ol>
+<li>三个核心概念的职责分别是什么<ul>
+<li>action -&gt; reducer -&gt; store</li>
+<li><strong>action</strong>（动作）：描述要做的事情</li>
+<li><strong>reducer</strong>（函数）：更新状态</li>
+<li><strong>store</strong>（仓库）：整合 action 和 reducer</li>
+</ul>
+</li>
+<li>类比生活<ol>
+<li>action：相当于公司中要做的事情，比如软件开发、测试，打扫卫生等</li>
+<li>reducer：相当于公司的员工，负责干活的</li>
+<li>store：相当于公司的老板</li>
+<li>流程：老板(store)分配公司中要做的事情(action)给员工(reducer)，员工干完活把结果交给老板</li>
+</ol>
+</li>
+</ol>
+<h2 id="Redux-核心action"><a href="#Redux-核心action" class="headerlink" title="Redux-核心action"></a>Redux-核心action</h2><blockquote>
+<p><code>action</code> 就是一个对象，<code>type</code> 描述行为，约定 <code>payload</code>做为传参。</p>
+</blockquote>
+<p>解释：</p>
+<ul>
+<li><code>action</code> 行动（名词）、动作</li>
+<li>描述要做的事情，项目中的每一个功能都是一个 <code>action</code></li>
+<li>例如：<ul>
+<li>计数器案例：计数器加1、减1</li>
+<li>购物车案例：获取购物车数据、切换商品选中状态</li>
+<li>项目：登录，退出等</li>
+</ul>
+</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li><code>action</code> 只描述做什么事情</li>
+<li><code>action</code> 是一个JS对象，必须带有 <code>type</code> 属性，用于区分动作的类型</li>
+<li>根据功能的不同，可以携带额外的数据（比如，<code>payload</code> 有效载荷），配合该动作来完成相应功能</li>
+</ul>
+<p>举例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 计数器案例</span></span><br><span class="line">&#123; type： <span class="string">'increment'</span> &#125; <span class="comment">// +1</span></span><br><span class="line">&#123; type： <span class="string">'decrement'</span> &#125; <span class="comment">// -1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 累加10操作</span></span><br><span class="line">&#123; type： <span class="string">'increment'</span>, <span class="attr">payload</span>: <span class="number">10</span> &#125; <span class="comment">// +10</span></span><br><span class="line">&#123; type： <span class="string">'decrement'</span>, <span class="attr">payload</span>: <span class="number">10</span> &#125; <span class="comment">// -10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 购物车案例</span></span><br><span class="line">&#123; <span class="attr">type</span>: <span class="string">'getGoodsList'</span> &#125;</span><br><span class="line">&#123; <span class="attr">type</span>: <span class="string">'changeGoodsState'</span>, <span class="attr">payload</span>: &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">goodsState</span>: <span class="literal">true</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="action-creator"><a href="#action-creator" class="headerlink" title="action creator"></a>action creator</h3><blockquote>
+<p>使用函数创建 action 对象，简化多次使用 action 时，重复创建 action 对象</p>
+</blockquote>
+<p>举例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 不使用 Action Creator</span></span><br><span class="line"><span class="comment">// 创建多个 action 时，需要重复手动创建 action 对象，很繁琐</span></span><br><span class="line">&#123; <span class="attr">type</span>: <span class="string">'decrement'</span>, <span class="attr">payload</span>: <span class="number">2</span> &#125;</span><br><span class="line">&#123; <span class="attr">type</span>: <span class="string">'decrement'</span>, <span class="attr">payload</span>: <span class="number">8</span> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 使用 Action Creator</span></span><br><span class="line"><span class="keyword">const</span> decrement = <span class="function"><span class="params">payload</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">type</span>: <span class="string">'decrement'</span>, payload &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">decrement(<span class="number">2</span>) <span class="comment">// =&gt; &#123; type: 'decrement', payload: 2 &#125;</span></span><br><span class="line">decrement(<span class="number">8</span>) <span class="comment">// =&gt; &#123; type: 'decrement', payload: 8 &#125;</span></span><br><span class="line"><span class="comment">// 可以动态创建action</span></span><br></pre></td></tr></table></figure>
+<h2 id="Redux-核心reducer"><a href="#Redux-核心reducer" class="headerlink" title="Redux-核心reducer"></a>Redux-核心reducer</h2><ul>
+<li>名字是参考了 JS 数组中的 <code>reduce</code> 这个方法</li>
+<li>数组中的 <code>reduce</code> 方法，可以来实现累计（比如，累加或者累减）</li>
+</ul>
+<p>作用：</p>
+<ul>
+<li>用来处理 action 并更新状态，是 Redux <code>状态更新</code> 的地方</li>
+<li>函数签名为：<code>(prevState, action) =&gt; newState</code></li>
+<li>接收上一次的状态和 action 作为参数，根据 action 的类型，执行不同操作，最终返回新的状态</li>
+</ul>
+<p>原则：</p>
+<ul>
+<li>函数一定要<strong>有返回值</strong>，即使状态没有改变也要返回上一次的状态</li>
+<li>reducer 是一个纯函数<ul>
+<li>不要使用 Math.random() / new Date() / Date.now() / ajax 请求等不纯的操作</li>
+</ul>
+</li>
+<li>reducer 不能执行JS副作用<ul>
+<li>不要直接修改当前状态，而是根据当前状态值创建新的状态值（新替旧）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伪代码：</span></span><br><span class="line"><span class="comment">// prevState 上一次的状态</span></span><br><span class="line"><span class="comment">// action 当前要执行的动作</span></span><br><span class="line"><span class="keyword">const</span> reducer = <span class="function">(<span class="params">prevState, action</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> newState</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>示例:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例：</span></span><br><span class="line"><span class="comment">// state 上一次的状态</span></span><br><span class="line"><span class="comment">// action 当前要执行的动作</span></span><br><span class="line"><span class="keyword">const</span> reducer = <span class="function">(<span class="params">state, action</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="comment">// 计数器增加</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'increment'</span>:</span><br><span class="line">      <span class="comment">// 返回新状态</span></span><br><span class="line">      <span class="comment">// return state + 1</span></span><br><span class="line">      <span class="comment">// 根据 action 中提供的 payload 来决定到底增加多少</span></span><br><span class="line">      <span class="keyword">return</span> state + action.payload</span><br><span class="line">    <span class="comment">// 注意：一定要有 default，如果将来 reducer 无法处理某个 action，就直接将上一次的状态返回即可</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> state</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 模拟调用</span></span><br><span class="line">reducer(<span class="number">0</span>, &#123; <span class="attr">type</span>: <span class="string">'increment'</span> &#125;)  <span class="comment">// 本次执行完成后，状态变为：1</span></span><br><span class="line">reducer(<span class="number">1</span>, &#123; <span class="attr">type</span>: <span class="string">'increment'</span> &#125;)  <span class="comment">// 本次执行完成后，状态变为：2</span></span><br><span class="line">reducer(<span class="number">1</span>, &#123; <span class="attr">type</span>: <span class="string">'decrement'</span> &#125;)  <span class="comment">// 无法处理该 action，所以返回上一次状态：1</span></span><br></pre></td></tr></table></figure>
+<p><strong>总结：</strong></p>
+<ul>
+<li><code>reducer</code> 是修改状态的地方，这里根据action的类型去修改状态</li>
+<li>修改的原则：新值替换旧值，不能发请求和随机返回，不能操作全局变量</li>
+</ul>
+<h2 id="Redux-核心store"><a href="#Redux-核心store" class="headerlink" title="Redux-核心store"></a>Redux-核心store</h2><blockquote>
+<p>通过store关联action和reducer</p>
+</blockquote>
+<p>store：仓库，Redux 的核心，整合 action 和 reducer</p>
+<ul>
+<li>特点：<ul>
+<li><strong>一个应用只有一个 store</strong></li>
+<li>维护应用的状态，获取状态：<code>store.getState()</code></li>
+<li>发起状态更新时，需要分发 action：<code>store.dispatch(action)</code></li>
+<li>创建 store 时<strong>接收 reducer 作为参数</strong>：<code>const store = createStore(reducer)</code></li>
+</ul>
+</li>
+<li>其他 API，<ul>
+<li>订阅(监听)状态变化：<code>const unSubscribe = store.subscribe(() =&gt; {})</code></li>
+<li>取消订阅状态变化： <code>unSubscribe()</code></li>
+</ul>
+</li>
+</ul>
+<p>核心代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 提前安装 redux </span></span><br><span class="line"><span class="keyword">import</span> &#123; legacy_createStore <span class="keyword">as</span> createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 store</span></span><br><span class="line"><span class="comment">// 参数为：reducer 函数</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(reducer)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新状态</span></span><br><span class="line"><span class="comment">// dispatch 派遣，派出。表示：分发一个 action，也就是发起状态更新</span></span><br><span class="line">store.dispatch(action)</span><br><span class="line">store.dispatch( increment(<span class="number">2</span>) )</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取状态</span></span><br><span class="line"><span class="keyword">const</span> state = store.getState()</span><br><span class="line"></span><br><span class="line"><span class="comment">// ---</span></span><br><span class="line"><span class="comment">// 其他 API</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听状态变化</span></span><br><span class="line"><span class="keyword">const</span> unSubscribe = store.subscribe(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 状态改变时，执行相应操作</span></span><br><span class="line">  <span class="comment">// 比如，记录 redux 状态</span></span><br><span class="line">  <span class="built_in">console</span>.log(store.getState())</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取消监听状态变化</span></span><br><span class="line">unSubscribe()</span><br></pre></td></tr></table></figure>
+<h2 id="Redux-默认值由来"><a href="#Redux-默认值由来" class="headerlink" title="Redux-默认值由来"></a>Redux-默认值由来</h2><ul>
+<li>只要创建 store，那么，Redux 就会调用一次 reducer，这一次就是初始化默认值。</li>
+<li>第一次调用 reducer <code>reducer(undefined, {type: &quot;@@redux/INITv.a.4.t.t.p&quot;})</code></li>
+<li>因为传入的状态值是 undefined ，并且是一个随机的 action type，所以：<ul>
+<li>状态值因为 undefined，所以，我们设置的默认值就会生效 <code>state = 10</code></li>
+<li>因为是一个随机的 action type，那就一定会走 default，返回默认值 <code>10</code></li>
+<li>Redux 内部拿到状态值，就用这个状态值，来作为了 store 中状态的默认值</li>
+<li>因此，将来当我们调用 <code>store.getState()</code> 方法来获取 Redux 状态值就是默认值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入 createStore</span></span><br><span class="line"><span class="keyword">import</span> &#123; legacy_createStore <span class="keyword">as</span> createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="comment">// 创建 store</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(reducer)</span><br><span class="line"></span><br><span class="line"><span class="comment">// action =&gt; &#123; type: 'increment' &#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state = <span class="number">10</span>, action</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'reducer:'</span>, state, action)</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'increment'</span>:</span><br><span class="line">      <span class="keyword">return</span> state + <span class="number">1</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> state</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">store.dispatch(increment())</span><br><span class="line"><span class="comment">// 相当于：store.dispatch(&#123; type: 'increment' &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'store 状态值为：'</span>, store.getState())</span><br></pre></td></tr></table></figure>
+<h2 id="Redux-执行过程分析"><a href="#Redux-执行过程分析" class="headerlink" title="Redux-执行过程分析"></a>Redux-执行过程分析</h2><ol>
+<li>创建 store 时，Redux 就会先调用一次 reducer，来获取到默认状态</li>
+<li>分发动作 <code>store.dispatch(action)</code>更新状态</li>
+<li>Redux store 调用 reducer 传入：上一次的状态（当前示例中就是：<code>10</code>）和 action（<code>{ type: &#39;increment&#39; }</code>），计算出新的状态并返回</li>
+<li>reducer 执行完毕后，将最新的状态交给 store，store 用最新的状态替换旧状态，状态更新完毕</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; legacy_createStore <span class="keyword">as</span> createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(reducer)</span><br><span class="line"></span><br><span class="line"><span class="comment">// reducer(10, &#123; type: 'increment' &#125;)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state = <span class="number">10</span>, action</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'reducer:'</span>, state, action)</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'increment'</span>:</span><br><span class="line">      <span class="keyword">return</span> state + <span class="number">1</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> state</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'状态值为：'</span>, store.getState()) <span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 发起更新状态：</span></span><br><span class="line"><span class="comment">// 参数： action 对象</span></span><br><span class="line">store.dispatch(&#123; <span class="attr">type</span>: <span class="string">'increment'</span> &#125;)</span><br><span class="line"><span class="comment">// 相当于： reducer(10, &#123; type: 'increment' &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'更新后：'</span>, store.getState()) <span class="comment">// 11</span></span><br></pre></td></tr></table></figure>
+<h2 id="纯函数-amp-JS副作用"><a href="#纯函数-amp-JS副作用" class="headerlink" title="纯函数&amp;JS副作用"></a>纯函数&amp;JS副作用</h2><p>纯函数：</p>
+<ul>
+<li>纯函数是<em>函数式编程</em>中的概念，对于纯函数来说，<strong>相同的输入总是得到相同的输出</strong></li>
+<li>参考资料：<a href="https://www.ruanyifeng.com/blog/2012/04/functional_programming.html" target="_blank" rel="noopener">函数式编程初探</a></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 纯函数：</span></span><br><span class="line"><span class="keyword">const</span> add = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">123</span></span><br><span class="line">&#125;</span><br><span class="line">add() <span class="comment">// 123</span></span><br><span class="line">add() <span class="comment">// 123</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> add = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// 3</span></span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> add = <span class="function">(<span class="params">obj</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> obj</span><br><span class="line">&#125;</span><br><span class="line">add(&#123; <span class="attr">name</span>: <span class="string">'jack'</span> &#125;) <span class="comment">// &#123; name: 'jack' &#125;</span></span><br><span class="line">add(&#123; <span class="attr">name</span>: <span class="string">'jack'</span> &#125;) <span class="comment">// &#123; name: 'jack' &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 不是纯函数：</span></span><br><span class="line"><span class="keyword">const</span> add = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.random()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add() <span class="comment">// 0.12311293827497123</span></span><br><span class="line">add() <span class="comment">// 0.82239841238741814</span></span><br></pre></td></tr></table></figure>
+<p>JS副作用：</p>
+<ul>
+<li>如果一个函数或其他操作<strong>修改了其局部环境之外的状态变量值</strong>，那么它就被称为有副作用</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无副作用</span></span><br><span class="line"><span class="keyword">const</span> add = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 有副作用：</span></span><br><span class="line"><span class="keyword">let</span> c = <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> add = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 函数外部的环境产生了影响，所以是有副作用的</span></span><br><span class="line">  c = <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> num1 + num2</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 有副作用</span></span><br><span class="line"><span class="keyword">const</span> add = <span class="function">(<span class="params">obj</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 因为直接修改了参数的值，对外部的数据产生了影响</span></span><br><span class="line">	obj.num = <span class="number">123</span></span><br><span class="line">  <span class="keyword">return</span> obj</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> o = &#123;&#125;</span><br><span class="line">add(o)</span><br><span class="line"><span class="built_in">console</span>.log(o) <span class="comment">// &#123; num: 123 &#125;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/57549.html" class="pre-post btn btn-default" title='react-redux学习'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">react-redux学习</span>
+        </a>
+    
+    
+        <a href="/article/25844.html" class="next-post btn btn-default" title='深入浅出Hooks'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">深入浅出Hooks</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-概念"><span class="toc-text">Redux-概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-核心要素"><span class="toc-text">Redux-核心要素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-核心action"><span class="toc-text">Redux-核心action</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#action-creator"><span class="toc-text">action creator</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-核心reducer"><span class="toc-text">Redux-核心reducer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-核心store"><span class="toc-text">Redux-核心store</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-默认值由来"><span class="toc-text">Redux-默认值由来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-执行过程分析"><span class="toc-text">Redux-执行过程分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#纯函数-amp-JS副作用"><span class="toc-text">纯函数&amp;JS副作用</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2021
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="vscode,eslint,prettier" />
+
+
+    <meta name="description" content="
+前言以前公司的vue项目只是我一个人在写，代码风格统一，但是后来随着团队增加，统一的代码风格就越来越重要。我的主力工具是sublime，ws辅助，vscode基本很少使用（就下载安装放在冷宫）..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>VS Code书写vue项目配置 eslint+prettier 统一代码风格 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="VS Code书写vue项目配置 eslint+prettier 统一代码风格">
+            
+	            VS Code书写vue项目配置 eslint+prettier 统一代码风格
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/工具/">工具</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/eslint/">eslint</a> <a class="tag-link" href="/tags/prettier/">prettier</a> <a class="tag-link" href="/tags/vscode/">vscode</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/11/09</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1320</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p><img src="https://oss.iyouhun.com/img/005BYqpggy1fx1vhwz1y8j30w00k0t9t.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以前公司的vue项目只是我一个人在写，代码风格统一，但是后来随着团队增加，统一的代码风格就越来越重要。我的主力工具是sublime，ws辅助，vscode基本很少使用（就下载安装放在冷宫），但是听说用来写vue项目还不错，就开启了一番折腾。当然工具么，没有谁好谁坏了~~ 不盲目站队，适合自己的就是最好的。</p>
+<p>目标是：<code>Eslint</code>校验代码语法，<code>prettier</code>统一格式化代码，按下保存自动修复eslint错误，自动格式化代码（因为懒~）</p>
+<h2 id="安装vscode插件"><a href="#安装vscode插件" class="headerlink" title="安装vscode插件"></a>安装vscode插件</h2><p>首先，需要安装 <code>Vetur</code>、<code>ESLint</code>、<code>Prettier - Code formatter</code>这三个插件，安装完重启下，防止插件不生效。</p>
+<p>另外这里有个坑， <code>Beautify</code>插件会占用格式化代码的快捷键，因此会和<code>prettier</code>产生冲突，所以直接禁用掉。</p>
+<h2 id="vscode插件配置"><a href="#vscode插件配置" class="headerlink" title="vscode插件配置"></a>vscode插件配置</h2><p>打开vscode工具的设置（快捷键 <code>Ctrl</code> + <code>,</code>）里面有两个设置。</p>
+<p>一个是 USER SETTINGS（用户设置）也就是全局配置，其他项目也会应用这个配置。</p>
+<p>另一个是WORKSPACE SETTINGS（工作区设置）也就是项目配置，会在当前项目的根路径里创建一个<code>.vscode/settings.json</code>文件，然后配置只在当前项目生效。</p>
+<p>我把配置写在了工作区设置，配置如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    //.vue文件template格式化支持，并使用js-beautify-html插件</span><br><span class="line">    "vetur.format.defaultFormatter.html": "js-beautify-html",</span><br><span class="line">    //js-beautify-html格式化配置，属性强制换行</span><br><span class="line">    "vetur.format.defaultFormatterOptions": &#123;</span><br><span class="line">      "js-beautify-html": &#123;</span><br><span class="line">        "wrap_attributes": "force-aligned"</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    //根据文件后缀名定义vue文件类型</span><br><span class="line">    "files.associations": &#123;</span><br><span class="line">      "*.vue": "vue"</span><br><span class="line">    &#125;,</span><br><span class="line">    //配置 ESLint 检查的文件类型</span><br><span class="line">    "eslint.validate": [</span><br><span class="line">      "javascript",</span><br><span class="line">      "javascriptreact",</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"language"</span>: <span class="string">"vue"</span>,</span><br><span class="line">        <span class="attr">"autoFix"</span>: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    //保存时eslint自动修复错误</span><br><span class="line">    "eslint.autoFixOnSave": true,</span><br><span class="line">    //保存自动格式化</span><br><span class="line">    "editor.formatOnSave": true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="ESLint-和-Prettier-的冲突修复"><a href="#ESLint-和-Prettier-的冲突修复" class="headerlink" title="ESLint 和 Prettier 的冲突修复"></a>ESLint 和 Prettier 的冲突修复</h2><p>由于需要同时使用<code>prettier</code>和<code>eslin</code>t，而<code>prettier</code>的一些规则和<code>eslint</code>的一些规则可能存在冲突，例如<code>prettier</code>字符串默认是用双引号而<code>esLint</code>定义的是单引号的话这样格式化之后就不符合<code>ESLint</code>规则了。</p>
+<p>所以要解决冲突就需要在<code>Prettier</code>的规则配置里也配置上和<code>ESLint</code>一样的规则，直接覆盖掉，<code>ESLint</code>和<code>Prettier</code>的配置文件内容如下：</p>
+<p><strong>.eslintrc.js</strong></p>
+<p>配置使用单引号、结尾不能有分号。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  root: <span class="literal">true</span>,</span><br><span class="line">  env: &#123;</span><br><span class="line">    node: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  extends: [<span class="string">'plugin:vue/essential'</span>, <span class="string">'eslint:recommended'</span>],</span><br><span class="line">  rules: &#123;</span><br><span class="line">    <span class="string">'no-console'</span>: process.env.NODE_ENV === <span class="string">'production'</span> ? <span class="string">'error'</span> : <span class="string">'off'</span>,</span><br><span class="line">    <span class="string">'no-debugger'</span>: process.env.NODE_ENV === <span class="string">'production'</span> ? <span class="string">'error'</span> : <span class="string">'off'</span>,</span><br><span class="line">    <span class="comment">//强制使用单引号</span></span><br><span class="line">    quotes: [<span class="string">'error'</span>, <span class="string">'single'</span>],</span><br><span class="line">    <span class="comment">//强制不使用分号结尾</span></span><br><span class="line">    semi: [<span class="string">'error'</span>, <span class="string">'never'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  parserOptions: &#123;</span><br><span class="line">    parser: <span class="string">'babel-eslint'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>.prettierrc</strong></p>
+<p>配置使用单引号、结尾不能有分号。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="comment">//开启 eslint 支持</span></span><br><span class="line">  <span class="string">"eslintIntegration"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">//使用单引号</span></span><br><span class="line">  <span class="string">"singleQuote"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">//结尾不加分号</span></span><br><span class="line">  <span class="string">"semi"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以直接在vscode工作区配置<code>prettier</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    //开启 eslint 支持</span><br><span class="line">    "prettier.eslintIntegration": true,</span><br><span class="line">    //使用单引号</span><br><span class="line">    "prettier.singleQuote": true,</span><br><span class="line">    //结尾不加分号</span><br><span class="line">    "prettier.semi": false,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p><img src="https://oss.iyouhun.com/img/166f78c5e8e87af2.gif" alt="属性强制对齐.gif"></p>
+<p><img src="https://oss.iyouhun.com/img/166f78c5e80f57fd.gif" alt="其他.gif"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>这下再也不用看到别人代码一团糟吐槽了。第一次折腾vscode，参考了很多网上大佬的文章，但是感觉这个配置好像还差了哪里，但又始终不知道问题在哪里，热烈欢迎大家交流指教。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/40441.html" class="pre-post btn btn-default" title='Flutter开发环境搭建'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Flutter开发环境搭建</span>
+        </a>
+    
+    
+        <a href="/article/58291.html" class="next-post btn btn-default" title='基于gulp的前端自动化方案'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">基于gulp的前端自动化方案</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装vscode插件"><span class="toc-text">安装vscode插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vscode插件配置"><span class="toc-text">vscode插件配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ESLint-和-Prettier-的冲突修复"><span class="toc-text">ESLint 和 Prettier 的冲突修复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果预览"><span class="toc-text">效果预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-text">最后</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2021
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

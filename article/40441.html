@@ -1,0 +1,428 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="Flutter,FLutter SDK,Android Studio,Android SDK,虚拟机" />
+
+
+    <meta name="description" content="
+​    工欲善其事,必先利其器
+
+科学上网Flutter谷歌的，因为国内的某些原因，没办法正常访问或者下载一些依赖的，这时候一个能访问墙外的网络就尤为重要，你们懂得。
+可以自己去买服务器搭建..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>Flutter开发环境搭建 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Flutter开发环境搭建">
+            
+	            Flutter开发环境搭建
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Android-SDK/">Android SDK</a> <a class="tag-link" href="/tags/Android-Studio/">Android Studio</a> <a class="tag-link" href="/tags/FLutter-SDK/">FLutter SDK</a> <a class="tag-link" href="/tags/Flutter/">Flutter</a> <a class="tag-link" href="/tags/虚拟机/">虚拟机</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/12/24</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1275</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>​    工欲善其事,必先利其器</p>
+</blockquote>
+<h2 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h2><p>Flutter谷歌的，因为国内的某些原因，没办法正常访问或者下载一些依赖的，这时候一个能访问墙外的网络就尤为重要，你们懂得。</p>
+<p>可以自己去买服务器搭建，在这里不做另外说明，推荐一篇搭建教程：<a href="https://www.shen.ee/article/45273.html" target="_blank" rel="noopener">https://www.shen.ee/article/45273.html</a></p>
+<p>我主要说下服务器，最近<code>Vultr</code>被墙的厉害，所以大家还是换个，我目前用的 <code>DO</code>还是很不错的。地址：<a href="https://m.do.co/c/dcde442ba814" target="_blank" rel="noopener">https://m.do.co/c/dcde442ba814</a> </p>
+<p>首先咱们可以通过某宝买个github学生认证，除了拥有了私有仓库外。免费的IDE正版使用等等，其实还有一大堆福利：</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1fyee6he49qj312z0hg77y.jpg" alt=""></p>
+<p>上图中间就是DO免费的50美元优惠券了。另外通过上面DO链接注册完成paypal绑定支付5美金后，还会赠送100美元信用金余额，可以购买服务器。美滋滋。</p>
+<h2 id="安装JAVA"><a href="#安装JAVA" class="headerlink" title="安装JAVA"></a>安装JAVA</h2><p>其实跟我之前写的那篇文章类似，只是现在系统变成了Windows，<a href="https://www.iyouhun.com/post-124.html" target="_blank" rel="noopener">CentOS 7 安装 JAVA环境（JDK 1.8）</a></p>
+<p>下载地址：<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpggy1fyedtf3eznj30ks0c540c.jpg" alt=""></p>
+<p>如图，请记得点击 接受许可协议。</p>
+<p>安装一路回车就好，安装完会自动弹出安装 <code>JRE</code>的程序，安装就好。安装完成后，打开cmd执行 <code>java</code>，出现下图的结果，即表示安装成功。</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1fyeekpkjp3j30xz0hr0v2.jpg" alt=""></p>
+<h2 id="安装FLutter-SDK"><a href="#安装FLutter-SDK" class="headerlink" title="安装FLutter SDK"></a>安装FLutter SDK</h2><p>目前已经出了稳定版，咱们选择 <code>Stable channel</code> V1.0.0版本下载即可。<br>下载地址：<a href="https://flutter.io/docs/development/tools/sdk/archive?tab=windows#windows" target="_blank" rel="noopener">https://flutter.io/docs/development/tools/sdk/archive?tab=windows#windows</a></p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpggy1fyeedcli1hj31020fiwfh.jpg" alt=""></p>
+<p>下载完成后解压再你想要安装的目录，例如<code>D:\fluter\flutter</code> ，这个随意，但是不要安装到需要权限高的路径。</p>
+<h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><p>电脑上计算机右键属性，依次打开</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1fyeehid1h8j31340km768.jpg" alt=""></p>
+<p>在<code>Path</code>里添加你的<code>Flutter SDK</code>的安装目录的<code>bin</code>目录，例如我的在 <code>E:\Flutter\flutter\bin</code> 那么在<code>Path</code>里新建一个值为 <code>E:\Flutter\flutter\bin</code>的环境变量保存即可。</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpggy1fyegj0wzj4j30ij03la9v.jpg" alt=""></p>
+<p>配置完成，可以在cmd执行下 flutter检测的命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter doctor</span><br></pre></td></tr></table></figure>
+<p>然后发现好多错误，不着急，先忽略这里往下看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[√] Flutter (Channel stable, v1.0.0, on Microsoft Windows [Version 10.0.17134.472], locale zh-CN)</span><br><span class="line">[X] Android toolchain - develop for Android devices</span><br><span class="line">    X Unable to locate Android SDK.</span><br><span class="line">      Install Android Studio from: https://developer.android.com/studio/index.html</span><br><span class="line">      On first launch it will assist you in installing the Android SDK components.</span><br><span class="line">      (or visit https://flutter.io/setup/#android-setup for detailed instructions).</span><br><span class="line">      If Android SDK has been installed to a custom location, set $ANDROID_HOME to that location.</span><br><span class="line">      You may also want to add it to your PATH environment variable.</span><br><span class="line"></span><br><span class="line">[√] Android Studio (version 3.2)</span><br><span class="line">    X Flutter plugin not installed; this adds Flutter specific functionality.</span><br><span class="line">    X Dart plugin not installed; this adds Dart specific functionality.</span><br><span class="line">[!] Connected device</span><br><span class="line">    ! No devices available</span><br><span class="line"></span><br><span class="line">! Doctor found issues in 2 categories.</span><br></pre></td></tr></table></figure>
+<h2 id="安装Android-Studio"><a href="#安装Android-Studio" class="headerlink" title="安装Android Studio"></a>安装Android Studio</h2><p>下载地址：<a href="https://developer.android.com/" target="_blank" rel="noopener">https://developer.android.com/</a></p>
+<p>进入后往下拉，点击下载</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1fyegxmlesvj30pj0g0mxp.jpg" alt=""></p>
+<p>下载完成后还是一路Next，它会自动安装Android SDK，到最后下载组件时会很慢，因为要去Google下载很多东西，所以你如果没有梯子，还是算了吧。</p>
+<h3 id="安装Flutter插件"><a href="#安装Flutter插件" class="headerlink" title="安装Flutter插件"></a>安装Flutter插件</h3><p>安装成功后，打开设置</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpggy1fyejry92oij30ob0oidjs.jpg" alt=""></p>
+<p>选择 <code>Browse repositories</code> 搜索 <code>flutter</code> 然后安装，安装时会弹窗提示你自动安装<code>Dart</code>同意即可。</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1fyejud5j97j30so0o2myv.jpg" alt=""></p>
+<p>安装完成后，重启Android Studio。</p>
+<p>重启完成后再次输入检测命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter doctor</span><br></pre></td></tr></table></figure>
+<p>这次可以明显看到错误少了</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpggy1fyhu55o7khj30md045gli.jpg" alt=""></p>
+<p>根据提示执行如下命令，接下来的提示全部输入 <code>Y</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter doctor --android-licenses</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装AVD虚拟机"><a href="#安装AVD虚拟机" class="headerlink" title="安装AVD虚拟机"></a>安装AVD虚拟机</h2><p>接下再次执行<code>flutter doctor</code>可以看到就一个 <code>No devices available</code>的警告了，因为咱们虚拟机还没安装，接下来咱们打开Andorid Studio新建一个 Flutter的项目。</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1fyhujshdhfj30mu0i3my1.jpg" alt=""></p>
+<p>选择Flutter 应用</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpggy1fyhukf01g1j30ru0nnjsa.jpg" alt=""></p>
+<p>填写一些项目配置信息</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpggy1fyhum7f5s2j30ru0nngmj.jpg" alt=""></p>
+<p>接下来设置包名</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpggy1fyhuozu3rqj30ru0nnq3u.jpg" alt=""></p>
+<p>打开工具导航栏的选择 <code>Tools</code> =&gt; <code>AVD Manager</code>创建一个虚拟机</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1fyhv26rnklj31ag0lydgr.jpg" alt=""></p>
+<p>选择你想要的虚拟机类型然后下一步</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1fyhv3m7f4ij30ys0nntag.jpg" alt=""></p>
+<p>接下来选择系统版本，这里就用最新的9.0，先点击Download下载然后在安装，这个过程可能会很慢。安装完成后，打开运行按钮即可运行起来了。</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpggy1fyhwalg45wj30dm0n678h.jpg" alt=""></p>
+<h2 id="运行Flutter项目"><a href="#运行Flutter项目" class="headerlink" title="运行Flutter项目"></a>运行Flutter项目</h2><p>打开我们刚刚创建的那个<code>Flutter</code>项目，点击<code>debug</code>开始编译(会比较慢)</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpggy1fyhy8fevxej30k40oqmz1.jpg" alt=""></p>
+<p>至此<code>Flutter</code>开发环境就搭建完成了。</p>
+<h2 id="VS-Code编写Flutter"><a href="#VS-Code编写Flutter" class="headerlink" title="VS Code编写Flutter"></a>VS Code编写Flutter</h2><p>首先安装<code>Flutter</code>插件，会自动安装<code>Dart</code>插件，安装完成重启即可。</p>
+<p><strong>快速开启虚拟机</strong></p>
+<p>1.找到<code>emulator.exe</code>这个程序文件路径，<code>emulator</code>目录下的。例如：<code>E:\Android\Sdk\emulator\emulator.exe</code><br>2.打开<code>Android Studio</code>，查看你的AVD虚拟机名称，例如：<code>Nexus 5X API 28</code><br>3.新建一个<code>.bat</code>文件，名字自己随意起，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E:\Android\Sdk\emulator\emulator.exe -netdelay none -netspeed full -avd Nexus_5X_API_28</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<ul>
+<li>-netdelay none :设置模拟器的网络延迟时间，默认为none，就是没有延迟。</li>
+<li>-netspeed full: 设置网络加速值，full代表全速。</li>
+</ul>
+<p>以后编写Flutter项目，运行这个bat文件即可快速打开虚拟机。</p>
+<p>VSCode实时自动编译快捷键：<code>F5</code></p>
+<p>本文章是在阅读胖哥（技术胖）Flutter免费教程整理而来，算是自己做了个备份。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/55210.html" class="pre-post btn btn-default" title='js运算精准问题'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">js运算精准问题</span>
+        </a>
+    
+    
+        <a href="/article/53066.html" class="next-post btn btn-default" title='VS Code书写vue项目配置 eslint+prettier 统一代码风格'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">VS Code书写vue项目配置 eslint+prettier 统一代码风格</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#科学上网"><span class="toc-text">科学上网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装JAVA"><span class="toc-text">安装JAVA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装FLutter-SDK"><span class="toc-text">安装FLutter SDK</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置环境变量"><span class="toc-text">配置环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Android-Studio"><span class="toc-text">安装Android Studio</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Flutter插件"><span class="toc-text">安装Flutter插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装AVD虚拟机"><span class="toc-text">安装AVD虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行Flutter项目"><span class="toc-text">运行Flutter项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VS-Code编写Flutter"><span class="toc-text">VS Code编写Flutter</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2021
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

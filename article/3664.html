@@ -1,0 +1,460 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="frp,内网穿透,frp搭建,内网穿透搭建" />
+
+
+    <meta name="description" content="
+实现内网穿需要有一台公网服务器、域名。（本文将公网服务器称为服务端，内网服务器称为客户端）
+
+frp 是什么frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>一文搞懂frp内网穿透并搭建配置使用 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="一文搞懂frp内网穿透并搭建配置使用">
+            
+	            一文搞懂frp内网穿透并搭建配置使用
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/工具/">工具</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/frp/">frp</a> <a class="tag-link" href="/tags/frp搭建/">frp搭建</a> <a class="tag-link" href="/tags/内网穿透/">内网穿透</a> <a class="tag-link" href="/tags/内网穿透搭建/">内网穿透搭建</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2021/12/17</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>实现内网穿需要有一台公网服务器、域名。<em>（本文将公网服务器称为服务端，内网服务器称为客户端）</em></p>
+</blockquote>
+<h2 id="frp-是什么"><a href="#frp-是什么" class="headerlink" title="frp 是什么"></a>frp 是什么</h2><p>frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。</p>
+<p><strong>有了内网穿透你能干什么？</strong></p>
+<ul>
+<li>远程访问内网的 http/https 服务</li>
+<li>远程桌面(Windows/Mac)</li>
+<li>远程文件、 SSH</li>
+<li>小程序开发</li>
+<li>…</li>
+</ul>
+<p>有了内网穿透在外访问家里的电脑、NAS、树莓派、摄像头等网络设备或远程控制，那都不是事儿~</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>官方项目地址：<a href="https://link.zhihu.com/?target=https%3A//github.com/fatedier/frp" target="_blank" rel="noopener">https://github.com/fatedier/frp</a></p>
+<blockquote>
+<p>以下命令请在服务器中执行</p>
+</blockquote>
+<p><strong>下载</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/fatedier/frp/releases/download/v0.38.0/frp_0.38.0_linux_amd64.tar.gz</span><br></pre></td></tr></table></figure>
+<p><strong>解压</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf frp_0.38.0_linux_amd64.tar.gz</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/QQ20211125-104420@2x.png" alt=""></p>
+<p><strong>移动至/usr/local</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/local/frp</span><br><span class="line">mv frp_0.38.0_linux_amd64/* /usr/local/frp/</span><br></pre></td></tr></table></figure>
+<p><strong>文件说明</strong></p>
+<p><code>frps.ini</code>: 服务端配置文件<br><code>frps</code>: 服务端软件<br><code>frpc.ini</code>: 客户端配置文件<br><code>frpc</code>: 客户端软件</p>
+<h3 id="配置systemctl来控制，服务端运行"><a href="#配置systemctl来控制，服务端运行" class="headerlink" title="配置systemctl来控制，服务端运行"></a>配置systemctl来控制，服务端运行</h3><p>vim新建文件并写入配置内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/frp.service</span><br></pre></td></tr></table></figure>
+<p> 写入以下内容，注意上文移动放置的路径和此处有关。这里是启动的<strong>服务端</strong>。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=The nginx HTTP and reverse proxy server</span><br><span class="line">After=network.target remote-fs.target nss-lookup.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/usr/local/frp/frps -c /usr/local/frp/frps.ini</span><br><span class="line">KillSignal=SIGQUIT</span><br><span class="line">TimeoutStopSec=<span class="number">5</span></span><br><span class="line">KillMode=<span class="keyword">process</span></span><br><span class="line">PrivateTmp=true</span><br><span class="line">StandardOutput=syslog</span><br><span class="line">StandardError=inherit</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/QQ20211125-105241@2x.png" alt=""></p>
+<p>重新加载服务的配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<p>现在就可以用 systemctl 套装来控制 frp 了。</p>
+<p><strong>启动/停止/重启，查看状态，设置开机自启/关闭开机自启</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">systemctl start frp</span><br><span class="line">systemctl stop frp</span><br><span class="line">systemctl restart frp</span><br><span class="line">systemctl status frp</span><br><span class="line">systemctl enable frp</span><br><span class="line">systemctl disable frp</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/QQ20211125-105648@2x.png" alt=""></p>
+<h2 id="配置和使用"><a href="#配置和使用" class="headerlink" title="配置和使用"></a>配置和使用</h2><h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p><strong>frps.ini</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[common]</span> <span class="comment">#必须设置</span></span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">7000</span> #是自己设定的frp服务端端口</span><br><span class="line"><span class="attr">vhost_http_port</span> = <span class="number">80</span> #是自己设定的http访问端口</span><br><span class="line"><span class="attr">token</span> = <span class="number">123</span>  #核实身份用，加了更安全</span><br><span class="line"></span><br><span class="line"><span class="section">[ssh]</span> <span class="comment">#ssh反向代理(不是必须设置)</span></span><br><span class="line"><span class="attr">listen_port</span> = <span class="number">6000</span> 是自己设定的ssh访问端口</span><br><span class="line"></span><br><span class="line"><span class="section">[web]</span> <span class="comment">#http反向代理[]里的内容可以自己设定，但是客户端和服务端必须要对应(如[aaa],[bbb])；</span></span><br><span class="line"><span class="attr">type</span> = http #为服务类型，可以设为http,https</span><br><span class="line"><span class="attr">custom_domains</span> = test1.a.com #为要映射的域名，记得域名的A记录要解析到外网主机的IP。</span><br><span class="line"></span><br><span class="line"><span class="section">[web2]</span> <span class="comment">#同上(可设置多个)</span></span><br></pre></td></tr></table></figure>
+<p><strong>示例</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">vhost_http_port</span> = <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="section">[ssh]</span></span><br><span class="line"><span class="attr">listen_port</span> = <span class="number">6000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[web]</span></span><br><span class="line"><span class="attr">type</span> = http</span><br><span class="line"><span class="attr">custom_domains</span> = test1.a.com</span><br><span class="line"></span><br><span class="line"><span class="section">[web2]</span></span><br><span class="line"><span class="attr">type</span> = http</span><br><span class="line"><span class="attr">custom_domains</span> = test2.a.com</span><br></pre></td></tr></table></figure>
+<p><strong>启动</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./frps -c ./frps.ini</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 后台启动</span></span><br><span class="line">nohup ./frps -c ./frps.ini &amp;</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/QQ20211125-144701@2x.png" alt=""></p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p><strong>frpc.ini</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">server_addr</span> = 远程frp服务器ip</span><br><span class="line"><span class="attr">server_port</span> = 远程frp服务器端口</span><br><span class="line"><span class="attr">token</span> = 远程frp服务器token</span><br><span class="line"></span><br><span class="line"><span class="section">[http]</span></span><br><span class="line"><span class="attr">type</span> = http</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> = 本地端口号</span><br><span class="line"><span class="attr">remote_port</span> = 远程frp服务器的http服务端口号</span><br><span class="line"><span class="attr">custom_domains</span> = 自定义配置的域名</span><br><span class="line"><span class="attr">subdomain</span> = 匹配服务端配置的subdomain_host</span><br></pre></td></tr></table></figure>
+<p><strong>示例</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">server_addr</span> = xx.xx.xx.xx</span><br><span class="line"><span class="attr">server_port</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">token</span> = <span class="number">123</span></span><br><span class="line"></span><br><span class="line"><span class="section">[web]</span> </span><br><span class="line"><span class="attr">type</span> = http</span><br><span class="line"><span class="attr">custom_domains</span> = xx.xx.xx.xx</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">8080</span></span><br><span class="line"><span class="attr">custom_domains</span> = xxx.xxx.xxx</span><br><span class="line"><span class="attr">subdomain</span> = k2p</span><br></pre></td></tr></table></figure>
+<p><strong>启动</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./frpc -c ./frpc.ini</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 后台启动</span></span><br><span class="line">nohup ./frpc -c ./frpc.ini &amp;</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/QQ20211125-144813@2x.png" alt=""></p>
+<h2 id="访问内网http-https服务"><a href="#访问内网http-https服务" class="headerlink" title="访问内网http/https服务"></a>访问内网http/https服务</h2><h4 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">server_addr</span> = FRP服务端IP</span><br><span class="line"><span class="attr">server_port</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">vhost_http_port</span> = <span class="number">80</span> #可自定义</span><br><span class="line"><span class="attr">vhost_https_port</span> = <span class="number">443</span> #可自定义</span><br><span class="line"><span class="attr">token</span>= <span class="number">123</span></span><br><span class="line"></span><br><span class="line"><span class="section">[web]</span> </span><br><span class="line"><span class="attr">type</span> = http</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">8080</span></span><br><span class="line"><span class="attr">custom_domains</span> = 自定义域名</span><br></pre></td></tr></table></figure>
+<p>运行服务后访问 <strong>custom_domains:vhost_http_port </strong></p>
+<p>示例：<a href="http://123.123.123.123" target="_blank" rel="noopener">http://123.123.123.123</a>   80可以省略</p>
+<h2 id="连接内网SSH"><a href="#连接内网SSH" class="headerlink" title="连接内网SSH"></a>连接内网SSH</h2><h4 id="客户端配置-1"><a href="#客户端配置-1" class="headerlink" title="客户端配置"></a>客户端配置</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">server_addr</span> = FRP服务端IP</span><br><span class="line"><span class="attr">server_port</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">token</span>= <span class="number">123</span></span><br><span class="line"></span><br><span class="line"><span class="section">[ssh]</span></span><br><span class="line"><span class="attr">type</span> = tcp</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">22</span></span><br><span class="line"><span class="attr">remote_port</span> = <span class="number">6000</span></span><br></pre></td></tr></table></figure>
+<p>运行服务后使用 ssh 工具直接连接即可<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh 用户名@服务端ip  -p 端口号</span><br><span class="line"><span class="meta">#</span><span class="bash"> ssh youhun@x.x.x.x -p 6000 （将 x.x.x.x 替换成公网服务器 IP 地址）</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="远程连接Windows电脑-RDP"><a href="#远程连接Windows电脑-RDP" class="headerlink" title="远程连接Windows电脑(RDP)"></a>远程连接Windows电脑(RDP)</h2><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>1.服务器放开端口 <code>3389</code>也可以自定义，我这里用 <code>7001</code></p>
+<p>2.开启windows电脑的<code>允许远程连接</code> </p>
+<p><strong>桌面 -&gt; 此电脑 -&gt; 图标右键 -&gt; 属性 -&gt; 远程设置 -&gt; 修改为允许远程连接到此计算机</strong></p>
+<p><img src="https://oss.iyouhun.com/img/727110ef3741620a56ea3d2731ee6a84.png" alt=""></p>
+<p><strong>Win10 以上系统直接设置中打开远程桌面即可</strong></p>
+<p><img src="https://oss.iyouhun.com/img/20210530213944.png" alt=""></p>
+<h4 id="客户端配置-2"><a href="#客户端配置-2" class="headerlink" title="客户端配置"></a>客户端配置</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">server_addr</span> = FRP服务端IP</span><br><span class="line"><span class="attr">server_port</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">token</span>= <span class="number">123</span></span><br><span class="line"></span><br><span class="line"><span class="section">[RDP]</span></span><br><span class="line"><span class="attr">type</span> = tcp</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">3389</span></span><br><span class="line"><span class="attr">remote_port</span> = <span class="number">7001</span></span><br></pre></td></tr></table></figure>
+<h4 id="新建-RDP-连接"><a href="#新建-RDP-连接" class="headerlink" title="新建 RDP 连接"></a>新建 RDP 连接</h4><p>现在我们在外网任意一台电脑，搜索并打开windows远程桌面程序</p>
+<p><img src="https://oss.iyouhun.com/img/20210530214333.png" alt=""></p>
+<p>输入 <code>服务器IP:remote_port</code> 例如：1.2.3.4:7001，就可以连接到内网的windows了。</p>
+<p><img src="https://oss.iyouhun.com/img/20210530214443.png" alt=""></p>
+<p>在此过程中需要输入内网电脑的用户名和开机密码后才能进行远程操控。</p>
+<h4 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h4><p>windows 设置开机自启的方法有很多，这里推荐使用<code>winsw</code>将frp注册为系统服务。</p>
+<p>参考链接：<a href="https://blog.csdn.net/atmosphere_/article/details/104018900" target="_blank" rel="noopener">https://blog.csdn.net/atmosphere_/article/details/104018900</a></p>
+<p>这个方法最稳定，这是我最终用的方法。</p>
+<h2 id="远程连接Mac电脑-VNC"><a href="#远程连接Mac电脑-VNC" class="headerlink" title="远程连接Mac电脑(VNC)"></a>远程连接Mac电脑(VNC)</h2><h4 id="准备工作-1"><a href="#准备工作-1" class="headerlink" title="准备工作"></a>准备工作</h4><p>1.服务器放开端口 <code>5900</code></p>
+<p>2.进入 Mac 的【系统偏好设置】-&gt;【共享】，勾选“屏幕共享”和“远程登录”，用户为“所有用户”</p>
+<p><img src="https://oss.iyouhun.com/img/880248658-5e424103a6016_fix732.png" alt=""></p>
+<h4 id="客户端配置-3"><a href="#客户端配置-3" class="headerlink" title="客户端配置"></a>客户端配置</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">server_addr</span> = FRP服务端IP</span><br><span class="line"><span class="attr">server_port</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">token</span> = <span class="number">123</span></span><br><span class="line"></span><br><span class="line"><span class="section">[vnc]</span></span><br><span class="line"><span class="attr">type</span> = tcp</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">5900</span></span><br><span class="line"><span class="attr">remote_port</span> = <span class="number">5900</span></span><br><span class="line"><span class="attr">use_encryption</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">use_compression</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h4 id="新建-VNC-连接"><a href="#新建-VNC-连接" class="headerlink" title="新建 VNC 连接"></a>新建 VNC 连接</h4><p><img src="https://oss.iyouhun.com/img/QQ20211203-144211@2x.png" alt=""></p>
+<p>连接成功后，输入 Mac 的用户名和密码就行</p>
+<h4 id="设置开机自启-1"><a href="#设置开机自启-1" class="headerlink" title="设置开机自启"></a>设置开机自启</h4><p>1.进入内网 Mac 系统，执行下列操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 编辑自启动文件</span></span><br><span class="line">touch ~/Library/LaunchAgents/frpc.plist</span><br><span class="line">vim ~/Library/LaunchAgents/frpc.plist</span><br></pre></td></tr></table></figure>
+<p>2.<code>frpc.plist</code> 文件内容如下，注意文件中的 <code>frpc</code> 和 <code>frpc.ini</code> 路径，可以将这两个文件移到下方配置文件的路径下或者修改为你的路径</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC -//Apple Computer//DTD PLIST 1.0//EN</span></span><br><span class="line"><span class="meta">http://www.apple.com/DTDs/PropertyList-1.0.dtd &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>frpc<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">string</span>&gt;</span>/usr/local/bin/frpc/frpc<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">string</span>&gt;</span>-c<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">string</span>&gt;</span>/usr/local/bin/frpc/frpc.ini<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>KeepAlive<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3.加载并生效</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown root ~/Library/LaunchAgents/frpc.plist</span><br><span class="line">sudo launchctl load -w ~/Library/LaunchAgents/frpc.plist</span><br></pre></td></tr></table></figure>
+<h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><h3 id="取消端口访问http服务"><a href="#取消端口访问http服务" class="headerlink" title="取消端口访问http服务"></a>取消端口访问http服务</h3><p>每次访问域名都需要加上端口很麻烦，可以设置 Nginx 转发</p>
+<p>在客户端配置文件中设置域名，记得将域名解析到公网 IP</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[web]</span> </span><br><span class="line"><span class="attr">type</span> = http</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">8080</span></span><br><span class="line"><span class="attr">custom_domains</span> = test.iyouhun.com;</span><br></pre></td></tr></table></figure>
+<p>然后设置 Nginx 转发</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">          <span class="attribute">listen</span> <span class="number">80</span>; <span class="comment">#监听http的80端口</span></span><br><span class="line">          <span class="attribute">server_name</span> test.iyouhun.com;  <span class="comment"># 这是我们设置的域名</span></span><br><span class="line">          <span class="attribute">access_log</span>  logs/test.iyouhun.com.log  main; <span class="comment"># 记录日志</span></span><br><span class="line">          <span class="attribute">location</span> / &#123;</span><br><span class="line">                  <span class="attribute">proxy_pass</span> http://127.0.0.1:7001; <span class="comment"># 转发到我们在frps.ini中设置的vhost_http_port端口</span></span><br><span class="line">                  <span class="attribute">proxy_set_header</span>    Host            <span class="variable">$host</span>:<span class="number">80</span>;  <span class="comment">#不添加这行时访问需要 域名:7001才能访问到内网的机器，如果加了就不再需要后面的端口，直接使用域名访问</span></span><br><span class="line">                  <span class="attribute">proxy_set_header</span>    X-Real-IP       <span class="variable">$remote_addr</span>;</span><br><span class="line">                  <span class="attribute">proxy_set_header</span>    X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">                  <span class="attribute">proxy_hide_header</span>   X-Powered-By;</span><br><span class="line">          &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="配置泛域名-frp默认域名"><a href="#配置泛域名-frp默认域名" class="headerlink" title="配置泛域名(frp默认域名)"></a>配置泛域名(frp默认域名)</h3><p><strong>域名解析</strong></p>
+<p>解析两条A记录：<code>frp.xxx.com</code> 和 <code>*.frp.xxx.com</code>，都指向你的云服务器ip，稍等一会，<code>ping frp.xxx.com</code>，如果能<code>ping</code>通说明解析成功</p>
+<p><strong>配置服务端</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frps.ini</span></span><br><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">7000</span></span><br><span class="line">...</span><br><span class="line"><span class="attr">subdomain_host</span> = frp.xxx.com</span><br></pre></td></tr></table></figure>
+<p><strong>客户端使用</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frpc.ini</span></span><br><span class="line"><span class="section">[web]</span> </span><br><span class="line"><span class="attr">type</span> = http</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">8080</span></span><br><span class="line"><span class="comment"># 与frps中的subdomain_host连接起来就是 test.frp.xxx.com</span></span><br><span class="line"><span class="attr">subdomain</span> = test #自定义域名前缀</span><br></pre></td></tr></table></figure>
+<p>访问域名：<code>test.frp.xxx.com:vhost_http_port</code></p>
+<p>注：如果 frps 配置了 <code>subdomain_host</code>，则 <code>custom_domains</code> 中不能是属于 <code>subdomain_host</code> 的子域名或者泛域名。</p>
+<h4 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h4><p>还是老样子，每次都加端口访问太麻烦了，因此使用 Nginx 做下转发</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="comment"># 监听的80端口</span></span><br><span class="line">	<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">	<span class="comment"># 域名配置 记得一定要加上*.frp.xxx.com这个，只加frp.xxx.com是不行的</span></span><br><span class="line">	<span class="attribute">server_name</span> * .frp.xxx.com frp.xxx.com;</span><br><span class="line">	<span class="attribute">location</span> / &#123;</span><br><span class="line">		<span class="attribute">proxy_pass</span> http: //<span class="number">127.0.0.1:8080</span>;</span><br><span class="line">		<span class="comment"># 这个Host的header一定要加，不然转发后frp拿不到通过哪个域名访问的，导致转发失败</span></span><br><span class="line">		<span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><h3 id="启动不了"><a href="#启动不了" class="headerlink" title="启动不了"></a>启动不了</h3><p>服务端和客户端启动不了的情况下,并且没有报错误,有概率是因为文件没有执行权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 赋值权限命令</span></span><br><span class="line">chomd 777 文件名</span><br></pre></td></tr></table></figure>
+<h3 id="服务端启动报错-Exec-format-error"><a href="#服务端启动报错-Exec-format-error" class="headerlink" title="服务端启动报错 Exec format error"></a>服务端启动报错 Exec format error</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/frpc: cannot execute binary file: Exec format error</span><br></pre></td></tr></table></figure>
+<p>这是下载错文件了，下载的 FRP 与操作系统处理器架构不匹配，需要重新下载正确的文件。</p>
+<p>可以使用 <code>arch</code>、<code>uname -a</code> 等命令查看系统架构。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arch</span><br><span class="line"><span class="meta">#</span><span class="bash">x86_64</span></span><br></pre></td></tr></table></figure>
+<h3 id="vue-项目出现Invalid-Host-header解决办法"><a href="#vue-项目出现Invalid-Host-header解决办法" class="headerlink" title="vue 项目出现Invalid Host header解决办法"></a>vue 项目出现Invalid Host header解决办法</h3><p> // vue.config.js文件中增加<code>disableHostCheck</code>属性</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    disableHostCheck: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/57435.html" class="pre-post btn btn-default" title='小程序canvas生成海报图片压缩和失真问题解决'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">小程序canvas生成海报图片压缩和失真问题解决</span>
+        </a>
+    
+    
+        <a href="/article/12570.html" class="next-post btn btn-default" title='青龙面板&xdd-plus&傻妞sillyGirl&nvjdc保姆级安装系列教程'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">青龙面板&xdd-plus&傻妞sillyGirl&nvjdc保姆级安装系列教程</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#frp-是什么"><span class="toc-text">frp 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置systemctl来控制，服务端运行"><span class="toc-text">配置systemctl来控制，服务端运行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置和使用"><span class="toc-text">配置和使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务端"><span class="toc-text">服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端"><span class="toc-text">客户端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问内网http-https服务"><span class="toc-text">访问内网http/https服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#客户端配置"><span class="toc-text">客户端配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接内网SSH"><span class="toc-text">连接内网SSH</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#客户端配置-1"><span class="toc-text">客户端配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程连接Windows电脑-RDP"><span class="toc-text">远程连接Windows电脑(RDP)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备工作"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#客户端配置-2"><span class="toc-text">客户端配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#新建-RDP-连接"><span class="toc-text">新建 RDP 连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置开机自启"><span class="toc-text">设置开机自启</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程连接Mac电脑-VNC"><span class="toc-text">远程连接Mac电脑(VNC)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备工作-1"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#客户端配置-3"><span class="toc-text">客户端配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#新建-VNC-连接"><span class="toc-text">新建 VNC 连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置开机自启-1"><span class="toc-text">设置开机自启</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绑定域名"><span class="toc-text">绑定域名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#取消端口访问http服务"><span class="toc-text">取消端口访问http服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置泛域名-frp默认域名"><span class="toc-text">配置泛域名(frp默认域名)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置Nginx"><span class="toc-text">配置Nginx</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关问题"><span class="toc-text">相关问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动不了"><span class="toc-text">启动不了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务端启动报错-Exec-format-error"><span class="toc-text">服务端启动报错 Exec format error</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue-项目出现Invalid-Host-header解决办法"><span class="toc-text">vue 项目出现Invalid Host header解决办法</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2021
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

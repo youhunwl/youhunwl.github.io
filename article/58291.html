@@ -1,0 +1,387 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="Gulp,Node,前端自动化" />
+
+
+    <meta name="description" content="前言
+​    最近几年前端技术发展日新月异，特别是单页应用的普及。组件化、工程化、自动化成了前端发展的趋势。webpack已经成为了前端打包构建的主流，但是一些老古董的项目还是存在的，也有优化..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>基于gulp的前端自动化方案 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="基于gulp的前端自动化方案">
+            
+	            基于gulp的前端自动化方案
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Gulp/">Gulp</a> <a class="tag-link" href="/tags/Node/">Node</a> <a class="tag-link" href="/tags/前端自动化/">前端自动化</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/10/24</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1336</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>​    最近几年前端技术发展日新月异，特别是单页应用的普及。组件化、工程化、自动化成了前端发展的趋势。webpack已经成为了前端打包构建的主流，但是一些<code>老古董</code>的项目还是存在的，也有优化的必要，正好公司的老项目需要优化，不多说拿gulp实践一下。</p>
+</blockquote>
+<p>本文需要安装node（自行安装），并了解过gulp入门。gulp脚本下载：<a href="https://github.com/youhunwl/gulp" target="_blank" rel="noopener">https://github.com/youhunwl/gulp</a> 欢迎star。</p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><h3 id="创建项目目录"><a href="#创建项目目录" class="headerlink" title="创建项目目录"></a>创建项目目录</h3><p>首先初始化npm依赖项与基本信息，使用命令<code>npm init</code>一直回车，生成<code>package.json</code>文件，也可以直接去上边github仓库目录下载。</p>
+<p>你的项目目录关系到你的gulp脚本里的任务路径，我脚本里写的是匹配所有的目录和文件。我简单举个例子：这里<code>js/common</code>里的js文件也会被处理。如果只想处理特定目录的文件，请修改任务里的路径。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">demo/</span><br><span class="line">├── css/</span><br><span class="line">│   ├── index.css</span><br><span class="line">├── js/</span><br><span class="line">│   ├── common/</span><br><span class="line">│   │       └─ common.js</span><br><span class="line">│   ├── index.js</span><br><span class="line">├── img/</span><br><span class="line">│   ├── logo.png</span><br><span class="line">└── index.html</span><br></pre></td></tr></table></figure>
+<h3 id="安装所需依赖"><a href="#安装所需依赖" class="headerlink" title="安装所需依赖"></a>安装所需依赖</h3><p>安装gulp所需要的模块，这里直接列举我的<code>package.json</code>文件内容</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"demo"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"0.0.0"</span>,</span><br><span class="line">  <span class="attr">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"gulp"</span>: <span class="string">"^3.9.1"</span>,</span><br><span class="line">    <span class="attr">"gulp-autoprefixer"</span>: <span class="string">"^3.1.1"</span>,</span><br><span class="line">    <span class="attr">"gulp-cache"</span>: <span class="string">"^1.0.2"</span>,</span><br><span class="line">    <span class="attr">"gulp-clean-css"</span>: <span class="string">"^3.10.0"</span>,</span><br><span class="line">    <span class="attr">"gulp-htmlclean"</span>: <span class="string">"^2.7.15"</span>,</span><br><span class="line">    <span class="attr">"gulp-htmlmin"</span>: <span class="string">"^3.0.0"</span>,</span><br><span class="line">    <span class="attr">"gulp-if"</span>: <span class="string">"^2.0.2"</span>,</span><br><span class="line">    <span class="attr">"gulp-imagemin"</span>: <span class="string">"^4.1.0"</span>,</span><br><span class="line">    <span class="attr">"gulp-minify-css"</span>: <span class="string">"^1.2.4"</span>,</span><br><span class="line">    <span class="attr">"gulp-notify"</span>: <span class="string">"^3.0.0"</span>,</span><br><span class="line">    <span class="attr">"gulp-path"</span>: <span class="string">"^3.0.3"</span>,</span><br><span class="line">    <span class="attr">"gulp-rev-append"</span>: <span class="string">"^0.1.8"</span>,</span><br><span class="line">    <span class="attr">"gulp-sequence"</span>: <span class="string">"^0.4.6"</span>,</span><br><span class="line">    <span class="attr">"gulp-sourcemaps"</span>: <span class="string">"^2.6.4"</span>,</span><br><span class="line">    <span class="attr">"gulp-uglify"</span>: <span class="string">"^2.0.0"</span>,</span><br><span class="line">    <span class="attr">"uglify-js"</span>: <span class="string">"^3.3.9"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="编写gulp脚本"><a href="#编写gulp脚本" class="headerlink" title="编写gulp脚本"></a>编写gulp脚本</h3><p>新建 <code>gulpfile.js</code>文件,并引入所需模块，这里我把路径统一写在<code>PATHS</code>中。具体关于路径的写法，可以去看gulp官网的api：<a href="https://www.gulpjs.com.cn/docs/api/" target="_blank" rel="noopener">https://www.gulpjs.com.cn/docs/api/</a></p>
+<p><code>gulp-minify-css</code>这个官网提示已经弃用，改用<code>gulp-clean-css</code>，这里保留只是为了告诉大家，效果一样，用户一致，为了保证项目不出问题，还是用最新的吧。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">    minifycss = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>),<span class="comment">//压缩css 已弃用</span></span><br><span class="line">    cleancss = <span class="built_in">require</span>(<span class="string">'gulp-clean-css'</span>),<span class="comment">//压缩css</span></span><br><span class="line">    imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>),<span class="comment">//压缩图片</span></span><br><span class="line">    autoprefixer = <span class="built_in">require</span>(<span class="string">'gulp-autoprefixer'</span>),<span class="comment">//处理浏览器前缀</span></span><br><span class="line">    uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),<span class="comment">//压缩js</span></span><br><span class="line">    sourcemaps = <span class="built_in">require</span>(<span class="string">'gulp-sourcemaps'</span>),<span class="comment">//生成 sourcemap</span></span><br><span class="line">    gulpif = <span class="built_in">require</span>(<span class="string">'gulp-if'</span>),<span class="comment">//条件判断</span></span><br><span class="line">    notify = <span class="built_in">require</span>(<span class="string">'gulp-notify'</span>),<span class="comment">//处理报错</span></span><br><span class="line">    cache = <span class="built_in">require</span>(<span class="string">'gulp-cache'</span>),<span class="comment">//只压缩修改的图片</span></span><br><span class="line">    htmlclean = <span class="built_in">require</span>(<span class="string">'gulp-htmlclean'</span>),<span class="comment">// 精简html</span></span><br><span class="line">	htmlmin = <span class="built_in">require</span>(<span class="string">'gulp-htmlmin'</span>),<span class="comment">//压缩html</span></span><br><span class="line">    rev = <span class="built_in">require</span>(<span class="string">'gulp-rev-append'</span>),<span class="comment">//增加版本号</span></span><br><span class="line">    sequence = <span class="built_in">require</span>(<span class="string">'gulp-sequence'</span>),<span class="comment">//同步执行任务</span></span><br><span class="line">    PATHS = &#123;</span><br><span class="line">    ROOT: <span class="string">'./'</span>,</span><br><span class="line">    DEST: <span class="string">'./dist/'</span>,</span><br><span class="line">    HTML: <span class="string">'**/*.&#123;html,htm&#125;'</span>,</span><br><span class="line">    CSS: <span class="string">'**/*.css'</span>,</span><br><span class="line">    IMG: <span class="string">'**/*.&#123;png,jpg,gif,ico&#125;'</span>,</span><br><span class="line">    JS: <span class="string">'**/*.js'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="压缩处理css"><a href="#压缩处理css" class="headerlink" title="压缩处理css"></a>压缩处理css</h4><p>这里需要排除<code>node_modules</code>文件夹和生成构建的后的目录<code>/dist/</code>及它们的子目录，直接 <code>!</code>后面跟要排除的目录就行了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'minify-css'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src([PATHS.CSS,<span class="string">'!./dist/**'</span>, <span class="string">'!./node_modules/**'</span>])</span><br><span class="line">     .pipe(sourcemaps.init())</span><br><span class="line">     .pipe(autoprefixer(&#123;</span><br><span class="line">        browsers: [<span class="string">'last 10 versions'</span>, <span class="string">'Firefox &gt;= 20'</span>, <span class="string">'Opera &gt;= 36'</span>, <span class="string">'ie &gt;= 9'</span>, <span class="string">'Android &gt;= 4.0'</span>, ],</span><br><span class="line">        cascade: <span class="literal">true</span>, <span class="comment">//是否美化格式</span></span><br><span class="line">        remove: <span class="literal">false</span> <span class="comment">//是否删除不必要的前缀</span></span><br><span class="line">    &#125;))</span><br><span class="line">     .pipe(cleancss(&#123;</span><br><span class="line">        keepSpecialComments: <span class="string">'*'</span> <span class="comment">//保留所有特殊前缀</span></span><br><span class="line">    &#125;))</span><br><span class="line">     .pipe(sourcemaps.write(<span class="string">'.'</span>))</span><br><span class="line">     .pipe(gulp.dest(PATHS.DEST))</span><br><span class="line">     .pipe(notify(&#123; <span class="attr">message</span>: <span class="string">'css minify complete'</span> &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>有些引用的css或者js不需要压缩,比如<code>jQuery</code>‘,<code>Bootstrap</code>，也或者是公司内部的公共库 .min.{css,js}等等。</p>
+<p>这里咱们就用到<code>gulp-if</code>了，去排除min.css</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> conditionCss = <span class="function"><span class="keyword">function</span> (<span class="params">f</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (f.path.endsWith(<span class="string">'.min.css'</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>再修改下处理css的操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.pipe(gulpif(conditionCss, cleancss(&#123;</span><br><span class="line">    keepSpecialComments: <span class="string">'*'</span> <span class="comment">//保留所有特殊前缀</span></span><br><span class="line">&#125;)))</span><br></pre></td></tr></table></figure>
+<h4 id="压缩处理js"><a href="#压缩处理js" class="headerlink" title="压缩处理js"></a>压缩处理js</h4><p>同理排除下 min.js ，这里还要注意记得把 gulp脚本也排除不处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'minify-js'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src([PATHS.JS, <span class="string">'!./dist/**'</span>, <span class="string">'!./node_modules/**'</span>, <span class="string">'!gulpfile.js'</span>])</span><br><span class="line">     .pipe(sourcemaps.init())</span><br><span class="line">     .pipe(gulpif(conditionJs, uglify()))</span><br><span class="line">     .pipe(sourcemaps.write(<span class="string">'.'</span>))</span><br><span class="line">     .pipe(gulp.dest(PATHS.DEST))</span><br><span class="line">     .pipe(notify(&#123; <span class="attr">message</span>: <span class="string">'js minify complete'</span> &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="压缩处理-img"><a href="#压缩处理-img" class="headerlink" title="压缩处理 img"></a>压缩处理 img</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'minify-img'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src([PATHS.IMG,<span class="string">'!./dist/**'</span>, <span class="string">'!./node_modules/**'</span>])</span><br><span class="line">        .pipe(cache(imagemin()))</span><br><span class="line">        .pipe(gulp.dest(PATHS.DEST));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="压缩处理HTML"><a href="#压缩处理HTML" class="headerlink" title="压缩处理HTML"></a>压缩处理HTML</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'minify-html'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(PATHS.DEST+PATHS.HTML)</span><br><span class="line">        .pipe(htmlclean())</span><br><span class="line">        .pipe(htmlmin(&#123;</span><br><span class="line">        removeComments: <span class="literal">true</span>, <span class="comment">//清除HTML注释</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>, <span class="comment">//压缩HTML</span></span><br><span class="line">        minifyJS: <span class="literal">true</span>, <span class="comment">//压缩页面JS</span></span><br><span class="line">        minifyCSS: <span class="literal">true</span>, <span class="comment">//压缩页面CSS</span></span><br><span class="line">        minifyURLs: <span class="literal">true</span></span><br><span class="line">    &#125;))</span><br><span class="line">        .pipe(gulp.dest(PATHS.DEST));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="增加版本号"><a href="#增加版本号" class="headerlink" title="增加版本号"></a>增加版本号</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'rev'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src([PATHS.HTML,<span class="string">'!./dist/**'</span>, <span class="string">'!./node_modules/**'</span>])</span><br><span class="line">        .pipe(rev())</span><br><span class="line">        .pipe(gulp.dest(PATHS.DEST));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="同步执行task"><a href="#同步执行task" class="headerlink" title="同步执行task"></a>同步执行task</h4><p>因为gulp所有的任务都是异步完成的，在有时候我们需要同步执行任务，比如：先编译less,在对编译好的css进行压缩，这个时候异步就有问题了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'deploy'</span>, sequence([<span class="string">'minify-css'</span>, <span class="string">'minify-js'</span>], <span class="string">'minify-img'</span>, <span class="string">'rev'</span>, <span class="string">'minify-html'</span>));</span><br></pre></td></tr></table></figure>
+<h4 id="执行gulp所有任务"><a href="#执行gulp所有任务" class="headerlink" title="执行gulp所有任务"></a>执行gulp所有任务</h4><p>这里创建一个名为<code>default</code> 的任务，执行上面的<code>deploy</code>任务</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'deploy'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"[complete] Please continue to operate"</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>在终端中输入 <code>gulp</code>或者<code>gulp default</code>执行构建，即可在我们设置的产出目录里看到我们压缩处理后的代码。</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpggy1fwjgbm1fuaj30jh0fd775.jpg" alt=""></p>
+<p>至此，一个简单的gulp脚本就写的差不多了，麻雀虽小五脏俱全。如果大家有什么好的建议欢迎交流。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/53066.html" class="pre-post btn btn-default" title='VS Code书写vue项目配置 eslint+prettier 统一代码风格'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">VS Code书写vue项目配置 eslint+prettier 统一代码风格</span>
+        </a>
+    
+    
+        <a href="/article/52925.html" class="next-post btn btn-default" title='手把手教你搭建一个属于自己的网站'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">手把手教你搭建一个属于自己的网站</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实践"><span class="toc-text">实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建项目目录"><span class="toc-text">创建项目目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装所需依赖"><span class="toc-text">安装所需依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写gulp脚本"><span class="toc-text">编写gulp脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#压缩处理css"><span class="toc-text">压缩处理css</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#压缩处理js"><span class="toc-text">压缩处理js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#压缩处理-img"><span class="toc-text">压缩处理 img</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#压缩处理HTML"><span class="toc-text">压缩处理HTML</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#增加版本号"><span class="toc-text">增加版本号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#同步执行task"><span class="toc-text">同步执行task</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#执行gulp所有任务"><span class="toc-text">执行gulp所有任务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署"><span class="toc-text">部署</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2021
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
