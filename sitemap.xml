@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>//www.shen.ee/serverless.json</loc>
+    
+    <lastmod>2022-06-23T09:31:26.219Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>//www.shen.ee/article/12570.html</loc>
     
     <lastmod>2022-06-22T06:24:26.011Z</lastmod>
@@ -23,14 +30,14 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/3664.html</loc>
+    <loc>//www.shen.ee/article/57549.html</loc>
     
     <lastmod>2022-06-22T06:24:26.008Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/57549.html</loc>
+    <loc>//www.shen.ee/article/3664.html</loc>
     
     <lastmod>2022-06-22T06:24:26.008Z</lastmod>
     
@@ -51,14 +58,14 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/5963.html</loc>
+    <loc>//www.shen.ee/article/57612.html</loc>
     
     <lastmod>2022-06-22T06:24:26.004Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/57612.html</loc>
+    <loc>//www.shen.ee/article/5963.html</loc>
     
     <lastmod>2022-06-22T06:24:26.004Z</lastmod>
     
@@ -184,14 +191,14 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/16336.html</loc>
+    <loc>//www.shen.ee/article/52925.html</loc>
     
     <lastmod>2021-11-15T07:55:36.546Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/52925.html</loc>
+    <loc>//www.shen.ee/article/16336.html</loc>
     
     <lastmod>2021-11-15T07:55:36.546Z</lastmod>
     
@@ -233,13 +240,6 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/6592.html</loc>
-    
-    <lastmod>2021-11-15T07:55:36.542Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>//www.shen.ee/article/29845.html</loc>
     
     <lastmod>2021-11-15T07:55:36.542Z</lastmod>
@@ -247,21 +247,21 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/55210.html</loc>
+    <loc>//www.shen.ee/article/6592.html</loc>
     
-    <lastmod>2021-11-15T07:55:36.541Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//www.shen.ee/article/25439.html</loc>
-    
-    <lastmod>2021-11-15T07:55:36.541Z</lastmod>
+    <lastmod>2021-11-15T07:55:36.542Z</lastmod>
     
   </url>
   
   <url>
     <loc>//www.shen.ee/article/1806.html</loc>
+    
+    <lastmod>2021-11-15T07:55:36.541Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//www.shen.ee/article/55210.html</loc>
     
     <lastmod>2021-11-15T07:55:36.541Z</lastmod>
     
@@ -275,6 +275,13 @@
   </url>
   
   <url>
+    <loc>//www.shen.ee/article/25439.html</loc>
+    
+    <lastmod>2021-11-15T07:55:36.541Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>//www.shen.ee/article/58291.html</loc>
     
     <lastmod>2021-11-15T07:55:36.540Z</lastmod>
@@ -282,14 +289,14 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/30720.html</loc>
+    <loc>//www.shen.ee/article/30338.html</loc>
     
     <lastmod>2021-11-15T07:55:36.540Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/30338.html</loc>
+    <loc>//www.shen.ee/article/30720.html</loc>
     
     <lastmod>2021-11-15T07:55:36.540Z</lastmod>
     
@@ -317,13 +324,6 @@
   </url>
   
   <url>
-    <loc>//www.shen.ee/article/27276.html</loc>
-    
-    <lastmod>2021-11-15T07:55:36.537Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>//www.shen.ee/article/24455.html</loc>
     
     <lastmod>2021-11-15T07:55:36.537Z</lastmod>
@@ -332,6 +332,13 @@
   
   <url>
     <loc>//www.shen.ee/article/21666.html</loc>
+    
+    <lastmod>2021-11-15T07:55:36.537Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//www.shen.ee/article/27276.html</loc>
     
     <lastmod>2021-11-15T07:55:36.537Z</lastmod>
     
