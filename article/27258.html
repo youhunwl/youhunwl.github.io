@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="游魂的网络日志,游魂日志,游魂博客,网络日志,游魂" />
+
+
+    <meta name="description" content="卸载磁盘
+12umount 挂载目录 分区名#例如 umount /data/ /dev/vdb
+0、创建挂载目录
+1mkdir -p /www
+1、确认是否有没有分区的磁盘,如下图，没有分区的..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>Linux硬盘分区，卸载，挂载，格式化，加到开机启动项 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux硬盘分区，卸载，挂载，格式化，加到开机启动项">
+            
+	            Linux硬盘分区，卸载，挂载，格式化，加到开机启动项
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/后端/">后端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/24</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1696</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p><strong>卸载磁盘</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">umount 挂载目录 分区名</span><br><span class="line"><span class="comment">#例如 umount /data/ /dev/vdb</span></span><br></pre></td></tr></table></figure>
+<p>0、创建<strong>挂载</strong>目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /www</span><br></pre></td></tr></table></figure>
+<p>1、确认是否有没有分区的磁盘,如下图，没有分区的磁盘是 /dev/xvdb ,在您的服务器中可能是 /dev/vdb 请注意按实际名称修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcphwawyj20gh0hwt9p.jpg" alt=""></p>
+<p>2、为磁盘分区，若已分区的，请跳过！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/xvdb</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcpk7vu2j20hi00iq2p.jpg" alt=""></p>
+<p>3、输入n开始创建分区</p>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcpek1ssj20he039t8n.jpg" alt="1476467888753.png"></p>
+<p>4、输入p创建主分区</p>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcpoc1nmj20ht02ht8j.jpg" alt="14764678911902.png"></p>
+<p>5、选择分区号，这里输入1</p>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcpr6puyj20hs00g741.jpg" alt="14764678974383.png"></p>
+<p>6、输入分区开始位置，直接回车</p>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcq2agptj20hs00ijr5.jpg" alt="14764679066906.png"></p>
+<p>7、输入分区结束位置，直接回车</p>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcq4sz1sj20hu00z3yb.jpg" alt="14764679101188.png"></p>
+<p>8、输入wq 保存退出</p>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcqaauwwj20hp00pdfl.jpg" alt="14764679123835.png"></p>
+<p>9、检查是否分区成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcqfjbfkj20gb0hfgmm.jpg" alt="14764679159426.png"></p>
+<p>10、格式化分区，这里请输入你看到的磁盘加分区号，如下图，已格式化过的，请跳过</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/xvdb1</span><br><span class="line"><span class="meta">#</span><span class="bash"> (linux老的磁盘分区用的是 ext2 和 ext3  ，现在最新的是 ext4)</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcqjvszxj20hg00k0si.jpg" alt="14764679185233.png"></p>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcqv0jsqj20hk0apaak.jpg" alt="14764679237879.png"></p>
+<p>11、将新建的分区挂载到<code>/www</code>目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/xvdb1 /www</span><br></pre></td></tr></table></figure>
+<p>12、查询磁盘分区UUID</p>
+<blockquote>
+<p>说明：磁盘的UUID（universally unique identifier）是Linux系统为存储设备提供的唯一的标识字符串。 </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">blkid /dev/xvdb1</span><br><span class="line"><span class="comment"># 这里查询一下是为了下一步加到开机启动项</span></span><br></pre></td></tr></table></figure>
+<p>13、将分区挂载信息添加到开机启动挂载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">echo "/dev/xvdb1 /www ext4 defaults 0 0" &gt;&gt; /etc/fstab</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 也可以直接修改/etc/fstab文件，在最后加一段</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> /dev/xvdb1 /www ext4 defaults 0 0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 推荐使用UUID来配置自动挂载数据盘，防止存储设备在服务器中发生改变</span></span><br><span class="line">echo "UUID=f5c5c392-4704-4475-9abc-f6a2e049f2ea /www ext4 defaults 0 0" &gt;&gt; /etc/fstab</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcqy2sq4j20kq016a9x.jpg" alt="14764679262526.png"></p>
+<blockquote>
+<p>格式说明：</p>
+<p>第1列是需要挂载的文件系统或存储设备，/dev/xvdb1代表哪个分区 </p>
+<p>第2列是挂载点</p>
+<p>第3列指定文件系统或分区的类型，ext4是该分区的格式</p>
+<p>第4列为挂载选项，详细参考manmount. ，defaults是挂载时所要设定的参数(只读，读写，启用quota等)，输入defaults包括的参数有(rw、dev、exec、auto、nouser、async) ，</p>
+<p>第5列为dump选项，设置是否让备份程序dump备份文件系统，0为忽略，1为备份。</p>
+<p>第6列为fsck选项，告诉fsck程序以什么顺序检查文件系统，（2是开机时检查的顺序），是boot系统文件就为1，其他文件系统都为2，如不要检查就为0</p>
+</blockquote>
+<p>13、重新挂载所有分区</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -a</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcr2pjf9j20mg00nmwx.jpg" alt="14764679301321.png"></p>
+<p>14、检查是否挂载成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fqrcr6q5ruj20oh03nglo.jpg" alt="14764679337124.png"></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/27276.html" class="pre-post btn btn-default" title='PWA介绍及快速上手搭建一个PWA应用'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">PWA介绍及快速上手搭建一个PWA应用</span>
+        </a>
+    
+    
+        <a href="/article/39917.html" class="next-post btn btn-default" title='Vue-cli脚手架快速搭建项目图文教程'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Vue-cli脚手架快速搭建项目图文教程</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2022
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

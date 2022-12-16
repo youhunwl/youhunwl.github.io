@@ -1,0 +1,468 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="Flutter,Electron,Electron入门,Electron快速上手,将网站直接生成桌面应用,PWA" />
+
+
+    <meta name="description" content="介绍
+使用 JavaScript，HTML 和 CSS 构建跨平台的桌面应用程序
+
+
+基于 Chromium 和 Node.js
+让你可以使用 HTML, CSS 和 JavaScript 构建..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>Electron快速上手并将网站直接生成桌面应用 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Electron快速上手并将网站直接生成桌面应用">
+            
+	            Electron快速上手并将网站直接生成桌面应用
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Electron/">Electron</a> <a class="tag-link" href="/tags/Electron入门/">Electron入门</a> <a class="tag-link" href="/tags/Electron快速上手/">Electron快速上手</a> <a class="tag-link" href="/tags/Flutter/">Flutter</a> <a class="tag-link" href="/tags/PWA/">PWA</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2021/11/20</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>390</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><blockquote>
+<p>使用 JavaScript，HTML 和 CSS 构建跨平台的桌面应用程序</p>
+</blockquote>
+<ul>
+<li>基于 Chromium 和 Node.js</li>
+<li>让你可以使用 HTML, CSS 和 JavaScript 构建应用</li>
+<li>开源</li>
+<li>跨平台（Windows、Mac、Linux）</li>
+</ul>
+<p><strong>Atom</strong>、Postman、Notion、Vscode等都是用<code>Electron</code>开发的</p>
+<h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><h3 id="手动"><a href="#手动" class="headerlink" title="手动"></a>手动</h3><p>1.创建文件并初始化</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir Hello-world &amp;&amp; cd Hello-world</span><br><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+<p>记得修改入口文件，并在根目录创建入口文件 <code>main.js</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// package.json</span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  "main": "main.js",</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.安装<code>electron</code>依赖</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev electron</span><br></pre></td></tr></table></figure>
+<p>3.在<code>package.json</code>配置文件中的<code>scripts</code>字段下增加一条<code>start</code>命令</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// package.json</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"start"</span>: <span class="string">"electron ."</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<p>5.空白是因为并没有任何内容，写个 HTML </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- index.html --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Welcome to your Electron application.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>6.修改主入口<code>main.js</code>代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在文件头部引入 Node.js 中的 path 模块</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// app：控制应用程序事件生命周期的模块</span></span><br><span class="line"><span class="comment">// BrowserWindow：创建和管理应用程序窗口模块</span></span><br><span class="line"><span class="keyword">const</span> &#123; app, BrowserWindow &#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createWindow</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> mainWindow = <span class="keyword">new</span> BrowserWindow(&#123;</span><br><span class="line">    width: <span class="number">800</span>,</span><br><span class="line">    height: <span class="number">600</span>,</span><br><span class="line">    webPreferences: &#123;</span><br><span class="line">      preload: path.join(__dirname, <span class="string">'preload.js'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  mainWindow.loadFile(<span class="string">'index.html'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 打开开发工具</span></span><br><span class="line">  mainWindow.webContents.openDevTools()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在 Electron 中，只有在 app 模块的 ready 事件被激发后才能创建浏览器窗口</span></span><br><span class="line"><span class="comment">// 类似vue 的生命周期 将会在 Electron 结束后初始化</span></span><br><span class="line">app.whenReady().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  createWindow()</span><br><span class="line"></span><br><span class="line"><span class="comment">// Mac 逻辑 关闭只是隐藏 command + Q 才完全退出</span></span><br><span class="line">  app.on(<span class="string">'activate'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (BrowserWindow.getAllWindows().length === <span class="number">0</span>) createWindow()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Windows 和 linux 关闭窗口会完全退出窗口</span></span><br><span class="line">app.on(<span class="string">'window-all-closed'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (process.platform !== <span class="string">'darwin'</span>) app.quit()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d933b096268f459ba1662c5753aa3b38~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+<h3 id="脚手架"><a href="#脚手架" class="headerlink" title="脚手架"></a>脚手架</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 克隆示例项目的仓库</span></span><br><span class="line">git clone https://github.com/electron/electron-quick-start</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入这个仓库</span></span><br><span class="line">cd electron-quick-start</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装依赖并运行</span></span><br><span class="line">npm install &amp;&amp; npm start</span><br></pre></td></tr></table></figure>
+<p>如果安装过慢可以设置淘宝源</p>
+<p>最新淘宝源地址：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Npm 设置淘宝源</span></span><br><span class="line">npm config set registry https://registry.npmmirror.com/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 检查是否修改成功</span></span><br><span class="line"></span><br><span class="line">npm config get registry</span><br></pre></td></tr></table></figure>
+<p>使用淘宝源运行时如果提示这个错误</p>
+<blockquote>
+<p>地址问题</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">throw new Error('Electron failed to install correctly, please delete node_modules/electron and try installing again')</span><br></pre></td></tr></table></figure>
+<p>则设置electron 镜像源地址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set electron_mirror https://cdn.npm.taobao.org/dist/electron/</span><br></pre></td></tr></table></figure>
+<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><blockquote>
+<p>注意：<strong>图标格式</strong> Windows 下使用的 <code>icon.ico</code> Mac 使用的是 <code>icon.icns</code></p>
+</blockquote>
+<p><strong>使用electron-forge</strong> </p>
+<p>安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @electron-forge/cli</span><br><span class="line">npx electron-forge import</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run make</span><br></pre></td></tr></table></figure>
+<p>打包参数配置 <code>package.json</code>文件里的<code>config =&gt; forge =&gt; packagerConfig</code></p>
+<p><strong>使用electron-packager</strong></p>
+<p>安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev electron-packager</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx electron-packager &lt;sourcedir&gt; &lt;appname&gt; --platform=&lt;platform&gt; --arch=&lt;arch&gt; [optional flags...]</span><br></pre></td></tr></table></figure>
+<p>具体参数：<a href="https://github.com/electron/electron-packager" target="_blank" rel="noopener">https://github.com/electron/electron-packager</a></p>
+<h2 id="将网站直接生成桌面应用"><a href="#将网站直接生成桌面应用" class="headerlink" title="将网站直接生成桌面应用"></a>将网站直接生成桌面应用</h2><p>用上面手动或者脚手架的方式创建初始化文件</p>
+<p>修改 <code>main.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; app, BrowserWindow, Menu &#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createWindow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> win = <span class="keyword">new</span> BrowserWindow(&#123;</span><br><span class="line">    autoHideMenuBar: <span class="literal">true</span>,</span><br><span class="line">    show: <span class="literal">false</span>, <span class="comment">// 是否显示窗口,否后,通过对象.show()打开</span></span><br><span class="line">    fullscreen: <span class="literal">false</span>,</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 优化加载方式 当页面在窗口中直接加载时，用户会看到未完成的页面，</span></span><br><span class="line"><span class="comment">   * 这不是一个好的原生应用的体验,使用此事件后显示窗口将没有视觉闪烁</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  win.on(<span class="string">'ready-to-show'</span>, () =&gt; &#123;</span><br><span class="line">    win.show()</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">//生成调试工具栏</span></span><br><span class="line">  <span class="comment">// win.webContents.openDevTools()</span></span><br><span class="line">  <span class="comment">// 窗口最大化</span></span><br><span class="line">  win.maximize()</span><br><span class="line">  <span class="comment">// 加载远程URL(网址)</span></span><br><span class="line">  win.loadURL(<span class="string">'https://www.iyouhun.com/'</span>)</span><br><span class="line">  <span class="comment">// 设置菜单栏</span></span><br><span class="line">  <span class="keyword">const</span> template = [</span><br><span class="line">    &#123;</span><br><span class="line">      label: <span class="string">'文件'</span>,</span><br><span class="line">      submenu: [</span><br><span class="line">        &#123;</span><br><span class="line">          label: <span class="string">'关于'</span>,</span><br><span class="line">          role: <span class="string">'about'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          label: <span class="string">'关闭'</span>,</span><br><span class="line">          accelerator: <span class="string">'Command+Q'</span>,</span><br><span class="line">          click: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            win.close()</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line">  ]</span><br><span class="line">  <span class="keyword">const</span> menu = Menu.buildFromTemplate(template)</span><br><span class="line">  Menu.setApplicationMenu(menu)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'ready'</span>, createWindow)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Windows 和 linux 关闭窗口会完全退出窗口</span></span><br><span class="line">app.on(<span class="string">'window-all-closed'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (process.platform !== <span class="string">'darwin'</span>) &#123;</span><br><span class="line">    app.quit()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'activate'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="comment">// Mac 逻辑</span></span><br><span class="line">  <span class="keyword">if</span> (BrowserWindow.getAllWindows().length === <span class="number">0</span>) &#123;</span><br><span class="line">    createWindow()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="Electron的优缺点"><a href="#Electron的优缺点" class="headerlink" title="Electron的优缺点"></a>Electron的优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>原生的接口（菜单、消息提醒、系统托盘等）。</li>
+<li>上手难度低，能够使用react、vue等前端框架，能方便地迁移前端组件，构建出漂亮的桌面应用。</li>
+<li>方便热更新</li>
+<li>调试和测试方便</li>
+<li>Electron使用node.js。因此，您可以导入Chrome应用程序中不容易使用的许多模块</li>
+<li>Electron文档要好得多</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>不适合开发轻量级的应用。即使一个electron的项目框架，也包含chromium内核。</li>
+<li>相比c++开发的桌面应用，性能远远不如后者。</li>
+<li>启动速度慢。</li>
+<li>每个窗口都是一个新的进程，占据大量内存。</li>
+</ul>
+<h2 id="Electron和-PWA"><a href="#Electron和-PWA" class="headerlink" title="Electron和 PWA"></a>Electron和 PWA</h2><ul>
+<li>可用性<ul>
+<li>Electron 不能安装在任何设备</li>
+<li>PWA 只要有网有浏览器记性，甚至不需要网络</li>
+</ul>
+</li>
+<li>性能<ul>
+<li>PWA具有更好性能，使用 Service Worker，减少加载时间</li>
+</ul>
+</li>
+<li>占用空间<ul>
+<li>Electron包过大，毕竟每个包都包含了包含chromium内核</li>
+</ul>
+</li>
+<li>安全性<ul>
+<li>Electron包不加任何混淆加密的话是完全可读的，因为存放在本地</li>
+<li>PWA存放在服务端且只能通过HTTPS传输</li>
+</ul>
+</li>
+<li>更新和集成<ul>
+<li>两者都可以做到服务端异步更新</li>
+</ul>
+</li>
+<li>交互<ul>
+<li>Electron可以调用原生的接口</li>
+</ul>
+</li>
+</ul>
+<h2 id="Electron和Flutter"><a href="#Electron和Flutter" class="headerlink" title="Electron和Flutter"></a>Electron和Flutter</h2><ul>
+<li>上手难度<ul>
+<li>Electron：会基础的HTML、CSS、JS即可</li>
+<li>Flutter：需学习Dart语言</li>
+</ul>
+</li>
+<li>侧重点<ul>
+<li>Electron更偏向PC端应用</li>
+<li>Flutter更偏向移动端应用</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/44434.html" class="pre-post btn btn-default" title='Docker常用命令|备忘单'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Docker常用命令|备忘单</span>
+        </a>
+    
+    
+        <a href="/article/28951.html" class="next-post btn btn-default" title='Hexo博客升级随笔'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Hexo博客升级随笔</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速上手"><span class="toc-text">快速上手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#手动"><span class="toc-text">手动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脚手架"><span class="toc-text">脚手架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包"><span class="toc-text">打包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将网站直接生成桌面应用"><span class="toc-text">将网站直接生成桌面应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Electron的优缺点"><span class="toc-text">Electron的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Electron和-PWA"><span class="toc-text">Electron和 PWA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Electron和Flutter"><span class="toc-text">Electron和Flutter</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2022
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

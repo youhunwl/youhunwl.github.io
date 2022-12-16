@@ -1,0 +1,581 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="TypeScript,TypeScript常用类型,ts" />
+
+
+    <meta name="description" content="TypeScript 常用类型TypeScript 是 JS 的超集，TS 提供了 JS 的所有功能，并且额外的增加了：类型系统
+JS 有类型（比如，number/string 等），但是 JS..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>TypeScript 常用类型 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="TypeScript 常用类型">
+            
+	            TypeScript 常用类型
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/TypeScript/">TypeScript</a> <a class="tag-link" href="/tags/TypeScript常用类型/">TypeScript常用类型</a> <a class="tag-link" href="/tags/ts/">ts</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2022/06/16</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="TypeScript-常用类型"><a href="#TypeScript-常用类型" class="headerlink" title="TypeScript 常用类型"></a>TypeScript 常用类型</h1><p>TypeScript 是 JS 的超集，TS 提供了 JS 的所有功能，并且额外的增加了：<strong>类型系统</strong></p>
+<p><strong>JS 有类型</strong>（比如，number/string 等），但是 <strong>JS 不会检查变量的类型是否发生变化</strong>，而 TS 会检查</p>
+<p>TypeScript 类型系统的主要优势：<strong>可以显示标记出代码中的意外行为，从而降低了发生错误的可能性</strong></p>
+<h2 id="类型注解"><a href="#类型注解" class="headerlink" title="类型注解"></a>类型注解</h2><p>示例代码</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age: <span class="built_in">number</span> = <span class="number">18</span>;</span><br></pre></td></tr></table></figure>
+<p>代码中<code>:number</code>就是类型注解</p>
+<p><strong>类型注解约束了只能给该变量赋值该类型的值</strong></p>
+<p>错误演示</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误原因：将 string 类型的值赋值给了 number 类型的变量，类型不一致</span></span><br><span class="line"><span class="keyword">let</span> age: <span class="built_in">number</span> = <span class="string">'18'</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="常用基础类型"><a href="#常用基础类型" class="headerlink" title="常用基础类型"></a>常用基础类型</h2><p>可以将 TS 中的常用基础类型分为两类</p>
+<ol>
+<li>JavaScript 已有类型<ul>
+<li>原始类型： <strong><code>number/string/boolean/null/undefined/symbol</code></strong></li>
+<li>对象类型：<strong><code>object</code></strong>(数组、对象、函数等)</li>
+</ul>
+</li>
+<li>TypeScript 新增类型<ul>
+<li>联合类型、自定义类型（类型别名）、接口、元祖、字面量类型、枚举、void、any 等</li>
+</ul>
+</li>
+</ol>
+<p>注意：原始类型在 TS 和 JS 中写法一致， 对象类型在 TS 中更加细化，每个具体对象都有自己的类型语法</p>
+<h3 id="原始类型"><a href="#原始类型" class="headerlink" title="原始类型"></a>原始类型</h3><blockquote>
+<p>特点：可完全按照 JavaScript 中的名称来书写</p>
+</blockquote>
+<p><strong><code>number/string/boolean/null/undefined/symbol</code></strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age: <span class="built_in">number</span> = <span class="number">18</span>;</span><br><span class="line"><span class="keyword">let</span> username: <span class="built_in">string</span> = <span class="string">'张三'</span>;</span><br><span class="line"><span class="keyword">let</span> isMerry: <span class="built_in">boolean</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">let</span> unique: Symbol = Symbol(<span class="string">'shuiruohanyu'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h3><p>数组两种写法</p>
+<ol>
+<li><p><code>类型[]</code>写法， 如</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> userList: <span class="built_in">string</span>[] = [<span class="string">'John'</span>, <span class="string">'Bob'</span>, <span class="string">'Tony'</span>];</span><br><span class="line"><span class="keyword">let</span> peopleList: object[] = [&#123; name: <span class="string">'张三'</span>, age: <span class="number">18</span> &#125;];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Array&lt;类型&gt;写法， 如</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user2List: <span class="built_in">Array</span>&lt;<span class="built_in">string</span>&gt; = [<span class="string">'John'</span>, <span class="string">'Bob'</span>, <span class="string">'Tony'</span>];</span><br><span class="line"><span class="keyword">let</span> people2List: <span class="built_in">Array</span>&lt;object&gt; = [&#123; name: <span class="string">'张三'</span>, age: <span class="number">18</span> &#125;];</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h3><p>组中既有 number 类型，又有 string 类型，这个数组的类型应该如何写?</p>
+<p>可以用<code>|</code>(竖线)分割多个类型， 如</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str: <span class="built_in">string</span> | <span class="built_in">number</span> = <span class="number">1</span>;</span><br><span class="line">str = <span class="string">'张三'</span>;</span><br></pre></td></tr></table></figure>
+<p>如果数组中可以是字符串或者数字，则可以这么写</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr: <span class="built_in">Array</span>&lt;<span class="built_in">number</span> | <span class="built_in">string</span>&gt; = [<span class="number">1</span>, <span class="number">2</span>, <span class="string">'张三'</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><blockquote>
+<p>当一个复杂类型或者联合类型过多或者被频繁使用时，可以通过类型别名来简化该类型的使用</p>
+</blockquote>
+<p>用法：<code>type</code> 名称 = 具体类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> CustomArray = <span class="built_in">Array</span>&lt;<span class="built_in">number</span> | <span class="built_in">string</span>&gt;;</span><br><span class="line"><span class="keyword">let</span> arr1: CustomArray = [<span class="number">1</span>, <span class="number">2</span>, <span class="string">'张三'</span>];</span><br></pre></td></tr></table></figure>
+<p>以上代码中，<code>type</code>作为创建自定义类型的关键字</p>
+<ul>
+<li>类型别名可以使任意合法的变量名称</li>
+<li>推荐大驼峰的命名写法</li>
+</ul>
+<h3 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h3><p>函数类型需要指的是 <code>函数参数</code>和<code>返回值</code>的类型，这里分为两种写法</p>
+<ul>
+<li>第一种： 单独指定参数，返回值类型</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单独指定函数返回值和函数参数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num1: <span class="built_in">number</span>, num2: <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 指定变量形式的</span></span><br><span class="line"><span class="keyword">const</span> add2 = (num1: <span class="built_in">number</span>, num2: <span class="built_in">number</span>): <span class="function"><span class="params">number</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第二种， 同时指定参数和返回值</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 同时指定参数和返回值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> CustomFunc = <span class="function">(<span class="params">num1: <span class="built_in">number</span>, num2: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> add3: CustomFunc = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意： 当函数作为表达式时，可以通过类似箭头函数形式的语法来为函数添加类型，这种形式<code>只适用于函数表达式</code></p>
+<h4 id="void-类型"><a href="#void-类型" class="headerlink" title="void 类型"></a>void 类型</h4><p>当我们的函数定义为没有返回值的类型时，可用关键字<code>void</code>表示</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没有返回值的函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> CustomFunc1 = <span class="function">(<span class="params">num1: <span class="built_in">string</span>, num2: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> combinStr: CustomFunc1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果一个函数没有返回值，此时，在 TS 的类型中，应该使用 <code>void</code> 类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> add4 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;;</span><br><span class="line"><span class="comment">// 如果什么都不写 表示add4函数的类型为void</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> add5 = (): <span class="function"><span class="params">void</span> =&gt;</span> &#123;&#125;;</span><br><span class="line"><span class="comment">// 这种写法明确指定返回值为void与上方的类型相同</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> add6 = (): <span class="function"><span class="params">undefined</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 如果指定返回值为undefined  return undefined</span></span><br></pre></td></tr></table></figure>
+<h4 id="函数可选参数"><a href="#函数可选参数" class="headerlink" title="函数可选参数"></a>函数可选参数</h4><p>当我们定义函数时，有的参数可传可不传，这种情况下，可以使用 TS 的可选参数来指定类型</p>
+<p>比如，在使用数组的<code>slice</code>方法时，我们可以直接使用<code>slice()</code> 也可以传入参数 <code>slice(1)</code> 也可以<code>slice(1,3)</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> slice = (start?: <span class="built_in">number</span>, end?: <span class="built_in">number</span>): <span class="function"><span class="params">void</span> =&gt;</span> &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>?</code> 表示该参数或者变量可传可不传</p>
+<p>注意：<strong>可选参数只能出现在参数列表的最后</strong>， 即必须参数必须在可选参数之前</p>
+<h3 id="对象类型"><a href="#对象类型" class="headerlink" title="对象类型"></a>对象类型</h3><p>JS 中的对象是由属性和方法组成的，TS 的对象类型是<strong>对象中属性和方法的描述</strong></p>
+<p>写法</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果有多个属性 可以换行 去掉间隔符号</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person3: &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  sayHello: <span class="built_in">Function</span>;</span><br><span class="line">&#125; = &#123;</span><br><span class="line">  name: <span class="string">'王五'</span>,</span><br><span class="line">  sayHello() &#123;&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>总结： 可是使用<code>{}</code>来描述对象结构</p>
+<p>属性采用<code>属性名：类型</code>形式</p>
+<p>函数可以采用 <code>方法名(): 返回值类型</code> 或者 <code>函数名: Function</code>（不指定返回值）的形式</p>
+<h4 id="使用类型别名"><a href="#使用类型别名" class="headerlink" title="使用类型别名"></a>使用类型别名</h4><p>直接使用<code>{}</code>会降低代码可读性，不具有辨识度，更推荐使用类型别名添加对象类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> PersonObj = &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  sayHello(): <span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p1: PersonObj = &#123;</span><br><span class="line">  name: <span class="string">'高大大'</span>,</span><br><span class="line">  sayHello() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="带有参数的方法的类型"><a href="#带有参数的方法的类型" class="headerlink" title="带有参数的方法的类型"></a>带有参数的方法的类型</h4><p>如果对象中的函数带有参数，可以在函数中指定参数类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 带参数的函数方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> PersonObj2 = &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  sayHello(start: <span class="built_in">number</span>): <span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p2: PersonObj2 = &#123;</span><br><span class="line">  name: <span class="string">'高大大'</span>,</span><br><span class="line">  sayHello(start) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="箭头函数形式的方法类型"><a href="#箭头函数形式的方法类型" class="headerlink" title="箭头函数形式的方法类型"></a>箭头函数形式的方法类型</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 箭头函数形式定义类型</span></span><br><span class="line"><span class="keyword">type</span> People = &#123;</span><br><span class="line">  sayHello: <span class="function">(<span class="params">start: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> p3: People = &#123;</span><br><span class="line">  sayHello() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="对象可选属性"><a href="#对象可选属性" class="headerlink" title="对象可选属性"></a>对象可选属性</h4><p>对象中的若干属性，有时也是可选的，此时我们依然可以使用<code>?</code>来表示</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Config = &#123;</span><br><span class="line">  method?: <span class="built_in">string</span>;</span><br><span class="line">  url: <span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> func = <span class="function">(<span class="params">config: Config</span>) =&gt;</span> &#123;&#125;;</span><br><span class="line">func(&#123; url: <span class="string">'/a'</span> &#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="接口-interface"><a href="#接口-interface" class="headerlink" title="接口 interface"></a>接口 interface</h3><p>当一个对象类型被多次使用时，一般使用接口（interface）描述对象的类型，达到复用的目的</p>
+<ul>
+<li>我们使用<code>interface</code>关键字来声明接口</li>
+<li>接口名称推荐以<code>I</code>为开头</li>
+<li>声明接口之后，直接使用接口名称作为变量的类型</li>
+</ul>
+<blockquote>
+<p>接口后不需要分号</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接口</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> IPeople &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  age: <span class="built_in">number</span>;</span><br><span class="line">  sayHello(): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p: IPeople = &#123;</span><br><span class="line">  name: <span class="string">'老高'</span>,</span><br><span class="line">  age: <span class="number">18</span>,</span><br><span class="line">  sayHello() &#123;&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="接口和自定义类型的区别"><a href="#接口和自定义类型的区别" class="headerlink" title="接口和自定义类型的区别"></a>接口和自定义类型的区别</h4><p>相同点：都可以给对象指定类型</p>
+<p>不同点： 接口只能为对象指定类型， 类型别名可以为任意类型指定别名</p>
+<ul>
+<li>推荐用 type 来定义</li>
+</ul>
+<h4 id="接口继承"><a href="#接口继承" class="headerlink" title="接口继承"></a>接口继承</h4><ul>
+<li>如果两个接口之间有相同的属性和方法，可以讲<strong>公共的属性和方法抽离出来，通过继承来实现复用</strong></li>
+</ul>
+<p>比如，这两个接口都有 x、y 两个属性，重复写两次，可以，但很繁琐</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Point2D &#123;</span><br><span class="line">  x: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> Point3D &#123;</span><br><span class="line">  x: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">  z: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更好的方式</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Point2D &#123; x: <span class="built_in">number</span>; y: <span class="built_in">number</span> &#125;</span><br><span class="line"><span class="keyword">interface</span> Point3D <span class="keyword">extends</span> Point2D &#123;</span><br><span class="line">    z: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们使用<code>extends</code>关键字实现了 Point3D 继承了 Point2D 的所有属性的定义， 同时拥有继承的属性和自身自定义的属性</p>
+<h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>当我们想定义一个数组中具体索引位置的类型时，可以使用元祖。</p>
+<blockquote>
+<p>原有的数组模式只能宽泛的定义数组中的普遍类型，无法精确到位置</p>
+</blockquote>
+<p>元组是另一种类型的数组，它确切知道包含多少个元素，以及特定索引对应的类型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> position: [<span class="built_in">number</span>, <span class="built_in">number</span>] = [<span class="number">39.5427</span>, <span class="number">116.2317</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="类型推论"><a href="#类型推论" class="headerlink" title="类型推论"></a>类型推论</h3><p>在 TS 中，某些没有明确指出类型的地方，<strong>TS 的类型推论机制会帮助提供类型</strong></p>
+<p>也就是说，由于类型推论的存在，在某些地址类型注解可以省略不写。</p>
+<ul>
+<li>发生类型推论的常见场景</li>
+</ul>
+<ol>
+<li>声明变量并初始化时</li>
+<li>决定函数返回值时</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 变量creater_name自动被推断为 string</span></span><br><span class="line"><span class="keyword">let</span> creater_name = <span class="string">'gaoly'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数返回值的类型被自动推断为 number</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addCount</span>(<span class="params">num1: <span class="built_in">number</span>, num2: <span class="built_in">number</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>推荐：<strong>能省略类型注解的地方就省略</strong>（<del>偷懒</del>，充分利用 TS 类型推论的能力，提升开发效率）</p>
+<p>技巧：如果不知道类型，可以通过鼠标放在变量名称上，利用 VSCode 的提示来查看类型</p>
+<h3 id="字面量类型"><a href="#字面量类型" class="headerlink" title="字面量类型"></a>字面量类型</h3><blockquote>
+<p>下面的代码类型分别是什么？</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字面量类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str1 = <span class="string">'张三'</span>;</span><br><span class="line"><span class="keyword">const</span> str2 = <span class="string">'张三'</span>;</span><br></pre></td></tr></table></figure>
+<p>通过 TS 的类型推导可以得到答案</p>
+<p>1.变量 str1 的变量类型为： string</p>
+<p>2.变量 str2 的变量类型为 ‘张三’</p>
+<p>解释：str1 是一个变量(let)，它的值可以是任意字符串，所以类型为:string</p>
+<p>str2 是一个常量(const)，它的值不能变化只能是 ‘张三’，所以，它的类型为:’张三’</p>
+<p>此时，‘张三’就是一个<strong>字面量类型</strong>，即某个特殊的字符串也可以作为 TS 中的类型</p>
+<p>任意的 JS 字面量（对象，数组，数字）都可以作为类型使用</p>
+<h4 id="使用场景和模式"><a href="#使用场景和模式" class="headerlink" title="使用场景和模式"></a>使用场景和模式</h4><ul>
+<li>使用模式：<strong>字面量类型配合联合类型一起使用</strong></li>
+<li>使用场景：用来表示一组明确的可选值列表</li>
+<li>比如，在贪吃蛇游戏中，游戏的方向的可选值只能是上、下、左、右中的任意一个</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Direction = <span class="string">'left'</span> | <span class="string">'right'</span> | <span class="string">'up'</span> | <span class="string">'down'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用自定义类型:</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeDirection</span>(<span class="params">direction: Direction</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(direction);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用函数时，会有类型提示：</span></span><br><span class="line">changeDirection(<span class="string">'up'</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解释：参数 direction 的值只能是 up/down/left/right 中的任意一个</li>
+<li>优势：相比于 string 类型，使用字面量类型更加精确、严谨</li>
+</ul>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><ul>
+<li>枚举的功能类似于<strong>字面量类型+联合类型组合</strong>的功能，也可以表示一组明确的可选值</li>
+<li>枚举：定义一组命名常量。它描述一个值，该值可以是这些命名常量中的一个</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 枚举</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建枚举</span></span><br><span class="line"><span class="keyword">enum</span> Direction2 &#123;</span><br><span class="line">  Up,</span><br><span class="line">  Down,</span><br><span class="line">  Left,</span><br><span class="line">  Right,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用枚举类型</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeDirection2</span>(<span class="params">direction: Direction2</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(direction);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用函数时，需要应该传入：枚举 Direction 成员的任意一个</span></span><br><span class="line"><span class="comment">// 类似于 JS 中的对象，直接通过 点（.）语法 访问枚举的成员</span></span><br><span class="line">changeDirection2(Direction2.Up);</span><br></pre></td></tr></table></figure>
+<h4 id="数字枚举"><a href="#数字枚举" class="headerlink" title="数字枚举"></a>数字枚举</h4><ul>
+<li>问题：我们把枚举成员作为了函数的实参，它的值是什么呢?</li>
+<li>解释：通过将鼠标移入 Direction.Up，可以看到枚举成员 Up 的值为 0</li>
+<li>注意：枚举成员是有值的，默认为：从 0 开始自增的数值</li>
+<li>我们把，枚举成员的值为数字的枚举，称为：<code>数字枚举</code></li>
+<li>当然，也可以给枚举中的成员初始化值</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Down -&gt; 11、Left -&gt; 12、Right -&gt; 13</span></span><br><span class="line"><span class="keyword">enum</span> Direction &#123;</span><br><span class="line">  Up = <span class="number">10</span>,</span><br><span class="line">  Down,</span><br><span class="line">  Left,</span><br><span class="line">  Right,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum</span> Direction &#123;</span><br><span class="line">  Up = <span class="number">2</span>,</span><br><span class="line">  Down = <span class="number">4</span>,</span><br><span class="line">  Left = <span class="number">8</span>,</span><br><span class="line">  Right = <span class="number">16</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h4><ul>
+<li>字符串枚举：枚举成员的值是字符串</li>
+<li>注意：字符串枚举没有自增长行为，因此，<strong>字符串枚举的每个成员必须有初始值</strong></li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Direction &#123;</span><br><span class="line">  Up = <span class="string">'UP'</span>,</span><br><span class="line">  Down = <span class="string">'DOWN'</span>,</span><br><span class="line">  Left = <span class="string">'LEFT'</span>,</span><br><span class="line">  Right = <span class="string">'RIGHT'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="枚举实现原理"><a href="#枚举实现原理" class="headerlink" title="枚举实现原理"></a>枚举实现原理</h4><ul>
+<li>枚举是 TS 为数不多的非 JavaScript 类型级扩展(不仅仅是类型)的特性之一</li>
+<li>因为：其他类型仅仅被当做类型，而枚举不仅用作类型，还提供值(枚举成员都是有值的)</li>
+<li>也就是说，其他的类型会在编译为 JS 代码时自动移除。但是，<strong>枚举类型会被编译为 JS 代码</strong></li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Direction &#123;</span><br><span class="line">  Up = <span class="string">'UP'</span>,</span><br><span class="line">  Down = <span class="string">'DOWN'</span>,</span><br><span class="line">  Left = <span class="string">'LEFT'</span>,</span><br><span class="line">  Right = <span class="string">'RIGHT'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 会被编译为以下 JS 代码：</span></span><br><span class="line"><span class="keyword">var</span> Direction;</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">Direction</span>) </span>&#123;</span><br><span class="line">  Direction[<span class="string">'Up'</span>] = <span class="string">'UP'</span></span><br><span class="line">  Direction[<span class="string">'Down'</span>] = <span class="string">'DOWN'</span></span><br><span class="line">  Direction[<span class="string">'Left'</span>] = <span class="string">'LEFT'</span></span><br><span class="line">  Direction[<span class="string">'Right'</span>] = <span class="string">'RIGHT'</span></span><br><span class="line">&#125;)(Direction || Direction = &#123;&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>说明：枚举与前面讲到的字面量类型+联合类型组合的功能类似，都用来表示一组明确的可选值列表</li>
+<li>一般情况下，<strong>推荐使用字面量类型+联合类型组合的方式</strong>，因为相比枚举，这种方式更加直观、简洁、高效</li>
+</ul>
+<h3 id="any-类型"><a href="#any-类型" class="headerlink" title="any 类型"></a>any 类型</h3><ul>
+<li><strong>原则:不推荐使用 any</strong>!这会让 TypeScript 变为 “AnyScript”(失去 TS 类型保护的优势)</li>
+<li>因为当值的类型为 any 时，可以对该值进行任意操作，并且不会有代码提示</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj: <span class="built_in">any</span> = &#123; x: <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line">obj.bar = <span class="number">100</span>;</span><br><span class="line">obj();</span><br><span class="line"><span class="keyword">const</span> n: <span class="built_in">number</span> = obj;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解释:以上操作都不会有任何类型错误提示，即使可能存在错误</li>
+<li>尽可能的避免使用 any 类型，除非临时使用 any 来“避免”书写很长、很复杂的类型</li>
+<li>其他隐式具有 any 类型的情况<ol>
+<li>声明变量不提供类型也不提供默认值</li>
+<li>函数参数不加类型</li>
+</ol>
+</li>
+<li>注意：因为不推荐使用 any，所以，这两种情况下都应该提供类型</li>
+</ul>
+<p>在项目开发中，尽量少用 any 类型</p>
+<hr>
+<h3 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h3><p>有时候你会比 TS 更加明确一个值的类型，此时，可以使用类型断言来指定更具体的类型。 比如，</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> aLink = <span class="built_in">document</span>.getElementById(<span class="string">'link'</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：该方法返回值的类型是 HTMLElement，该类型只包含所有标签公共的属性或方法，不包含 a 标签特有的 href 等属性</li>
+<li>因此，这个<strong>类型太宽泛(不具体)</strong>，无法操作 href 等 a 标签特有的属性或方法</li>
+<li>解决方式：这种情况下就需要<strong>使用类型断言指定更加具体的类型</strong></li>
+<li>使用类型断言：</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> aLink = <span class="built_in">document</span>.getElementById(<span class="string">'link'</span>) <span class="keyword">as</span> HTMLAnchorElement;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解释:<ol>
+<li>使用 <code>as</code> 关键字实现类型断言</li>
+<li>关键字 as 后面的类型是一个更加具体的类型（HTMLAnchorElement 是 HTMLElement 的子类型）</li>
+<li>通过类型断言，aLink 的类型变得更加具体，这样就可以访问 a 标签特有的属性或方法了</li>
+</ol>
+</li>
+<li>另一种语法，使用 <code>&lt;&gt;</code> 语法，这种语法形式不常用知道即可:</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 该语法，知道即可：在react的jsx中使用会报错</span></span><br><span class="line"><span class="keyword">const</span> aLink = &lt;HTMLAnchorElement&gt;<span class="built_in">document</span>.getElementById(<span class="string">'link'</span>);</span><br></pre></td></tr></table></figure>
+<p><em>技巧：在浏览器控制台，通过 <code>__proto__</code> 获取 DOM 元素的类型</em></p>
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><ul>
+<li>众所周知，JS 中提供了 typeof 操作符，用来在 JS 中获取数据的类型</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="string">'Hello world'</span>); <span class="comment">// string</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>实际上，TS 也提供了 typeof 操作符：可以在<em>类型上下文</em>中引用变量或属性的类型（类型查询）</li>
+<li>使用场景:根据已有变量的值，获取该值的类型，来简化类型书写</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = &#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatPoint</span>(<span class="params">point: &#123; x: <span class="built_in">number</span>; y: <span class="built_in">number</span> &#125;</span>) </span>&#123;&#125;</span><br><span class="line">formatPoint(p);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatPoint</span>(<span class="params">point: <span class="keyword">typeof</span> p</span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解释:<ol>
+<li>使用 <code>typeof</code> 操作符来获取变量 p 的类型，结果与第一种（对象字面量形式的类型）相同</li>
+<li>typeof 出现在<strong>类型注解的位置（参数名称的冒号后面）所处的环境就在类型上下文</strong>(区别于 JS 代码)</li>
+<li>注意：typeof 只能用来查询变量或属性的类型，无法查询其他形式的类型（比如，函数调用的类型）</li>
+</ol>
+</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/58122.html" class="pre-post btn btn-default" title='XSS跨站脚本攻击原理分析与防御'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">XSS跨站脚本攻击原理分析与防御</span>
+        </a>
+    
+    
+        <a href="/article/5963.html" class="next-post btn btn-default" title='TypeScript 高级类型'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">TypeScript 高级类型</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TypeScript-常用类型"><span class="toc-text">TypeScript 常用类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#类型注解"><span class="toc-text">类型注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用基础类型"><span class="toc-text">常用基础类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原始类型"><span class="toc-text">原始类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组类型"><span class="toc-text">数组类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联合类型"><span class="toc-text">联合类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型别名"><span class="toc-text">类型别名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数类型"><span class="toc-text">函数类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#void-类型"><span class="toc-text">void 类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数可选参数"><span class="toc-text">函数可选参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象类型"><span class="toc-text">对象类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用类型别名"><span class="toc-text">使用类型别名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带有参数的方法的类型"><span class="toc-text">带有参数的方法的类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#箭头函数形式的方法类型"><span class="toc-text">箭头函数形式的方法类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象可选属性"><span class="toc-text">对象可选属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口-interface"><span class="toc-text">接口 interface</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#接口和自定义类型的区别"><span class="toc-text">接口和自定义类型的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口继承"><span class="toc-text">接口继承</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组"><span class="toc-text">元组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型推论"><span class="toc-text">类型推论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字面量类型"><span class="toc-text">字面量类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用场景和模式"><span class="toc-text">使用场景和模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#枚举"><span class="toc-text">枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数字枚举"><span class="toc-text">数字枚举</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串枚举"><span class="toc-text">字符串枚举</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#枚举实现原理"><span class="toc-text">枚举实现原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#any-类型"><span class="toc-text">any 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型断言"><span class="toc-text">类型断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#typeof"><span class="toc-text">typeof</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2022
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

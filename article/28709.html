@@ -1,0 +1,413 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="游魂的网络日志,游魂日志,游魂博客,网络日志,游魂" />
+
+
+    <meta name="description" content="前言对于前端开发者，使用console.log() 次数绝对很多，但是大部分人认识的 console 对象还不是很全面，其实深入了解这些后，你会发现给开发过程带来很多便利，而且还很有趣。先来看看..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>你不知道的console.log | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="你不知道的console.log">
+            
+	            你不知道的console.log
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/08/24</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1574</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>对于前端开发者，使用<code>console.log()</code> 次数绝对很多，但是大部分人认识的 <code>console</code> 对象还不是很全面，其实深入了解这些后，你会发现给开发过程带来很多便利，而且还很有趣。<br>先来看看别人的控制台。</p>
+<p>天猫(还加入了字符画)</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful3hucmu3j31040ejzlv.jpg" alt="天猫"></p>
+<p>百度(这个大家都不陌生，最近还稍微有点改变)</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful3ki66bmj310108k0uf.jpg" alt="百度"></p>
+<p>再来看下我博客的</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful3r1vzvqj30gr09sdg5.jpg" alt=""></p>
+<p>是不是感觉你之前用的<code>console.log()</code>弱爆了，别着急往下看。</p>
+<h2 id="重新认识-console"><a href="#重新认识-console" class="headerlink" title="重新认识 console"></a>重新认识 console</h2><p>你好我是<code>console</code>，重新认识一下吧。<br>正在阅读这篇文章的你，<code>F12</code>打开你的控制台，切到<code>Console</code>输入<code>console</code>输出看看这个对象</p>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful3zsu7zbj30ne0hxt9k.jpg" alt=""></p>
+<p>是不是惊呆了，除了常用的 <code>log</code> 方法还有这么多方法。</p>
+<p><strong>console.log()</strong>  输出普通信息<br><strong>console.info()</strong>  输出提示信息<br><strong>console.error()</strong>  输出错误信息<br><strong>console.warn()</strong>  输出警告信息</p>
+<p>上面这些就不演示了。</p>
+<p><strong>console.dir()</strong></p>
+<p>显示对象的所有的属性和方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  str: <span class="string">'youhun'</span>,</span><br><span class="line">  num: <span class="number">1</span>,</span><br><span class="line">  func: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.dir(obj);</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful4zeolcdj30dh0bl0sz.jpg" alt=""></p>
+<p><strong>console.tabel()</strong></p>
+<p>传入对象/数组，以表格形式输出</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  foo: &#123;</span><br><span class="line">    name: <span class="string">'foo'</span>,</span><br><span class="line">    age: <span class="string">'33'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  bar: &#123;</span><br><span class="line">    name: <span class="string">'bar'</span>,</span><br><span class="line">    age: <span class="string">'45'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [</span><br><span class="line">  [<span class="string">'foo'</span>, <span class="string">'33'</span>],</span><br><span class="line">  [<span class="string">'bar'</span>, <span class="string">'45'</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.table(obj);</span><br><span class="line"><span class="built_in">console</span>.table(arr);</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful5346pm6j310006v0t0.jpg" alt=""></p>
+<p><strong>console.time()</strong></p>
+<p>计时器，可以将成对的<code>console.time()</code>和<code>console.timeEnd()</code>之间代码的运行时间输出到控制台上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.time(<span class="string">'计时器'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">1000</span>; j++) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'计时器'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful5hg2lujj30be03jaa1.jpg" alt=""></p>
+<p><strong>console.group()</strong> 和 <strong>console.groupCollapsed()</strong></p>
+<p>输出嵌套，就是分组，同样支持多层嵌套</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.group(<span class="string">'第一层'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'第一层里面'</span>);</span><br><span class="line"><span class="built_in">console</span>.group(<span class="string">'第二层'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'第二层里面'</span>);</span><br><span class="line"><span class="built_in">console</span>.groupEnd();</span><br><span class="line"><span class="built_in">console</span>.groupEnd();</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful5um8kwjj309y06amx9.jpg" alt="平时："></p>
+<p>ps：<code>console.group</code> 默认是展开状态，<code>console.groupCollapsed</code> 默认是收起状态</p>
+<p><strong>console.trace()</strong></p>
+<p>用来追踪函数的调用轨迹。大型项目中，这尤为重要。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.trace(<span class="string">"Add function"</span>);</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add3</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> add2(a, b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add2</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> add1(a, b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add1</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> add(a, b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = add3(<span class="number">1</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful6n7s37pj30cl0d6glt.jpg" alt=""></p>
+<p><strong>console.count()</strong></p>
+<p>输出执行次数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.count(<span class="string">'count'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful6r7bwloj30bd060aa0.jpg" alt=""></p>
+<p><strong>console.assert()</strong></p>
+<p>条件输出，接收两个参数。第一个参数为真时，不输出内容，否则显示，并抛出来一个异常。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.assert(<span class="number">1</span> == <span class="number">1</span>, <span class="string">'你看不到我'</span>);</span><br><span class="line"><span class="built_in">console</span>.assert(<span class="number">1</span> == <span class="number">2</span>, <span class="string">'你看到我了'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful6vp5z70j30aa01gglf.jpg" alt=""></p>
+<h2 id="console-log-的高级玩法"><a href="#console-log-的高级玩法" class="headerlink" title="console.log 的高级玩法"></a>console.log 的高级玩法</h2><p>这个为什么单独拿出来说，正是因为这个玩法多样。会了，你可以像文章开头举例那些，做出自己喜欢的<code>console.log</code></p>
+<p><strong>占位符</strong></p>
+<ul>
+<li>%s   格式化成字符串输出</li>
+<li>%d or %i   格式化成整数输出</li>
+<li>%f    格式化成浮点数输出</li>
+<li>%o  转化成展开的DOM元素输出</li>
+<li>%O  转化成JavaScript对象输出</li>
+<li>%c   字符串增加样式输出   </li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">"小明"</span>, <span class="string">"小红"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>:<span class="string">'youhun'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"欢迎%s和%s两位新同学"</span>,arr[<span class="number">0</span>],arr[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"圆周率整数部分：%d，带上小数是：%f"</span>,<span class="number">3.1415</span>,<span class="number">3.1415</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%o'</span>, obj);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%O'</span>, obj);</span><br></pre></td></tr></table></figure>
+<p>再来试试 <code>%c</code> 来点样式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'%c我的背景是红色'</span>, <span class="string">'color: #fff; background: red; font-size: 24px;'</span>); </span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"%c3D Text"</span>, <span class="string">" text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:5em"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%cYouhun'</span>, <span class="string">'background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );color:transparent;-webkit-background-clip: text;font-size:5em;'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/005BYqpgly1ful7ii6mu0j30km0b30tm.jpg" alt=""></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/console" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/API/console</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2011/03/firebug_console_tutorial.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2011/03/firebug_console_tutorial.html</a></li>
+</ol>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/17343.html" class="pre-post btn btn-default" title='CentOS 7 安装 JAVA环境（JDK 1.8）'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">CentOS 7 安装 JAVA环境（JDK 1.8）</span>
+        </a>
+    
+    
+        <a href="/article/30338.html" class="next-post btn btn-default" title='json-server进阶'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">json-server进阶</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重新认识-console"><span class="toc-text">重新认识 console</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#console-log-的高级玩法"><span class="toc-text">console.log 的高级玩法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2022
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

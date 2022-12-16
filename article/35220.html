@@ -1,0 +1,420 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="OpenAI,ChatGPT,AI聊天,AI聊天机器人,微信机器人" />
+
+
+    <meta name="description" content="
+最近的热门话题，OpenAI 推出的ChatGPT绝对榜上有名！但是不说注册难度，只说每次需要一些不可抗力的原因才能访问使用就很麻烦，大部分人无法体验到，本文介绍的方式直接对接个人微信（不是公..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>OpenAI ChatGPT 接入微信，与AI互动！ | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="OpenAI ChatGPT 接入微信，与AI互动！">
+            
+	            OpenAI ChatGPT 接入微信，与AI互动！
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/AI聊天/">AI聊天</a> <a class="tag-link" href="/tags/AI聊天机器人/">AI聊天机器人</a> <a class="tag-link" href="/tags/ChatGPT/">ChatGPT</a> <a class="tag-link" href="/tags/OpenAI/">OpenAI</a> <a class="tag-link" href="/tags/微信机器人/">微信机器人</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2022/12/11</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>最近的热门话题，OpenAI 推出的ChatGPT绝对榜上有名！但是不说注册难度，只说每次需要一些不可抗力的原因才能访问使用就很麻烦，大部分人无法体验到，本文介绍的方式直接对接个人微信（不是公众号）非常平民！基本上有电脑就能自己搭建，文末有免费体验。</p>
+</blockquote>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f7898561-b8f3-4d75-8860-8fd0c9a879a8/ae83b295-faa0-4f4b-9f92-f8e0f50ec3c9.gif" alt="banner.gif"></p>
+<h2 id="ChatGPT是什么？"><a href="#ChatGPT是什么？" class="headerlink" title="ChatGPT是什么？"></a>ChatGPT是什么？</h2><p>ChatGPT是一款开源的聊天机器人框架，它使用了OpenAI的GPT-3语言模型，可以实现自然语言处理、问答和对话生成等功能。通俗的说就是一款AI聊天机器人 。</p>
+<p><strong>它可以在模仿人类说话风格的同时回答大量的问题</strong></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f7898561-b8f3-4d75-8860-8fd0c9a879a8/3fb7d5ee-8841-4744-abd2-0b2e28de659f.png" alt="Snipaste_2022-12-11_10-08-00.png" style="zoom: 50%;"></p>
+<p><strong>它可以帮助程序员写出一段代码</strong></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f7898561-b8f3-4d75-8860-8fd0c9a879a8/10c41e8d-7dee-4128-a26a-a3d6ac425ff6.png" alt="Snipaste_2022-12-11_10-11-08.png" style="zoom:50%;"></p>
+<p><strong>也可以帮你计算</strong></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f7898561-b8f3-4d75-8860-8fd0c9a879a8/9ab09506-3464-4e77-8891-36d2455c3f43.png" alt="Snipaste_2022-12-11_10-19-11.png" style="zoom:50%;"></p>
+<p><strong>总之可以回答很多问题</strong></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f7898561-b8f3-4d75-8860-8fd0c9a879a8/1d9841e6-e279-4683-aa23-c0a79da2ae5d.png" alt="Snipaste_2022-12-11_10-21-06.png" style="zoom:50%;"></p>
+<h2 id="注册ChatGPT攻略"><a href="#注册ChatGPT攻略" class="headerlink" title="注册ChatGPT攻略"></a>注册ChatGPT攻略</h2><p>网上的文章很多，这里就不重复写了。需要注意的就是<strong>网络</strong>、国外手机号。</p>
+<p>可以参考文章：<a href="https://juejin.cn/post/7173447848292253704" target="_blank" rel="noopener">OpenAI 推出超神 ChatGPT 注册攻略来了</a></p>
+<h2 id="接入个人微信"><a href="#接入个人微信" class="headerlink" title="接入个人微信"></a>接入个人微信</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>OpenAI 账号（前提账号有信誉额度，一般为18美元，注册就送）</li>
+<li>微信账号 （建议小号）</li>
+<li>API Key</li>
+</ul>
+<p><strong>获取API Key教程（配置文件需要填写API Key)</strong></p>
+<ol>
+<li><p>登陆 OpenAI - 右上角头像 - <code>View API keys</code></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f7898561-b8f3-4d75-8860-8fd0c9a879a8/8ec75e8a-4d25-4195-9c71-6d1fda678355.png" alt="Snipaste_2022-12-11_10-40-59.png"></p>
+</li>
+<li><p>点击 <code>Create new secret key</code></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f7898561-b8f3-4d75-8860-8fd0c9a879a8/4d63add6-3a36-49c6-9d6f-b8d3287f9586.png" alt="QQ20221211-104210@2x.png"></p>
+</li>
+<li><p>API Key 创建成功后复制收藏好这个Key接下来会用到，点击OK后，Key不会再完整显示。只能删了重新生成Key！</p>
+</li>
+</ol>
+<h3 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h3><p><a href="https://github.com/869413421/wechatbot" target="_blank" rel="noopener">https://github.com/869413421/wechatbot</a></p>
+<p>项目基于openwechat 开发的，微信的SDK，请移步这个仓库查看：<a href="https://github.com/eatmoreapple/openwechat" target="_blank" rel="noopener">https://github.com/eatmoreapple/openwechat</a></p>
+<p>鉴于国内访问Github困难 可以使用代理：<a href="https://ghproxy.com/" target="_blank" rel="noopener">https://ghproxy.com/</a></p>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><p>Windows 和 Linux都可以，但是本机需要有Golang环境。参考：<a href="https://www.iyouhun.com/post-200.html" target="_blank" rel="noopener">Linux服务器搭建部署GO环境</a></p>
+<p>然后直接编译运行项目即可。<strong>推荐有一定的技术的童鞋看这部分，不懂技术移步方式二</strong>。</p>
+<ul>
+<li><p>拉取代码，安装依赖。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://ghproxy.com/https://github.com/869413421/wechatbot</span><br><span class="line">cd wechat-chatGPT</span><br><span class="line">go mod tidy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动运行项目</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go run main.go</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><p><strong>这部分建议不太懂技术或嫌编译麻烦的童鞋参考，一把梭哈部署！</strong></p>
+<p>Windows 和 Linux都可以，本地不需Golang环境。下载可执行文件直接启动运行。</p>
+<p>下载地址：<a href="https://gitee.com/shtml/wechatbot/tree/main/bin" target="_blank" rel="noopener">https://gitee.com/shtml/wechatbot/tree/main/bin</a></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f7898561-b8f3-4d75-8860-8fd0c9a879a8/b7e972a1-a68b-4457-b0b5-3bfd339437d3.png" alt="Snipaste_2022-12-11_10-34-00.png" style="zoom:50%;"></p>
+<p>下载你本系统需要的可执行文件和配置文件（config.json），注意修改配置文件（下面有描述）！</p>
+<p><strong>注意：可执行文件 和 配置文件放到同一个目录！</strong></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f7898561-b8f3-4d75-8860-8fd0c9a879a8/7d871a14-2d99-4c71-8ef7-d65e83da0c28.png" alt="Snipaste_2022-12-11_10-37-36.png" style="zoom:50%;"></p>
+<p>启动运行，Windows直接双击运行即可！</p>
+<p><img src="https://img11.360buyimg.com/ddimg/jfs/t1/188303/28/30754/13194/63908907E93431ca4/3bbd4e2ddbd595f6.png" alt=""></p>
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><p>新建配置文件 <code>config.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"api_key"</span>: <span class="string">"your api key"</span>,</span><br><span class="line">  <span class="attr">"auto_pass"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>your api key 位置，粘贴上面你获取到的API key。</li>
+<li>auto_pass 是否自动通过好友请求（如果人非常多加好友，建议设置成 false，因为频繁好友申请会导致程序崩溃）</li>
+</ul>
+<h4 id="启动运行"><a href="#启动运行" class="headerlink" title="启动运行"></a>启动运行</h4><p>程序启动成功后，浏览器会弹窗一个二维码。直接使用你的微信（微信机器人）扫码登陆即可。</p>
+<p>如果Linux服务器上启动，将日志中的图片地址在自己的浏览器打开扫码即可。</p>
+<p><img src="https://img11.360buyimg.com/ddimg/jfs/t1/188303/28/30754/13194/63908907E93431ca4/3bbd4e2ddbd595f6.png" alt=""></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">访问下面网址扫描二维码登录</span><br><span class="line">https://login.weixin.qq.com/qrcode/gdOa1pgupQ==</span><br><span class="line">2022/12/11 08:19:50 扫码成功,请在手机上确认登录</span><br><span class="line">2022/12/11 08:20:01 登录成功</span><br></pre></td></tr></table></figure>
+<p>微信登陆成功以后，在可执行文件所在的目录多了一个 <code>storage.json</code> 文件。</p>
+<p>下次启动程序无需再次扫码登陆微信就能使用了！</p>
+<p>却换到其他微信登录一定要将这个 <code>storage.json</code> 文件删除掉，否则会切换失败。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2022/12/11 08:19:33 login error: write storage.json: bad file descriptor</span><br></pre></td></tr></table></figure>
+<h3 id="微信聊天"><a href="#微信聊天" class="headerlink" title="微信聊天"></a>微信聊天</h3><p>微信机器人可以通过群聊中@ 或者 私聊，解答各种问题。</p>
+<p><strong>私聊</strong></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f7898561-b8f3-4d75-8860-8fd0c9a879a8/f8ee8bcd-5075-46d9-b511-dbeb90a3d66f.png" alt="Snipaste_2022-12-11_10-51-56.png" style="zoom:50%;"></p>
+<p><strong>群聊@</strong></p>
+<p><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-f7898561-b8f3-4d75-8860-8fd0c9a879a8/38a7c587-e123-415a-b058-a58b25144330.png" alt="Snipaste_2022-12-11_10-59-28.png" style="zoom:50%;"></p>
+<h2 id="体验-Bot"><a href="#体验-Bot" class="headerlink" title="体验 Bot"></a>体验 Bot</h2><p>微信搜索添加 <code>iyouhun</code>，发送关键词 <code>AI体验</code> 即可自动拉进体验群</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/article/42702.html" class="next-post btn btn-default" title='【免越狱】IOS第三方软件永久安装方法汇总！绕过证书限制！大部分系统版本适用！附各种第三方软件分享'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">【免越狱】IOS第三方软件永久安装方法汇总！绕过证书限制！大部分系统版本适用！附各种第三方软件分享</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ChatGPT是什么？"><span class="toc-text">ChatGPT是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注册ChatGPT攻略"><span class="toc-text">注册ChatGPT攻略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接入个人微信"><span class="toc-text">接入个人微信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备工作"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开源项目"><span class="toc-text">开源项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署"><span class="toc-text">部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方式一"><span class="toc-text">方式一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方式二"><span class="toc-text">方式二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改配置文件"><span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动运行"><span class="toc-text">启动运行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#微信聊天"><span class="toc-text">微信聊天</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#体验-Bot"><span class="toc-text">体验 Bot</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2022
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

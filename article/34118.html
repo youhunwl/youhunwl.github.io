@@ -1,0 +1,473 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="React,JSX,JSX语法,XML" />
+
+
+    <meta name="description" content="JSX 基本概念
+JSX 是 JavaScript XML 的简写，表示了在 JavaScript 中书写 XML 格式的代码。它是 React 的核心内容，它可以让我们在 React 中创建元..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>JSX语法学习 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="JSX语法学习">
+            
+	            JSX语法学习
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/JSX/">JSX</a> <a class="tag-link" href="/tags/JSX语法/">JSX语法</a> <a class="tag-link" href="/tags/React/">React</a> <a class="tag-link" href="/tags/XML/">XML</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2022/06/15</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="JSX-基本概念"><a href="#JSX-基本概念" class="headerlink" title="JSX 基本概念"></a>JSX 基本概念</h2><blockquote>
+<p><code>JSX</code> 是 <code>JavaScript XML</code> 的简写，表示了在 JavaScript 中书写 XML 格式的代码。它是 <code>React</code> 的核心内容，它可以让我们在 <code>React</code> 中创建元素更加简单，更加直观，提高开发效率。</p>
+</blockquote>
+<ul>
+<li>什么是JSX？<ul>
+<li><code>JS</code> 扩展语法，可以在 <code>JS</code> 中书写 <code>XML</code> 语法</li>
+</ul>
+</li>
+<li>JSX的优点？<ul>
+<li>可以更加 <code>简洁、直观、高效</code> 的声明 UI 界面</li>
+</ul>
+</li>
+</ul>
+<h3 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h3><p>我们可以在 babel 的网站，在线测试 <a href="https://www.babeljs.cn/" target="_blank" rel="noopener">babeljs</a> ，这个网站可以把 <code>JSX</code> 代码转换成 <code>JS</code> 代码 </p>
+<p><img src="https://oss.iyouhun.com/img/md/image-20220607171437890.png" alt="image-20220607171437890"></p>
+<p><strong>注意</strong>：<code>JSX</code> 是 <code>JavaScript</code> 的<strong>语法扩展</strong>，它无法在浏览器中直接使用，在 <code>create-react-app</code> 脚手架中内置了 <code>@babel/plugin-transform-react-jsx</code> 插件来解析它，成为 <code>JavaScript</code> 的标准语法。</p>
+<h2 id="JSX-基本使用"><a href="#JSX-基本使用" class="headerlink" title="JSX 基本使用"></a>JSX 基本使用</h2><ul>
+<li>导入 <code>react-dom</code></li>
+<li>使用 <code>JSX</code> 创建元素</li>
+<li>使用 <code>react-dom</code> 渲染</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;div id=<span class="string">"box"</span>&gt;</span><br><span class="line">    &lt;h1&gt;JSX&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;ul&gt;</span></span><br><span class="line"><span class="regexp">      &lt;li&gt;tom&lt;/</span>li&gt;</span><br><span class="line">      &lt;li&gt;jack&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">      &lt;li&gt;tony&lt;/</span>li&gt;</span><br><span class="line">    &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">ReactDom.render(element, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>));</span><br></pre></td></tr></table></figure>
+<p>上述代码运行成功，现在 <strong><code>React17x</code></strong> 可以不必导入<code>React</code>包，因为在 <code>babel</code> 转换的时候自动导入了创建 React 元素的依赖。但是如果你使用 <strong><code>React16x</code></strong> 那么你还需要手动导入 <strong><code>React</code></strong> ，如何验证？安装下低版本的 <code>React</code> 包即可。</p>
+<p><strong>总结</strong></p>
+<ul>
+<li>导入 <code>react-dom</code> 使用 <code>JSX</code> 创建元素 使用 <code>react-dom</code> 渲染元素</li>
+<li><code>17x</code> 版本的 <code>React</code> 不需要导入，如果将来遇见 <code>低版本</code> 是需要导入的。</li>
+</ul>
+<p><strong>补充</strong></p>
+<ul>
+<li><code>vscode settings.json</code> 加上 在 react 中使用 ement 语法提示创建标签</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"emmet.includeLanguages"</span>: &#123;</span><br><span class="line">    <span class="string">"javascript"</span>: <span class="string">"javascriptreact"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JSX-的注意事项"><a href="#JSX-的注意事项" class="headerlink" title="JSX 的注意事项"></a>JSX 的注意事项</h2><h3 id="使用细节"><a href="#使用细节" class="headerlink" title="使用细节"></a>使用细节</h3><ul>
+<li>特殊属性写法 <strong><code>className</code> <code>htmlFor</code></strong></li>
+<li>没有内容的节点可以使用 <code>单标签</code></li>
+<li>必需有根节点，可以使用 <code>&lt;&gt;&lt;/&gt;</code> 幽灵标签，其实是 <code>&lt;React.Fragment&gt;&lt;/React.Fragment&gt;</code> 简写</li>
+<li>如果 <code>JSX</code> 有换行，最好使用 <code>()</code> 包裹</li>
+</ul>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><ul>
+<li>特殊属性</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// class ---&gt; className    for ---&gt; htmlFor  特殊属性</span></span><br><span class="line">&lt;div className=<span class="string">"box"</span>&gt;</span><br><span class="line">  &lt;label htmlFor=<span class="string">"ck"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></span><br><span class="line">  &lt;input id=<span class="string">"ck"</span> type=<span class="string">"checkbox"</span> /&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>可单标签</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;span className="icon-edit"&gt;&lt;/span&gt; 没内容可以写成单标签形势</span></span><br><span class="line">&lt;span className=<span class="string">"icon-edit"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>有根节点</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 使用 React.Fragment 代码片段</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;React.Fragment&gt;</span><br><span class="line">    &lt;div&gt;header&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;footer&lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/React.Fragment&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br><span class="line"><span class="regexp">ReactDom.render(element, document.getElementById('root'));</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. 使用&lt;&gt;&lt;/&gt;可以避免没必要的标签产生 简写 React.Fragment</span></span><br><span class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;&gt;</span><br><span class="line">    &lt;div&gt;header&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;footer&lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br><span class="line"><span class="regexp">ReactDom.render(element, document.getElementById('root'));</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>用小括号</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 有换行的时候最好使用()可以让标签对其，避免没必要的错误</span></span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;&gt;</span><br><span class="line">    &lt;div&gt;header&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;footer&lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+<h2 id="JSX-嵌入表达式"><a href="#JSX-嵌入表达式" class="headerlink" title="JSX 嵌入表达式"></a>JSX 嵌入表达式</h2><p>在<strong><code>JSX</code></strong>中使用<strong>{ }</strong>嵌入<code>JS</code>表达式，注意不能使用语句。</p>
+<ul>
+<li>展示数据</li>
+<li>进行运算</li>
+<li>三元运算</li>
+<li>使用函数</li>
+<li>使用 JSX</li>
+<li>使用注释</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据</span></span><br><span class="line"><span class="keyword">const</span> data = &#123;</span><br><span class="line">  name: <span class="string">'tom'</span>,</span><br><span class="line">  age: <span class="number">18</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数</span></span><br><span class="line"><span class="keyword">const</span> up = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> data.name.toUpperCase();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// jsx表达式</span></span><br><span class="line"><span class="keyword">const</span> list = (</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li&gt;jack&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt;tony&lt;/</span>li&gt;</span><br><span class="line">  &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const element = (</span></span><br><span class="line"><span class="regexp">  &lt;div&gt;</span></span><br><span class="line"><span class="regexp">    &#123;/</span>* <span class="number">1.</span> 使用数据  注释推荐快键键(ctrl+<span class="regexp">/)  */</span>&#125;</span><br><span class="line">    &lt;div&gt;姓名：&#123;data.name&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;年龄：&#123;data.age&#125;&lt;/</span>div&gt;</span><br><span class="line">    &#123;<span class="comment">/* 2. 使用运算 */</span>&#125;</span><br><span class="line">    &lt;div&gt;明年几岁：&#123;data.age + <span class="number">1</span>&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &#123;/</span>* <span class="number">3.</span> 使用三元 *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;是否成年：&#123;data.age &gt; 16 ? '是' : '否'&#125;&lt;/</span>div&gt;</span><br><span class="line">    &#123;<span class="comment">/* 4. 使用函数 */</span>&#125;</span><br><span class="line">    &lt;div&gt;姓名大写：&#123;up()&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &#123;/</span>* <span class="number">5.</span> 使用JSX(jsx也是表达式) *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;朋友：&#123;list&#125;&lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDom.render(element, document.getElementById('root'));</span></span><br></pre></td></tr></table></figure>
+<h2 id="JSX-条件渲染"><a href="#JSX-条件渲染" class="headerlink" title="JSX 条件渲染"></a>JSX 条件渲染</h2><ul>
+<li>使用分支语句 <strong><code>if/else</code></strong> 完成条件渲染</li>
+<li>使用 <strong><code>三元运算符</code></strong> 完成条件渲染</li>
+<li>使用 <strong><code>逻辑运算符</code></strong> 完成条件渲染</li>
+</ul>
+<h3 id="if-else-条件渲染"><a href="#if-else-条件渲染" class="headerlink" title="if/else 条件渲染"></a>if/else 条件渲染</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> loading = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不能在JSX中写语句，但，可以充分利用JS能力</span></span><br><span class="line"><span class="keyword">const</span> getContent = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (loading) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>正在加载...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>数据加载完毕，这是显示数据<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;getContent()&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="三元运算符-完成条件渲染"><a href="#三元运算符-完成条件渲染" class="headerlink" title="三元运算符 完成条件渲染"></a>三元运算符 完成条件渲染</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> loading = <span class="literal">true</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &#123;loading ? <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>正在加载...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span> : <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>数据加载完毕，这是显示数据<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+<h3 id="逻辑运算-完成条件渲染"><a href="#逻辑运算-完成条件渲染" class="headerlink" title="逻辑运算 完成条件渲染"></a>逻辑运算 完成条件渲染</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> loading = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &#123;loading &amp;&amp; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>正在加载...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;</span><br><span class="line">    &#123;loading || <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>数据加载完毕，这是显示数据<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+<h2 id="JSX-列表渲染"><a href="#JSX-列表渲染" class="headerlink" title="JSX 列表渲染"></a>JSX 列表渲染</h2><ul>
+<li>可以渲染 <strong><code>JSX</code></strong> 数组</li>
+<li>使用 <strong><code>map</code></strong> 渲染列表</li>
+<li>直接在 <strong><code>JSX</code></strong> 中使用 <strong><code>map</code></strong> 渲染列表</li>
+<li><strong><code>key</code></strong> 属性使用</li>
+</ul>
+<h3 id="可以渲染-JSX-数组"><a href="#可以渲染-JSX-数组" class="headerlink" title="可以渲染 JSX 数组"></a>可以渲染 JSX 数组</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. const list = ['tom', 'jack', 'tony'] 把数组转换成如下JSX数组</span></span><br><span class="line"><span class="keyword">const</span> list = [<span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>tom<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>, &lt;li&gt;jack&lt;<span class="regexp">/li&gt;, &lt;li&gt;tony&lt;/</span>li&gt;];</span><br><span class="line"><span class="comment">// 2. 把JSX嵌入在UL标签中</span></span><br><span class="line"><span class="keyword">const</span> elemet = <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;list&#125;<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="使用-map-渲染列表"><a href="#使用-map-渲染列表" class="headerlink" title="使用 map 渲染列表"></a>使用 map 渲染列表</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 数据</span></span><br><span class="line"><span class="keyword">const</span> list = [<span class="string">'tom'</span>, <span class="string">'jack'</span>, <span class="string">'tony'</span>];</span><br><span class="line"><span class="comment">// 2. 转jsx数组</span></span><br><span class="line"><span class="keyword">const</span> list2 = list.map(<span class="function">(<span class="params">item</span>) =&gt;</span> &lt;li&gt;&#123;item&#125;&lt;<span class="regexp">/li&gt;);</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 3. 使用</span></span><br><span class="line"><span class="regexp">const element = &lt;ul&gt;&#123;list2&#125;&lt;/u</span>l&gt;;</span><br></pre></td></tr></table></figure>
+<h3 id="直接在-JSX-中使用-map-渲染列表"><a href="#直接在-JSX-中使用-map-渲染列表" class="headerlink" title="直接在 JSX 中使用 map 渲染列表"></a>直接在 JSX 中使用 map 渲染列表</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 数据</span></span><br><span class="line"><span class="keyword">const</span> list = [<span class="string">'tom'</span>, <span class="string">'jack'</span>, <span class="string">'tony'</span>];</span><br><span class="line"><span class="comment">// 2. 使用 map调用其实也是js表达式</span></span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &#123;list.map(<span class="function">(<span class="params">item</span>) =&gt;</span> (</span><br><span class="line">      &lt;li&gt;&#123;item&#125;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    ))&#125;</span></span><br><span class="line"><span class="regexp">  &lt;/u</span>l&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="key-属性使用"><a href="#key-属性使用" class="headerlink" title="key 属性使用"></a>key 属性使用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Warning: Each child in a list should have a unique "key" prop.</span></span><br><span class="line"><span class="comment">// 1. 数据</span></span><br><span class="line"><span class="keyword">const</span> list = [<span class="string">'tom'</span>, <span class="string">'jack'</span>, <span class="string">'tony'</span>];</span><br><span class="line"><span class="comment">// 2. 使用</span></span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &#123;list.map(<span class="function">(<span class="params">item</span>) =&gt;</span> (</span><br><span class="line">      &lt;li key=&#123;item&#125;&gt;&#123;item&#125;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    ))&#125;</span></span><br><span class="line"><span class="regexp">  &lt;/u</span>l&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="JSX-样式-style-方式"><a href="#JSX-样式-style-方式" class="headerlink" title="JSX 样式 - style 方式"></a>JSX 样式 - style 方式</h2><ul>
+<li><strong><code>style</code></strong> 接受一个采用<strong>小驼峰</strong>命名属性的 <code>JavaScript</code> 对象，而不是 <code>CSS</code> 字符串</li>
+<li><strong><code>style</code></strong> 中的 <code>key</code> 采用<strong>小驼峰</strong>命名是为了与 <code>JS</code> 访问 <code>DOM</code> 节点的属性保持一致</li>
+<li><strong><code>React</code></strong> 会自动添加 ”px” 后缀到内联样式为数字的属性后，其他单位需要手动添加</li>
+</ul>
+<p>演示代码</p>
+<ul>
+<li>需求：去掉上一个列表案例 <code>ul</code> 的点，加上背景样式，设置字体大小，给第一个 <code>p</code> 设置两倍字体大小</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 数据</span></span><br><span class="line"><span class="keyword">const</span> list = [</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">100</span>, <span class="attr">name</span>: <span class="string">'tom'</span>, <span class="attr">age</span>: <span class="number">15</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">101</span>, <span class="attr">name</span>: <span class="string">'jack'</span>, <span class="attr">age</span>: <span class="number">18</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">102</span>, <span class="attr">name</span>: <span class="string">'tony'</span>, <span class="attr">age</span>: <span class="number">20</span> &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">+<span class="comment">// 2. 样式</span></span><br><span class="line">+<span class="keyword">const</span> styleObject = &#123;</span><br><span class="line">+  listStyle: <span class="string">'none'</span>,</span><br><span class="line">+  backgroundColor: <span class="string">'pink'</span>,</span><br><span class="line">+  fontSize: <span class="number">20</span></span><br><span class="line">+&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 使用</span></span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">+  <span class="xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&#123;styleObject&#125;</span> &gt;</span></span></span><br><span class="line"><span class="xml">    &#123;list.map(item =&gt; &#123;</span></span><br><span class="line"><span class="xml">      return (</span></span><br><span class="line">        &lt;li key=&#123;item.id&#125;&gt;</span><br><span class="line">+          &lt;p style=&#123;&#123;fontSize: '2em'&#125;&#125;&gt;姓名：&#123;item.name&#125;&lt;/p&gt;</span><br><span class="line">          &lt;p&gt;是否成年：&#123;item.age &gt; 16 ? '是' : '否'&#125;&lt;/p&gt;</span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">      )</span></span><br><span class="line"><span class="xml">    &#125;)&#125;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ReactDom.render(element, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="JSX-样式-className-方式"><a href="#JSX-样式-className-方式" class="headerlink" title="JSX 样式 - className 方式"></a>JSX 样式 - className 方式</h2><blockquote>
+<p>在多数情况下，应使用 <strong><code>className</code></strong> 属性来引用外部 <code>CSS</code> 样式表中定义的 <code>class</code></p>
+</blockquote>
+<ul>
+<li><strong><code>className</code></strong> 设置类名，和 <code>class</code> 属性要求一样只能是字符串</li>
+<li>如果需要根据数据设置类名，可以使用 <strong><code>{ }</code></strong> 嵌入 <code>JS</code> 表达式实现</li>
+</ul>
+<p>演示代码：</p>
+<ul>
+<li>需求：在元素 <code>button</code>上根据 <code>isActive</code> 数据的值添加 <code>active</code> 类名</li>
+</ul>
+<p>index.css 代码</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.button</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#eee</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">10px</span> <span class="number">#ccc</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  <span class="attribute">user-select</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.button</span><span class="selector-class">.active</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#069</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="number">#069</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.button</span><span class="selector-class">.block</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>index.js 代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="comment">// 在src下新建index.css文件，导入进来即可</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isActive = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;span className=&#123;<span class="string">`button <span class="subst">$&#123;isActive ? <span class="string">'active'</span> : <span class="string">''</span>&#125;</span>`</span>&#125;&gt;按钮&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDom.render(element, document.getElementById('root'));</span></span><br></pre></td></tr></table></figure>
+<h2 id="JSX-样式-动态-className"><a href="#JSX-样式-动态-className" class="headerlink" title="JSX 样式 - 动态 className"></a>JSX 样式 - 动态 className</h2><ul>
+<li>在使用 <strong><code>className</code></strong> 的时候遇见多个类名动态绑定，可以模仿 <code>vue</code> 使用对象的方式</li>
+<li><strong><code>vue</code></strong> 中绑定类名的时候使用 <code>{类名:布尔}</code> 用布尔值决定是否加上这个类名</li>
+</ul>
+<p>例如：在元素 <code>button</code>上根据 <code>isActive</code> 数据的值添加 <code>active</code> 类名，<code>isBlock</code> 数据的值添加 <code>block</code> 类名</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据</span></span><br><span class="line"><span class="keyword">const</span> isActive = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">const</span> isBlock = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类名对象</span></span><br><span class="line"><span class="keyword">const</span> classObject = &#123;</span><br><span class="line">  button: <span class="literal">true</span>,</span><br><span class="line">  active: isActive,</span><br><span class="line">  block: isBlock,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 转换成字符串</span></span><br><span class="line"><span class="keyword">const</span> className = <span class="built_in">Object</span>.keys(classObject)</span><br><span class="line">  .filter(<span class="function">(<span class="params">key</span>) =&gt;</span> classObject[key])</span><br><span class="line">  .join(<span class="string">' '</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#123;className&#125;</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>;</span><br><span class="line"></span><br><span class="line">ReactDom.render(element, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="JSX-样式-classnames-库"><a href="#JSX-样式-classnames-库" class="headerlink" title="JSX 样式 - classnames 库"></a>JSX 样式 - classnames 库</h2><p>使用 <code>JS</code> 原生的能力处理多个类名的动态绑定，当然这样的需求已经有 <strong><code>classnames</code></strong> 库给我们解决了。</p>
+<h3 id="安装导入-classnames"><a href="#安装导入-classnames" class="headerlink" title="安装导入 classnames"></a>安装导入 classnames</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装</span></span><br><span class="line">npm i classnames</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者 </span></span><br><span class="line">yarn add classnames</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入</span></span><br><span class="line"><span class="keyword">import</span> classNames <span class="keyword">from</span> <span class="string">'classnames'</span></span><br></pre></td></tr></table></figure>
+<h3 id="认识-classnames-API"><a href="#认识-classnames-API" class="headerlink" title="认识 classnames API"></a>认识 classnames API</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 使用字符串</span></span><br><span class="line">classNames(<span class="string">'foo'</span>, <span class="string">'bar'</span>); <span class="comment">// foo bar</span></span><br><span class="line"><span class="comment">// 2. 使用对象</span></span><br><span class="line">classNames(&#123; <span class="attr">foo</span>: <span class="literal">true</span>, <span class="attr">bar</span>: <span class="literal">true</span> &#125;); <span class="comment">// foo bar</span></span><br><span class="line"><span class="comment">// 3. 使用数组</span></span><br><span class="line">classNames([<span class="string">'foo'</span>, <span class="string">'bar'</span>]); <span class="comment">// foo bar</span></span><br><span class="line"><span class="comment">// 4. 混合使用</span></span><br><span class="line">classNames(<span class="string">'foo'</span>, &#123; <span class="attr">bar</span>: <span class="literal">true</span> &#125;); <span class="comment">// foo bar</span></span><br></pre></td></tr></table></figure>
+<p>例如还是上面那个需求：在元素 <code>button</code>上根据 <code>isActive</code> 数据的值添加 <code>active</code> 类名，<code>isBlock</code> 数据的值添加 <code>block</code> 类名</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="comment">// 1. 导入classnames</span></span><br><span class="line"><span class="keyword">import</span> classNames <span class="keyword">from</span> <span class="string">'classnames'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 数据</span></span><br><span class="line"><span class="keyword">const</span> isActive = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">const</span> isBlock = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 产生类名</span></span><br><span class="line"><span class="keyword">const</span> className = classNames(<span class="string">'button'</span>, &#123;</span><br><span class="line">  active: isActive,</span><br><span class="line">  block: isBlock,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#123;className&#125;</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>;</span><br><span class="line"></span><br><span class="line">ReactDom.render(element, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>));</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/25844.html" class="pre-post btn btn-default" title='深入浅出Hooks'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">深入浅出Hooks</span>
+        </a>
+    
+    
+        <a href="/article/44037.html" class="next-post btn btn-default" title='React快速上手'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">React快速上手</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX-基本概念"><span class="toc-text">JSX 基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#演示"><span class="toc-text">演示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX-基本使用"><span class="toc-text">JSX 基本使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX-的注意事项"><span class="toc-text">JSX 的注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用细节"><span class="toc-text">使用细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码示例"><span class="toc-text">代码示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX-嵌入表达式"><span class="toc-text">JSX 嵌入表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX-条件渲染"><span class="toc-text">JSX 条件渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if-else-条件渲染"><span class="toc-text">if/else 条件渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三元运算符-完成条件渲染"><span class="toc-text">三元运算符 完成条件渲染</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑运算-完成条件渲染"><span class="toc-text">逻辑运算 完成条件渲染</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX-列表渲染"><span class="toc-text">JSX 列表渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可以渲染-JSX-数组"><span class="toc-text">可以渲染 JSX 数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-map-渲染列表"><span class="toc-text">使用 map 渲染列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#直接在-JSX-中使用-map-渲染列表"><span class="toc-text">直接在 JSX 中使用 map 渲染列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#key-属性使用"><span class="toc-text">key 属性使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX-样式-style-方式"><span class="toc-text">JSX 样式 - style 方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX-样式-className-方式"><span class="toc-text">JSX 样式 - className 方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX-样式-动态-className"><span class="toc-text">JSX 样式 - 动态 className</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSX-样式-classnames-库"><span class="toc-text">JSX 样式 - classnames 库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装导入-classnames"><span class="toc-text">安装导入 classnames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#认识-classnames-API"><span class="toc-text">认识 classnames API</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2022
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

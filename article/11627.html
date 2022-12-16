@@ -1,0 +1,507 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="随身Wifi刷机,随身Wifi破解,随身Wifi免流,随身Wifi刷入面具,随身WiFi-Root,随身wifi固件,随身WiFi刷写boot" />
+
+
+    <meta name="description" content="前言首先感谢酷安随身 Wi-FI社区，里面有很多参考资料，但是对小白上手不太友好，刚好我也是第一次刷，所以我这边就写了一篇完整的图文教程，希望可以帮到你。
+购买随身 Wi-Fi现在市面上的大部分..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>随身wifi刷机折腾记 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="随身wifi刷机折腾记">
+            
+	            随身wifi刷机折腾记
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/资源/">资源</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/随身WiFi-Root/">随身WiFi-Root</a> <a class="tag-link" href="/tags/随身WiFi刷写boot/">随身WiFi刷写boot</a> <a class="tag-link" href="/tags/随身Wifi免流/">随身Wifi免流</a> <a class="tag-link" href="/tags/随身Wifi刷入面具/">随身Wifi刷入面具</a> <a class="tag-link" href="/tags/随身Wifi刷机/">随身Wifi刷机</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2022/06/28</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先感谢酷安<code>随身 Wi-FI</code>社区，里面有很多参考资料，但是对小白上手不太友好，刚好我也是第一次刷，所以我这边就写了一篇完整的图文教程，希望可以帮到你。</p>
+<h2 id="购买随身-Wi-Fi"><a href="#购买随身-Wi-Fi" class="headerlink" title="购买随身 Wi-Fi"></a>购买随身 Wi-Fi</h2><p>现在市面上的大部分随身 Wi-Fi 除了最基本充当网络热点的功能以外，它还是一块非常标准的<code>高通410/210开发板</code>（这取决于你的购买），而且它跑的还是安卓系统。可以刷 <code>debian</code> 系统，甚至你还能刷 <code>openwrt</code> 成为软路由，更棒的是 4G 和 Wi-Fi 、USB 等功能都正常工作。</p>
+<p>一般的商家宣传说的无需插卡其实都是内置了 eSIM卡，但大部分还是留有卡槽(大卡槽，小卡需要卡套)，切记不要激活他内置的流量卡，说白了就是物联网卡，流量不仅贵不说而且还虚标！</p>
+<p>我是在京东买的讯唐，日常活动券后价 29，买最基础的就行，链接：<a href="https://u.jd.com/cdVKZYw" target="_blank" rel="noopener">https://u.jd.com/cdVKZYw</a></p>
+<p><img src="https://oss.iyouhun.com/img/md/WechatIMG1927.jpeg" alt="WechatIMG1927"></p>
+<p>用完红包一系列骚操作下来9块钱拿下。</p>
+<h3 id="插入一个小小的开箱环节"><a href="#插入一个小小的开箱环节" class="headerlink" title="插入一个小小的开箱环节"></a>插入一个小小的开箱环节</h3><p>到货，有点廉价感</p>
+<p><img src="https://oss.iyouhun.com/img/md/WechatIMG1924.jpeg" alt="WechatIMG1924"></p>
+<p>中规中矩的外观，没办法直接插卡，需要拆卸装卡</p>
+<p><img src="https://oss.iyouhun.com/img/md/WechatIMG1926.jpeg" alt="WechatIMG1926"></p>
+<p>拔掉 USB 帽，背面可以看到两个螺钉，先不要急着拆看后面的检查！</p>
+<p><img src="https://oss.iyouhun.com/img/md/WechatIMG1928.jpeg" alt="WechatIMG1928"></p>
+<h3 id="推荐随身-Wi-Fi"><a href="#推荐随身-Wi-Fi" class="headerlink" title="推荐随身 Wi-Fi"></a>推荐随身 Wi-Fi</h3><blockquote>
+<p>来源网络，你可以根据你的情况来，也可以直接上我买的那个讯唐</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">铁恒信旗舰店 54 元款：UFI003 （后台密码 admin、切卡密码 UFIadmin1234）</span><br><span class="line">天天特卖工厂店 29 元款：SP970-Main-v2（后台：admin admin，切卡用酷安工具，无法直接进 9008，openwrt wifi 有问题不推荐）</span><br><span class="line">酷翼旗舰店 8.8 元款：UFI003 （后台密码 admin、切卡密码 无）</span><br><span class="line">纽皇 6.8 元款：可能是 UFI001W ？？？（后台密码 admin、切卡密码：qr0521）但会抽奖碰到高通 210 款</span><br><span class="line">天天特卖工厂店 28 元款 UFI001 C （后台密码 admin、切卡密码：UFIadmin1234，现在改成没卡槽了）</span><br></pre></td></tr></table></figure>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
+<li><strong>高通410（msm8916）方案的随身 Wi-Fi</strong>：板子上的丝印是 UFI001B、UFI001C、UFI003、UFI-W-001 最好，或者 SP970（不推荐，细分版本目前13个太多，基本要短接才能进 9008 模式，然后现在的 openwrt Wi-Fi 也有问题）、UZ801 也 OK；<strong>需要带卡槽、能切卡</strong>。</li>
+<li><strong>一台 Windows 电脑</strong>（建议安装火绒，一些文件会被 Win 默认防护当病毒删除）</li>
+<li><strong>小卡转大卡 SIM 卡套</strong></li>
+<li><strong>螺丝刀</strong>（拧随身 Wi-Fi 十字小螺丝）</li>
+</ol>
+<h3 id="下载工具和资源"><a href="#下载工具和资源" class="headerlink" title="下载工具和资源"></a>下载工具和资源</h3><p><img src="https://oss.iyouhun.com/img/md/image-20220628111257659.png" alt="image-20220628111257659"></p>
+<p><a href="https://cloud.189.cn/web/share?code=mAzaeaVzMNni" target="_blank" rel="noopener">刷机需要的工具文件（访问码：h5ft）</a></p>
+<p><a href="https://www.kancloud.cn/a813630449/ufi_car/2792820" target="_blank" rel="noopener">「苏苏小亮亮」编译的 openwrt</a></p>
+<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><ul>
+<li><p>进入 9008模式</p>
+<ul>
+<li><p>就是按住板子上的复位按钮，如果没拆机那就拿针按住然后插入电脑</p>
+</li>
+<li><p>可以从电脑的设备管理器查看端口有无 9008</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625201524.png" alt="微信截图_20220625201524"></p>
+</li>
+</ul>
+</li>
+<li><p>面具（Magisk）</p>
+<ul>
+<li><em>Magisk</em>是一套用于定制 Android的开源工具</li>
+<li>root、引导脚本、 SELInux修补、移除AVB2.0/dm- verity/强制加密等</li>
+<li>主打模块管理功能的软件，有了它后边你就可以安装免流模块或者 V2，本文不做讨论</li>
+</ul>
+</li>
+<li><p>adb</p>
+<ul>
+<li><em>adb</em>的全称为Android Debug Bridge</li>
+<li>起到调试桥的作用，简单来说就是可以通过这个命令用电脑控制手机。</li>
+</ul>
+</li>
+<li><p>fastboot模式</p>
+<ul>
+<li>翻译过来就是快速启动</li>
+<li>fastboot是一种比<a href="https://product.pconline.com.cn/itbk/sjtx/sj/1111/2590367.html" target="_blank" rel="noopener">recovery</a>更底层的<a href="https://product.pconline.com.cn/itbk/sjtx/sj/1109/2517557.html" target="_blank" rel="noopener">刷机</a>模式</li>
+<li>使用USB数据线连接手机的一种刷机模式</li>
+</ul>
+</li>
+</ul>
+<h2 id="基础安装"><a href="#基础安装" class="headerlink" title="基础安装"></a>基础安装</h2><h3 id="安装9008驱动"><a href="#安装9008驱动" class="headerlink" title="安装9008驱动"></a>安装9008驱动</h3><p>我们先安装需要的9008驱动。打开<code>9008免签名驱动</code>文件夹，安装驱动。</p>
+<p><img src="https://oss.iyouhun.com/img/md/image-9008install.png" alt="image-9008install"></p>
+<p>点击立即安装即可。</p>
+<h3 id="安装高通刷机工具"><a href="#安装高通刷机工具" class="headerlink" title="安装高通刷机工具"></a>安装高通刷机工具</h3><p>打开 <code>Qualcomm Premium Tool V2.4</code> 文件夹。</p>
+<ol>
+<li><p>先用注册机生成<code>.key</code>文件。</p>
+</li>
+<li><p>保存<code>.key</code>文件</p>
+</li>
+</ol>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625204332.png" alt="微信截图_20220625204332"></p>
+<ol>
+<li><p>打开<code>Premium Tool v2.4</code>。点击<code>Help</code>下的<code>Activate</code>激活，选择你刚才保存的<code>.key</code>文件即可激活成功</p>
+<p><img src="https://oss.iyouhun.com/img/md/image-Premium-active.png" alt="image-Premium-active"></p>
+</li>
+</ol>
+<h3 id="安装ARDC投屏软件并进行简单优化"><a href="#安装ARDC投屏软件并进行简单优化" class="headerlink" title="安装ARDC投屏软件并进行简单优化"></a>安装ARDC投屏软件并进行简单优化</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>打开 <code>投屏软件 ARDC</code> 文件夹，安装ARDC，请保持默认，一路确认即可。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E6%8A%95%E5%B1%8F%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85.png" alt="投屏软件安装"></p>
+<p>拔掉随身Wifi，重新插回电脑，此时设备灯亮，说明进入正常adb模式了。</p>
+<p>打开ARDC，程序会通过adb的方式推送投屏软件到随身Wifi上。完成以后如图所示，点击鼠标右键进入桌面。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625203442.png" alt="微信截图_20220625203442"></p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625203546.png" alt="微信截图_20220625203546"></p>
+<p>桌面</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625205240.png" alt="微信截图_20220625205240"></p>
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><p>毕竟这么小的设备上跑安卓系统，我们可以做一下优化，要不然太卡了。</p>
+<p>进入设置 =&gt; 关于本机 =&gt; 点击 10 次版本号进入开发者模式，把所有动画特效都关掉。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625203654.png" alt="微信截图_20220625203654"></p>
+<h2 id="检查和备份"><a href="#检查和备份" class="headerlink" title="检查和备份"></a>检查和备份</h2><h3 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h3><p>请先确认插上随身Wifi后，电脑是不是识别出来了硬件，诸如<strong>adb或者Android的字眼</strong>，这都意味着你的机器是<strong>可以不拆机破解</strong>的，他的adb端口是开的。连上随身 Wi-Fi 提供的 Wi-Fi，进入后台，检查下是否能正常工作，防止到手就是坏的。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625163655.png" alt="微信截图_20220625163655"></p>
+<p>然后用螺丝刀拆开检查板子，是否有卡槽，以及上面的版本丝印。</p>
+<p>如下图，小按钮旁边那个就是卡槽，注意：图中最左边的顶部那里是信号天线，有些人拆了之后插卡测试没网或者信号不好可能就是忘记装了这个东西！</p>
+<p><img src="https://oss.iyouhun.com/img/md/WechatIMG1925.jpeg" alt="WechatIMG1925"></p>
+<p>我的这款丝印是：<code>UFI003_MB_V002</code> 三网通，不用切卡不用刷基带，插卡直接用！忽然没了折腾的意义，哈哈哈。</p>
+<p><strong>检查的重要性</strong></p>
+<p>酷安一个友友，和我的设备一样。私信我他刚买来插卡没有网络…</p>
+<p><img src="https://oss.iyouhun.com/img/md/WechatIMG1932.jpeg" alt="WechatIMG1932"></p>
+<h3 id="备份原厂固件分区镜像"><a href="#备份原厂固件分区镜像" class="headerlink" title="备份原厂固件分区镜像"></a>备份原厂固件分区镜像</h3><p>做好全量备份就不会变砖，随时刷成到手的状态。</p>
+<p>进入 9008 模式，打开Premium Tool v2.4。</p>
+<p>依次点击<code>Qualcomm</code> 、<code>partition</code>，然后点击<code>Scan</code>分区、<code>Do job</code>扫描。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625211334.png" alt="微信截图_20220625211334"></p>
+<p>再依次点击<code>Backup</code>，<code>Backup All</code>，<code>Do job</code>备份即可</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625211402.png" alt="微信截图_20220625211402"></p>
+<h3 id="制作救砖包"><a href="#制作救砖包" class="headerlink" title="制作救砖包"></a>制作救砖包</h3><p>安装<code>Miko_pro</code>，并复制<code>loader.exe</code>到安装目录。打开<code>loader.exe</code>。</p>
+<p>然后在 <code>miko</code> 里依次选择 <code>Read</code> ，<code>Partition Backup/Earese</code> 点击左下角 <code>Load Partition Structure</code> 看到右边有系统信息的输出就说明连上了</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625201814.png" alt="微信截图_20220625201814"></p>
+<p>然后点击 <code>Read Full Image</code> 选个路径，取个名字就开始全量备份救砖能用的 <code>.bin</code> 文件。过程会比较慢，可能要十几分钟。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625202228.png" alt="微信截图_20220625202228"></p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625202338.png" alt="微信截图_20220625202338"></p>
+<p>等到跑完进度条 100% 右边的输出显示 success 就备份好了，我们就能开始随意折腾。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%A4%87%E4%BB%BD%E6%88%90%E5%8A%9F.png" alt="备份成功"></p>
+<h3 id="备份原厂基带"><a href="#备份原厂基带" class="headerlink" title="备份原厂基带"></a>备份原厂基带</h3><p>打开 星海恢复 备份 生成 修改QCN工具 文件夹中的星海SVIP</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E6%98%9F%E6%B5%B7svip-%E5%9F%BA%E5%B8%A6%E5%A4%87%E4%BB%BD.png" alt="星海svip-基带备份"></p>
+<p>随身wifi正常工作状态下，点击上方的高通，先点击联机，再点击备份QCN，选择路径来备份你的基带。点击一键执行即可。</p>
+<h2 id="刷入面具（Magist）获取-Root-权限"><a href="#刷入面具（Magist）获取-Root-权限" class="headerlink" title="刷入面具（Magist）获取 Root 权限"></a>刷入面具（Magist）获取 Root 权限</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><p><strong>安装<code>Magist</code></strong></p>
+<p>随身 Wi-Fi 插在电脑上，打开 ARDC 投屏软件，等待设备投屏成功。</p>
+<p>直接将资源<code>面具Magist</code>文件夹里的<code>Magisk-v22.0.apk</code>拖动到 ARDC 窗口中</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625205049.png" alt="微信截图_20220625205049"></p>
+<p><strong>修补面具</strong></p>
+<p>随身Wifi插在电脑上不要动，打开 <code>搞机工具箱_钟晨酱</code> 文件夹</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625212438.png" alt="微信截图_20220625212438"></p>
+<p>先点击<code>Fastboot(BL)</code>进入<code>Fastboot</code>模式</p>
+<p>然后分区选择<code>Boot</code>, 右侧选择<code>14.5magisk修补boot.img</code>然后输入即可。刷写速度非常快，提示完成即可关闭。</p>
+<p>接着拔掉随身wifi并重新插入，打开<code>ardc</code>，进入桌面打开<code>magisk</code>。可以看到当前已安装，并获得了root权限。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E9%9D%A2%E5%85%B71.png" alt="面具1"></p>
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><blockquote>
+<p>也可以直接刷入一些整合镜像内就包含了面具及一些常用软件。</p>
+</blockquote>
+<p>我这里用的是酷安一个大佬分享的可以<strong>一键刷入UFI003</strong></p>
+<p>按复位按钮插入电脑，进入 9008 模式，打开<code>MiFlash</code>，点击刷新查看设备是否连接上。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625221344.png" alt="微信截图_20220625221344"></p>
+<p>点击浏览选择刷机包，选择保留所有数据，点击刷机即可。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625221444.png" alt="微信截图_20220625221444"></p>
+<p>时间有点慢，耐心等待一下，成功状态列会有显示。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220625222506.png" alt="微信截图_20220625222506"></p>
+<p>成功后可以直接打开<code>ARDC</code>查看。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E5%88%B7%E5%AE%8C%E5%90%8E%E7%9A%84%E6%A1%8C%E9%9D%A2.png" alt="刷完后的桌面"></p>
+<p>Ps：不要随便刷入整合镜像！除非和你是同品牌同型号！</p>
+<h2 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h2><h3 id="不支持全网通-刷写基带"><a href="#不支持全网通-刷写基带" class="headerlink" title="不支持全网通(刷写基带)"></a>不支持全网通(刷写基带)</h3><p>大部分 UFI00X 丝印的随身 Wi-Fi 都是支持电信卡的，很多其实也支持联通，移动大概率默认是不支持的。当然因为产品众多，甚至丝印型号相同用的 modem 型号都有差别，当然最麻烦的其实也是这一步，不能保证你刷了基带后移动联通就能正常使用，还是更推荐电信或联通用户使用。</p>
+<ol>
+<li><p>先使用<code>搞机工具箱</code>重启进入 <code>fastboot</code> 模式。</p>
+</li>
+<li><p>然后打开`星海工具箱 =&gt; 选择高通 =&gt; 选择高通基带擦除 =&gt; 一键执行，完成后会重启。(如果你的星海无法打开你可能得安装下<a href="https://docs.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170" target="_blank" rel="noopener">微软的这个包</a>)</p>
+<p><img src="https://oss.iyouhun.com/img/md/202206021947102.png" alt="202206021947102"></p>
+</li>
+<li><p>然后勾选写入 QCN，选择全网通的基带写入。会可能一次写入不成功，多写入几次。重启随身 Wi-Fi，看看你的卡能不能正常工作。</p>
+</li>
+</ol>
+<h3 id="默认没开-adb-的设备"><a href="#默认没开-adb-的设备" class="headerlink" title="默认没开 adb 的设备"></a>默认没开 adb 的设备</h3><p>如果你的型号是 UFI001W 等，可能你到手设备并没有打开 adb 功能，你可以在 web 管理后台尝试重置。例如我讯唐的后台地址是：<code>192.168.100.1</code>，其他的参照你随身WiFi的说明书或者随身WiFi机身上的地址。</p>
+<p>如果仍然不行。直接 9008 模式用 miflash 工具刷别人改好的包（安装面具的方式二就是），浏览里选择下载解压好的包，刷新勾选设备，点击刷机即可。会直接开启adb、锁定插入的 SIM 卡、和 root 等功能。</p>
+<h3 id="成砖挽救"><a href="#成砖挽救" class="headerlink" title="成砖挽救"></a>成砖挽救</h3><p>备份大法好，备份大法好，备份大法好！</p>
+<p>进入<code>9008模式</code>，进入<code>miko</code>，点击<code>flash</code>，点击<code>emmc block0 flasher</code>。</p>
+<p>下方选择备份部分<em>制作救砖包</em>中生成的救砖包（.bin文件），耐心等待刷入即可。</p>
+<p><img src="https://oss.iyouhun.com/img/md/%E6%95%91%E7%A0%96%E5%8C%85%E5%88%B7%E5%85%A5.png" alt="救砖包刷入"></p>
+<h3 id="刷好后插入别的卡没网络"><a href="#刷好后插入别的卡没网络" class="headerlink" title="刷好后插入别的卡没网络"></a>刷好后插入别的卡没网络</h3><p>很有可能是你刷入了整合包，自带了锁定 SIM 卡功能，可以插卡重新刷写一遍试试。</p>
+<h3 id="烫得要死"><a href="#烫得要死" class="headerlink" title="烫得要死"></a>烫得要死</h3><p>随身WiFi用一段时间就会发热的厉害，甚至自动关机。没办法本来就这么一个小小躯体承载了太多，动手能力强的可以自己淘宝买一些小风扇或者散热片改装一下，手残的可以直接买别人改好的。</p>
+<p>可按照该商品规格购买：<a href="https://m.tb.cn/h.fvmcIWv?tk=XCOV2LYWDGA" target="_blank" rel="noopener">https://m.tb.cn/h.fvmcIWv?tk=XCOV2LYWDGA</a></p>
+<h2 id="来个总结"><a href="#来个总结" class="headerlink" title="来个总结"></a>来个总结</h2><p>目前随身 WiFi 市场除了大品牌有自研芯片、方案。大部分无良商家都是贴牌，成本很便宜也懒得去给加各种限制，采用相同的方案那就意味着大部分都可以刷机，刷机方法大同小异，最多就是刷机包的不同。而且目前社区解决方案多，资料完善，破解方便。</p>
+<p>可能大家感觉折腾下来和刚买来没什么区别，但是我们首先不需要使用商家内置的SIM卡了，而且永久解锁SIM卡槽，防止商家远程施法！本文只是基础的刷机 root，但是相当于打通了任督二脉，无往而不利，接下来你随便折腾！可以刷入<code>openwrt</code>做旁路由、刷入<code>debian</code>做小型服务器等… 万物皆可刷！</p>
+<p>最后，9块钱的随身 WiFi 真香，拜了个拜！</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/37442.html" class="pre-post btn btn-default" title='IM腾讯实时音视频小记'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">IM腾讯实时音视频小记</span>
+        </a>
+    
+    
+        <a href="/article/27057.html" class="next-post btn btn-default" title='Jenkins Generic Webhook Trigger 插件使用'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Jenkins Generic Webhook Trigger 插件使用</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#购买随身-Wi-Fi"><span class="toc-text">购买随身 Wi-Fi</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插入一个小小的开箱环节"><span class="toc-text">插入一个小小的开箱环节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐随身-Wi-Fi"><span class="toc-text">推荐随身 Wi-Fi</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载工具和资源"><span class="toc-text">下载工具和资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#术语"><span class="toc-text">术语</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础安装"><span class="toc-text">基础安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装9008驱动"><span class="toc-text">安装9008驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装高通刷机工具"><span class="toc-text">安装高通刷机工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装ARDC投屏软件并进行简单优化"><span class="toc-text">安装ARDC投屏软件并进行简单优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优化"><span class="toc-text">优化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查和备份"><span class="toc-text">检查和备份</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#检查"><span class="toc-text">检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#备份原厂固件分区镜像"><span class="toc-text">备份原厂固件分区镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#制作救砖包"><span class="toc-text">制作救砖包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#备份原厂基带"><span class="toc-text">备份原厂基带</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#刷入面具（Magist）获取-Root-权限"><span class="toc-text">刷入面具（Magist）获取 Root 权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方式一"><span class="toc-text">方式一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方式二"><span class="toc-text">方式二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些问题"><span class="toc-text">一些问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不支持全网通-刷写基带"><span class="toc-text">不支持全网通(刷写基带)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#默认没开-adb-的设备"><span class="toc-text">默认没开 adb 的设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成砖挽救"><span class="toc-text">成砖挽救</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#刷好后插入别的卡没网络"><span class="toc-text">刷好后插入别的卡没网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#烫得要死"><span class="toc-text">烫得要死</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#来个总结"><span class="toc-text">来个总结</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2022
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

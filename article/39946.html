@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="游魂的网络日志,游魂日志,游魂博客,网络日志,游魂" />
+
+
+    <meta name="description" content="[记]使用jQuery Jcrop 图像裁剪的坑
+​    因为公司需求，需要完成一个显示屏定制的业务，用户自主上传图片然后在线裁剪的功能，我选择了jQuery Jcrop这个插件。
+
+先看看怎..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>使用jQuery Jcrop 图像裁剪无法更换图片的坑 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="使用jQuery Jcrop 图像裁剪无法更换图片的坑">
+            
+	            使用jQuery Jcrop 图像裁剪无法更换图片的坑
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/03/21</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1730</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="记-使用jQuery-Jcrop-图像裁剪的坑"><a href="#记-使用jQuery-Jcrop-图像裁剪的坑" class="headerlink" title="[记]使用jQuery Jcrop 图像裁剪的坑"></a>[记]使用jQuery Jcrop 图像裁剪的坑</h1><blockquote>
+<p>​    因为公司需求，需要完成一个显示屏定制的业务，用户自主上传图片然后在线裁剪的功能，我选择了jQuery Jcrop这个插件。</p>
+</blockquote>
+<p>先看看怎么使用</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="载入-CSS-文件"><a href="#载入-CSS-文件" class="headerlink" title="载入 CSS 文件"></a>载入 CSS 文件</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"jquery.Jcrop.css"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="载入-JavaScript-文件"><a href="#载入-JavaScript-文件" class="headerlink" title="载入 JavaScript 文件"></a>载入 JavaScript 文件</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery.Jcrop.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="给-IMG-标签加上-ID"><a href="#给-IMG-标签加上-ID" class="headerlink" title="给 IMG 标签加上 ID"></a>给 IMG 标签加上 ID</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"element_id"</span> <span class="attr">src</span>=<span class="string">"pic.jpg"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="调用-Jcrop"><a href="#调用-Jcrop" class="headerlink" title="调用 Jcrop"></a>调用 Jcrop</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#element_id'</span>).Jcrop();</span><br></pre></td></tr></table></figure>
+<p>就不展示具体代码了，最终实现的图需要是这样。</p>
+<p><img src="https://oss.iyouhun.com/img/a15b4afegy1fplowrfe95j212o0kkgqp.jpg" alt="img"></p>
+<h2 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h2><p><strong>重点来了，敲黑板</strong></p>
+<p>举个栗子：当你上传一张图片后裁剪，忽然这个时候你发现当前图片可能不适用，当你重新上传图片后，发现裁剪后的图片变了，但是上传的图片没变。如下图</p>
+<p><img src="https://oss.iyouhun.com/img/a15b4afegy1fpkh0s65hxj21280jmq8y.jpg" alt="img"></p>
+<p>这就很尴尬了，于是我就看上传后的图片地址</p>
+<p><img src="https://oss.iyouhun.com/img/a15b4afegy1fpkh6c7kywj20lv0erq63.jpg" alt="img"></p>
+<p>可以看下我的标注,其实你重新上传后，<strong>原图片地址已经改变了，但是jcorp操作的不是原始的img那个对象了，是jcorp生成的img对象</strong>。</p>
+<p>这不是玩我么，于是一顿百度谷歌搜索看看有没有大佬遇到过，还是有发现的。</p>
+<p>有人说使用jcorp的setImage方法设置图片地址，也有人说把定义的jcrop_api,    boundx,    boundy变成全局变量（变量名不是固定的， 你定义成什么就用什么）。boundx和boundy是用于记录选择的原始图片尺寸与在弹窗上展现尺寸的缩小/放大比例的，前面的<code>jcrop_api</code>变量用于获取到所有jcropd 的API。</p>
+<p>也不知道是我操作失误，还是就是这个插件年久失修，我用了上面的所有解决方案都是不行。</p>
+<p>于是乎我决定另辟蹊径，为何我不上传图片时直接操作jcrop的IMG对象呢？把上传后的图片地址赋值给Jcrop的图片地址。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</span><br><span class="line">reader.onload = <span class="function"><span class="keyword">function</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">$(<span class="string">'#uploadImg'</span>).attr(<span class="string">"src"</span>, evt.target.result)</span><br><span class="line">$(<span class="string">'#jcropImg'</span>).attr(<span class="string">"src"</span>, evt.target.result)</span><br><span class="line">$(<span class="string">'#preview'</span>).removeClass(<span class="string">"hidden"</span>);</span><br><span class="line">$(<span class="string">'.preview-container'</span>).removeClass(<span class="string">"hidden"</span>);</span><br><span class="line">$(<span class="string">".jcrop-holder img"</span>).attr(<span class="string">"src"</span>,$(<span class="string">'#uploadImg'</span>).attr(<span class="string">"src"</span>)) <span class="comment">//这里就是直接操作的Jcrop</span></span><br><span class="line">  previewNewImg() <span class="comment">//裁剪方法</span></span><br><span class="line">&#125;</span><br><span class="line">reader.readAsDataURL(file.files[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+<p>ok，大功告成。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>偷了个懒，直接使用插件裁剪，但是Jcrop这个裁剪插件最后一次更新是14年，所以说可能遗留了很多问题，虽然是一个骚操作，但是实属无奈之举，有朋友有更好的解决方法请不要吝啬。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/6592.html" class="pre-post btn btn-default" title='不限容量的网盘-可作为电脑磁盘'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">不限容量的网盘-可作为电脑磁盘</span>
+        </a>
+    
+    
+        <a href="/article/54364.html" class="next-post btn btn-default" title='深入理解vue中的slot与slot-scope'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">深入理解vue中的slot与slot-scope</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#记-使用jQuery-Jcrop-图像裁剪的坑"><span class="toc-text">[记]使用jQuery Jcrop 图像裁剪的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用方法"><span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#载入-CSS-文件"><span class="toc-text">载入 CSS 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#载入-JavaScript-文件"><span class="toc-text">载入 JavaScript 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#给-IMG-标签加上-ID"><span class="toc-text">给 IMG 标签加上 ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调用-Jcrop"><span class="toc-text">调用 Jcrop</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实际操作"><span class="toc-text">实际操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2022
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="游魂的网络日志">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="//www.shen.ee">
+    <!--SEO-->
+
+    <meta name="keywords" content="游魂的网络日志,游魂日志,游魂博客,网络日志,游魂" />
+
+
+    <meta name="description" content="
+五一之前就想写一篇关于Vuepress的文章,结果朋友结婚就不了了之了。
+记得最后一定要看注意事项！
+
+Vuepress介绍官网：https://vuepress.vuejs.org/
+类似h..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+
+    <!--Title-->
+
+
+<title>超详细动手搭建一个Vuepress站点及开启PWA与自动部署 | 游魂的网络日志</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="游魂的网络日志" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      var cnzz_s_tag = document.createElement('script');
+      cnzz_s_tag.type = 'text/javascript';
+      cnzz_s_tag.async = true;
+      cnzz_s_tag.charset = 'utf-8';
+      cnzz_s_tag.src = cnzz_protocol + 'w.cnzz.com/c.php?id=1272902812&async=1';
+      var root_s = document.getElementsByTagName('script')[0];
+      root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/./img/banner.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Andy'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">游魂的网络日志</h2>-->
+            
+                 <img src="/img/branding.png" alt="游魂的网络日志" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="//www.shen.ee">游魂的网络日志</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/资源/"><i class="fa "></i>资源</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/about/"><i class="fa "></i>关于我</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="超详细动手搭建一个Vuepress站点及开启PWA与自动部署">
+            
+	            超详细动手搭建一个Vuepress站点及开启PWA与自动部署
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/前端/">前端</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/07</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1684</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>五一之前就想写一篇关于Vuepress的文章,结果朋友结婚就不了了之了。</p>
+<p>记得最后一定要看注意事项！</p>
+</blockquote>
+<h2 id="Vuepress介绍"><a href="#Vuepress介绍" class="headerlink" title="Vuepress介绍"></a>Vuepress介绍</h2><p>官网：<a href="https://vuepress.vuejs.org/" target="_blank" rel="noopener">https://vuepress.vuejs.org/</a></p>
+<p>类似hexo一个极简的静态网站生成器,用来写技术文档不能在爽。当然搭建成博客也不成问题。</p>
+<h2 id="Vuepress特点"><a href="#Vuepress特点" class="headerlink" title="Vuepress特点"></a>Vuepress特点</h2><ul>
+<li>响应式,也可以自定义主题与hexo类似</li>
+<li>内置markdown(还增加了一些扩展),并且可以在其使用Vue组件</li>
+<li>Google Analytics 集成</li>
+<li>PWA 自动生成Service Worker</li>
+</ul>
+<h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>初始化项目</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn init -y</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者 npm init -y</span></span><br></pre></td></tr></table></figure>
+<p>安装vuepress</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add -D vuepress</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者 npm install -D vuepress</span></span><br></pre></td></tr></table></figure>
+<p>全局安装vuepress</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn global add vuepress</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者 npm install -g vuepress</span></span><br></pre></td></tr></table></figure>
+<p>新建一个docs文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir docs</span><br></pre></td></tr></table></figure>
+<p>设置下package.json</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "scripts": &#123;</span><br><span class="line">    "docs:dev": "vuepress dev docs",</span><br><span class="line">    "docs:build": "vuepress build docs"</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn docs:dev # 或者：npm run docs:dev</span><br></pre></td></tr></table></figure>
+<p>也就是运行开发环境,直接去docs文件下书写文章就可以,打开<a href="http://localhost:8080/可以预览" target="_blank" rel="noopener">http://localhost:8080/可以预览</a></p>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fr1lnlowflj20kp0b5aap.jpg" alt=""></p>
+<h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><p>build生成静态的HTML文件,默认会在 <code>.vuepress/dist</code> 文件夹下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn docs:build # 或者：npm run docs:build</span><br></pre></td></tr></table></figure>
+<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><p>在 <code>.vuepress</code>目录下新建一个<code>config.js</code>,他导出一个对象</p>
+<p>一些配置可以参考<a href="https://vuepress.vuejs.org/config/#base" target="_blank" rel="noopener">官方文档</a>,这里我配置常用及必须配置的</p>
+<h3 id="网站信息"><a href="#网站信息" class="headerlink" title="网站信息"></a>网站信息</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  title: <span class="string">'游魂的文档'</span>,</span><br><span class="line">  description: <span class="string">'Document library'</span>,</span><br><span class="line">  head: [</span><br><span class="line">    [<span class="string">'link'</span>, &#123; <span class="attr">rel</span>: <span class="string">'icon'</span>, <span class="attr">href</span>: <span class="string">`/favicon.ico`</span> &#125;],</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="导航栏配置"><a href="#导航栏配置" class="headerlink" title="导航栏配置"></a>导航栏配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  themeConfig: &#123;</span><br><span class="line">    nav: [</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'主页'</span>, <span class="attr">link</span>: <span class="string">'/'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'前端规范'</span>, <span class="attr">link</span>: <span class="string">'/frontEnd/'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'开发环境'</span>, <span class="attr">link</span>: <span class="string">'/development/'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'学习文档'</span>, <span class="attr">link</span>: <span class="string">'/notes/'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'游魂博客'</span>, <span class="attr">link</span>: <span class="string">'https://www.iyouhun.com'</span> &#125;,</span><br><span class="line">      <span class="comment">// 下拉列表的配置</span></span><br><span class="line">      &#123;</span><br><span class="line">        text: <span class="string">'Languages'</span>,</span><br><span class="line">        items: [</span><br><span class="line">          &#123; <span class="attr">text</span>: <span class="string">'Chinese'</span>, <span class="attr">link</span>: <span class="string">'/language/chinese'</span> &#125;,</span><br><span class="line">          &#123; <span class="attr">text</span>: <span class="string">'English'</span>, <span class="attr">link</span>: <span class="string">'/language/English'</span> &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如图：</p>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fr1oz3elibj20fg02bjr9.jpg" alt=""></p>
+<h3 id="侧边栏配置"><a href="#侧边栏配置" class="headerlink" title="侧边栏配置"></a>侧边栏配置</h3><p>可以省略<code>.md</code>扩展名,同时以 <code>/</code> 结尾的路径将会被视为 <code>*/README.md</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  themeConfig: &#123;</span><br><span class="line">    sidebar: &#123;</span><br><span class="line">      <span class="string">'/frontEnd/'</span>: genSidebarConfig(<span class="string">'前端开发规范'</span>),</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面封装的<code>genSidebarConfig</code>函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">genSidebarConfig</span>(<span class="params">title</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [&#123;</span><br><span class="line">    title,</span><br><span class="line">    collapsable: <span class="literal">false</span>,</span><br><span class="line">    children: [</span><br><span class="line">      <span class="string">''</span>,</span><br><span class="line">      <span class="string">'html-standard'</span>,</span><br><span class="line">      <span class="string">'css-standard'</span>,</span><br><span class="line">      <span class="string">'js-standard'</span>,</span><br><span class="line">      <span class="string">'git-standard'</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>支持侧边栏分组(可以用来做博客文章分类)  collapsable是当前分组是否展开</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  themeConfig: &#123;</span><br><span class="line">    sidebar: &#123;</span><br><span class="line">      <span class="string">'/note'</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          title:<span class="string">'前端'</span>,</span><br><span class="line">          collapsable: <span class="literal">true</span>,</span><br><span class="line">          children:[</span><br><span class="line">            <span class="string">'/notes/frontEnd/VueJS组件编码规范'</span>,</span><br><span class="line">            <span class="string">'/notes/frontEnd/vue-cli脚手架快速搭建项目'</span>,</span><br><span class="line">            <span class="string">'/notes/frontEnd/深入理解vue中的slot与slot-scope'</span>,</span><br><span class="line">            <span class="string">'/notes/frontEnd/webpack入门'</span>,</span><br><span class="line">            <span class="string">'/notes/frontEnd/PWA介绍及快速上手搭建一个PWA应用'</span>,</span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          title:<span class="string">'后端'</span>,</span><br><span class="line">          collapsable: <span class="literal">true</span>,</span><br><span class="line">          children:[</span><br><span class="line">            <span class="string">'notes/backEnd/nginx入门'</span>,</span><br><span class="line">            <span class="string">'notes/backEnd/CentOS如何挂载磁盘'</span>,</span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如图：</p>
+<p><img src="https://oss.iyouhun.com/img/99a97bd9ly1fr1owmkwimj20ey09a74a.jpg" alt="成品图"></p>
+<h2 id="默认主题修改"><a href="#默认主题修改" class="headerlink" title="默认主题修改"></a>默认主题修改</h2><h3 id="主题色修改"><a href="#主题色修改" class="headerlink" title="主题色修改"></a>主题色修改</h3><p>在<code>.vuepress</code>目录下的创建一个<code>override.styl</code>文件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$accentColor = #3eaf7c // 主题色</span><br><span class="line">$textColor = #2c3e50 // 文字颜色</span><br><span class="line">$borderColor = #eaecef // 边框颜色</span><br><span class="line">$codeBgColor = #282c34 // 代码背景颜色</span><br></pre></td></tr></table></figure>
+<h3 id="自定义页面类"><a href="#自定义页面类" class="headerlink" title="自定义页面类"></a>自定义页面类</h3><p>有时需要在不同的页面应用不同的css,可以先在该页面中声明</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">pageClass:</span> <span class="string">custom-page-class</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<p>然后在<code>override.styl</code>中书写</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.theme-container</span><span class="selector-class">.custom-page-class</span> &#123;</span><br><span class="line">  <span class="comment">/* 特定页面的 CSS */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="PWA设置"><a href="#PWA设置" class="headerlink" title="PWA设置"></a>PWA设置</h2><p>设置serviceWorker为true,然后提供Manifest 和 icons,可以参考我之前的<a href="https://www.shen.ee/article/27276.html" target="_blank" rel="noopener">《PWA介绍及快速上手搭建一个PWA应用》</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  head: [</span><br><span class="line">    [<span class="string">'link'</span>, &#123; <span class="attr">rel</span>: <span class="string">'icon'</span>, <span class="attr">href</span>: <span class="string">`/favicon.ico`</span> &#125;],</span><br><span class="line">    <span class="comment">//增加manifest.json</span></span><br><span class="line">    [<span class="string">'link'</span>, &#123; <span class="attr">rel</span>: <span class="string">'manifest'</span>, <span class="attr">href</span>: <span class="string">'/manifest.json'</span> &#125;],</span><br><span class="line">  ],</span><br><span class="line">  serviceWorker: <span class="literal">true</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="部署上线"><a href="#部署上线" class="headerlink" title="部署上线"></a>部署上线</h2><h3 id="设置基础路径"><a href="#设置基础路径" class="headerlink" title="设置基础路径"></a>设置基础路径</h3><p>在<code>config.js</code>设置base<br>例如：你想要部署在<a href="https://foo.github.io" target="_blank" rel="noopener">https://foo.github.io</a> 那么设置base为<code>/</code>,base默认就为<code>/</code>,所以可以不用设置<br>想要部署在<a href="https://foo.github.io/bar/,那么" target="_blank" rel="noopener">https://foo.github.io/bar/,那么</a> <code>base</code> 应该被设置成 <code>&quot;/bar/&quot;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  base: <span class="string">'/documents/'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>base</code> 将会自动地作为前缀插入到所有以 <code>/</code> 开始的其他选项的链接中,所以你只需要指定一次。</p>
+<h3 id="构建与自动部署"><a href="#构建与自动部署" class="headerlink" title="构建与自动部署"></a>构建与自动部署</h3><p>用<a href="https://github.com" target="_blank" rel="noopener">gitHub</a>的pages或者<a href="https://coding.net/r/O5YOFA" target="_blank" rel="noopener">coding</a>的pages都可以,也可以搭建在自己的服务器上。<br>将<code>dist</code>文件夹中的内容提交到git上或者上传到服务器就好</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn docs:build # 或者：npm run docs:build</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>另外可以弄一个脚本,设置持续集成,在每次 push 代码时自动运行脚本</p>
+</blockquote>
+<p>deploy.sh</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 确保脚本抛出遇到的错误</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">npm run docs:build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入生成的文件夹</span></span><br><span class="line"><span class="built_in">cd</span> docs/.vuepress/dist</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果是发布到自定义域名</span></span><br><span class="line"><span class="comment"># echo 'www.example.com' &gt; CNAME</span></span><br><span class="line"></span><br><span class="line">git init</span><br><span class="line">git add -A</span><br><span class="line">git commit -m <span class="string">'deploy'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果发布到 https://&lt;USERNAME&gt;.github.io</span></span><br><span class="line"><span class="comment"># git push -f git@github.com:&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git master</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果发布到 https://&lt;USERNAME&gt;.github.io/&lt;REPO&gt;</span></span><br><span class="line">git push -f git@github.com:&lt;USERNAME&gt;/&lt;REPO&gt;.git master:gh-pages</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> -</span><br></pre></td></tr></table></figure>
+<h2 id="注意事项-坑"><a href="#注意事项-坑" class="headerlink" title="注意事项(坑)"></a>注意事项(坑)</h2><ul>
+<li>把你想引用的资源都放在<code>.vuepress</code>目录下的<code>public</code>文件夹</li>
+<li>给git仓库绑定了独立域名后,记得修改<code>base</code>路径</li>
+<li>设置侧边栏分组后默认会自动生成 上/下一篇链接</li>
+<li>设置了自动生成侧边栏会把侧边栏分组覆盖掉</li>
+<li>设置PWA记得开启SSL</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">游魂的网络日志</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/article/1806.html" class="pre-post btn btn-default" title='sublime注册码失效解决办法'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">sublime注册码失效解决办法</span>
+        </a>
+    
+    
+        <a href="/article/27276.html" class="next-post btn btn-default" title='PWA介绍及快速上手搭建一个PWA应用'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">PWA介绍及快速上手搭建一个PWA应用</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.4.1/gitalk.min.css">
+<script src="//cdn.bootcss.com/gitalk/1.4.1/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        language: "zh-CN",
+        clientID: "7f009ecacf6f9ef23c4f",
+        clientSecret: "37f121ac84806a529cfb6f410e86b869384ecc56",
+        repo: "youhunwl.github.io",
+        owner: "youhunwl",
+        admin: ["youhunwl"],
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vuepress介绍"><span class="toc-text">Vuepress介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vuepress特点"><span class="toc-text">Vuepress特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速上手"><span class="toc-text">快速上手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写作"><span class="toc-text">写作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构建"><span class="toc-text">构建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本配置"><span class="toc-text">基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#网站信息"><span class="toc-text">网站信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导航栏配置"><span class="toc-text">导航栏配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#侧边栏配置"><span class="toc-text">侧边栏配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认主题修改"><span class="toc-text">默认主题修改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主题色修改"><span class="toc-text">主题色修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义页面类"><span class="toc-text">自定义页面类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PWA设置"><span class="toc-text">PWA设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署上线"><span class="toc-text">部署上线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置基础路径"><span class="toc-text">设置基础路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构建与自动部署"><span class="toc-text">构建与自动部署</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项-坑"><span class="toc-text">注意事项(坑)</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017 - 2022
+                </span> |
+                <span>
+            		<a href="//www.shen.ee" class="copyright-links" target="_blank">游魂的网络日志</a>
+        	</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
