@@ -1,40 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8" />
-  <title>在线精准运算</title>
-  <meta name="keywords" content="在线精准运算,js运算,前端计算,浮点数计算,小数计算,超长数运算,前端运算,js精准">
-  <meta name="description" content="提供在线js精准运算">
-  <style>
-    textarea {
-      display: block;
-      width: 70%;
-      height: 150px;
-      margin-bottom: 10px;
-    }
-
-    #stats {
-      width: 100%;
-      word-break: break-all;
-      margin-top: 10px;
-    }
-  </style>
-</head>
-
-<body>
-  值1:
-  <textarea></textarea>
-  值二:
-  <textarea></textarea>
-  <button onclick="handleAdd()">相加</button>
-  <button onclick="handleReduce()">相减</button>
-  <button onclick="handleMultiply()">相乘</button>
-  <button onclick="handleDivide()">相除</button>
-  <div id="stats"></div>
-</body>
-<script>
-  const stats = document.getElementById('stats');
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>在线精准运算</title><meta name="keywords" content="在线精准运算,js运算,前端计算,浮点数计算,小数计算,超长数运算,前端运算,js精准"><meta name="description" content="提供在线js精准运算"><style>textarea{display:block;width:70%;height:150px;margin-bottom:10px}#stats{width:100%;word-break:break-all;margin-top:10px}</style></head><body>值1:<textarea></textarea> 值二:<textarea></textarea> <button onclick="handleAdd()">相加</button> <button onclick="handleReduce()">相减</button> <button onclick="handleMultiply()">相乘</button> <button onclick="handleDivide()">相除</button><div id="stats"></div></body><script>const stats = document.getElementById('stats');
 
   function getValue() {
     let textarea = document.getElementsByTagName('textarea');
@@ -92,8 +56,4 @@
     stats.innerHTML = `计算值：${value}<br/>耗时:${t}<br/>计算值长度：${
           value.length
         }<br/>值一长度：${x.length}<br/>值二长度：${y.length}`;
-  }
-</script>
-<script src="https://oss.iyouhun.com/js/math.min.js"></script>
-
-</html>
+  }</script><script src="https://oss.iyouhun.com/js/math.min.js"></script></html>
